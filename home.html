@@ -1,7 +1,7 @@
 <html>
 	<head>
     <meta charset="utf-8" />
-		<title>Orçamento pessoal</title>
+		<title>Retida de equipametos</title>
 
 		<!-- Bootstrap início -->
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
@@ -13,18 +13,19 @@
 
     <!-- Font Awesome -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
- <script type="text/javascript" src="app.js"></script>
-<link rel="stylesheet" href="estilo/style.css">
+   <script type="text/javascript" src="app.js"></script>
+
+   <link rel="stylesheet" href="estilo/style.css">
 
 	</head>
 
-  <body onload="carregaListaDispesas()">
+  <body>
 
 
     <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
       <div class="container">
-        <a class="navbar-brand" href="https://unisales.br/">
-           <img src="imagens/Logo.png" class="logo" alt="Orçamento pessoal">
+        <a class="navbar-brand" href="home.html">
+           <img src="imagens/Logo.png" class="logo" width="50" height="35" alt="UNISALES">
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
           <span class="navbar-toggler-icon"></span>
@@ -32,11 +33,11 @@
 
         <div class="collapse navbar-collapse" id="navbarSupportedContent">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-              <a class="nav-link link " href="home.html">Cadastro</a>
-            </li>
             <li class="nav-item active">
-              <a class="nav-link link" href="consulta.html">Consulta</a>
+              <a class="nav-link link"  href="home.html">Cadastro</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link link"  href="consulta.html">Consulta</a>
             </li>
           </ul>
           
@@ -45,13 +46,14 @@
     </nav>
 
     <div class="container">
-      <div class="row mb-5">
-        <div class="col">
-          <h1 class="display-4">Consulta de Reservas</h1>
+      <div class="row">
+        <div class="col mb-5">
+          <h1 class="display-4">Registro de reserva de equipametos</h1>
         </div>
       </div>
-
-      <div class="row mb-2">
+      <div class="row mb-4">
+       
+     <!--  
         <div class="col-md-2">
           <select class="form-control" id="ano">
             <option value="">Ano</option>
@@ -59,7 +61,7 @@
           </select>
         </div>
 
-        <div class="col-md-2">
+       <div class="col-md-2">
           <select class="form-control" id="mes">
             <option value="">Mês</option>
             <option value="1">Janeiro</option>
@@ -76,70 +78,83 @@
             <option value="12">Dezembro</option>
           </select>
         </div>
-      
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Dia" id="dia" />
-        </div>
-
-        <div class="col-md-6">
-          <select class="form-control" id="equipamento">
-            <option value="">Tipo</option>
-            <option value="1">Alimentação</option>
-            <option value="2">Educação</option>
-            <option value="3">Lazer</option>
-            <option value="4">Saúde</option>
-            <option value="5">Transporte</option>
-          </select>
-        </div>
-      </div>
-
-      <div class="row  mb-5">
-        <div class="col-md-4">
-          <input type="text" class="form-control" placeholder="Descrição" id="patrimonio" />
-        </div>
 
 
         
-          <div class="col-md-4">
-            <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
-          </div>
-
         <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Valor" id="valor" />
+          <input type="text" class="form-control" placeholder="Dia" id="dia" />
+        </div>
+      -->
+
+    
+        <div class="col-md-6">
+          <select class="form-control"  id="equipamento" value="">
+            <option value="" >Equipametos</option>
+            <option value="1">Notbook</option>
+            <option value="2">Tablet</option>
+            <option value="3">headset</option>
+            <option value="4">Microfone</option>
+            
+          </select>
+        </div>
+     
+
+      
+      <div class="col-md-4">
+        <input type="text" class="form-control" placeholder="Patrimônio" id="patrimonio" />
+      </div>
+    </div>
+    
+      
+
+      <div class="row">
+        <div class="col-md-6">
+          <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
+        </div>
+
+        <div class="col-md-4">
+          <input type="text" class="form-control" placeholder="Registro Acadêmico" id="RA" />
         </div>
 
         <div class="col-md-2 d-flex justify-content-end">
-          <button type="button" class="btn btn-primary" onclick="pesquisarDespesa()">
-            <i class="fas fa-search"></i>
+          <button type="button" onclick="cadastrarDespesa()" class="btn btn-primary">
+            <i class="fas fa-plus" ></i>
           </button>
         </div>
       </div>
+    </div>
+    <!-- Button trigger modal -->
 
-      <div class="row">
-        <div class="col">
-          <table class="table" >
-            <thead>
-              <tr>
-                <th>Equipameto</th>
-                <th>Patrimônio</th>
-                <th>Descrição</th>
-                <th>Registro Acad</th>
-                <th></th>
-              </tr>
-            </thead>
 
-            <tbody id="tabela">
-              <tr>
-                <td></td>
-                <td></td>
-                <td></td>
-                <td></td>
-              </tr>
-            </tbody>
-          </table>
-        </div>
+<!-- Modal -->
+
+
+<div class="modal fade" id="registarDespesa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div  id="modalCor">
+        <h5 class="modal-title" id="modalTitulo"></h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body" id="modalConteudo"></div>
+      <div class="modal-footer">
+        <button type="button" data-dismiss="modal" id="modalButton" onclick="limpaCampos()">Voltar </button>
+        
       </div>
     </div>
+  </div>
+</div>
   </body>	
+
+
+  <div>
+
+
+
+  </div>
+
+
 
 </html>

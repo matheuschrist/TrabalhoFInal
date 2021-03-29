@@ -1,159 +1,67 @@
+<link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+<script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<!------ Include the above in your HEAD tag ---------->
+
+<!DOCTYPE html>
 <html>
-	<head>
-    <meta charset="utf-8" />
-		<title>Registro de Reservas de Equipamentos</title>
-
-		<!-- Bootstrap início -->
-		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
-    <!-- Bootstrap fim -->
-
-    <!-- Font Awesome -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-   <script type="text/javascript" src="app.js"></script>
-
-   <link rel="stylesheet" href="estilo/style.css">
-
-	</head>
-
-  <body>
-
-
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-5">
-      <div class="container">
-        <a class="navbar-brand" href="#">
-           <img src="imagens/Logo.png" class="logo" width="50" height="35" alt="UNISALES">
-        </a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-          <ul class="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="index.html">Cadastro</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link" href="consulta.html">Consulta</a>
-            </li>
-          </ul>
-          
-        </div>
-      </div>
-    </nav>
-
-    <div class="container">
-      <div class="row">
-        <div class="col mb-5">
-          <h1 class="display-4">Registro de Reserva de Equipamentos</h1>
-        </div>
-      </div>
-      <div class="row mb-4">
-       
-     <!--  
-        <div class="col-md-2">
-          <select class="form-control" id="ano">
-            <option value="">Ano</option>
-            <option value="2018">2018</option>
-          </select>
-        </div>
-
-       <div class="col-md-2">
-          <select class="form-control" id="mes">
-            <option value="">Mês</option>
-            <option value="1">Janeiro</option>
-            <option value="2">Fevereiro</option>
-            <option value="3">Março</option>
-            <option value="4">Abril</option>
-            <option value="5">Maio</option>
-            <option value="6">Junho</option>
-            <option value="7">Julho</option>
-            <option value="8">Agosto</option>
-            <option value="9">Setembro</option>
-            <option value="10">Outubro</option>
-            <option value="11">Novembro</option>
-            <option value="12">Dezembro</option>
-          </select>
-        </div>
-
-
-        
-        <div class="col-md-2">
-          <input type="text" class="form-control" placeholder="Dia" id="dia" />
-        </div>
-      -->
-
     
-        <div class="col-md-6">
-          <select class="form-control"  id="equipamento" value="">
-            <option value="">Equipamentos</option>
-            <option value="1">Notebook</option>
-            <option value="2">Tablet</option>
-            <option value="3">Headset</option>
-            <option value="4">Microfone</option>    
-          </select>
-        </div>
-     
+<head>
+	<title>Fazer Login</title>
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="estilo/style.css">
 
-      
-      <div class="col-md-4">
-        <input type="text" class="form-control" placeholder="Patrimônio" id="patrimonio" />
-      </div>
-    </div>
-    
-      
+	<script defer src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+</head>
 
-      <div class="row">
-        <div class="col-md-6">
-          <input type="text" class="form-control" placeholder="Descrição" id="descricao" />
-        </div>
+<body>
+	<div class="container h-100">
+		<div class="d-flex justify-content-center h-100">
+			<div class="user_card">
+				<div class="d-flex justify-content-center">
+					<div class="brand_logo_container">
+						<img src="imagens/logo-vertical.png" class="brand_logo" alt="Logo">
+					</div>
+				</div>
+				<div class="d-flex justify-content-center form_container">
+					<form>
+						<div class="input-group mb-3">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-user"></i></span>
+							</div>
+							<input type="text" name="" class="form-control input_user" value="" placeholder="Usuário">
+						</div>
+						<div class="input-group mb-2">
+							<div class="input-group-append">
+								<span class="input-group-text"><i class="fas fa-key"></i></span>
+							</div>
+							<input type="password" name="" class="form-control input_pass" value="" placeholder="Senha">
+						</div>
+						<div class="form-group">
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" class="custom-control-input" id="customControlInline">
+								<label class="custom-control-label links" for="customControlInline">Lembrar senha!</label>
+							</div>
+						</div>
+							<div class="d-flex justify-content-center mt-3 login_container">
+				 	<a  href="home.html" class="btn login_btn"> Entrar
 
-        <div class="col-md-4">
-          <input type="text" class="form-control" placeholder="Registro Acadêmico" id="RA" />
-        </div>
-
-        <div class="col-md-2 d-flex justify-content-end">
-          <button type="button" onclick="cadastrarDespesa()" class="btn btn-primary">
-            <i class="fas fa-plus" ></i>
-          </button>
-        </div>
-      </div>
-    </div>
-    <!-- Button trigger modal -->
-
-
-<!-- Modal -->
-
-
-<div class="modal fade" id="registarDespesa" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div  id="modalCor">
-        <h5 class="modal-title" id="modalTitulo"></h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body" id="modalConteudo"></div>
-      <div class="modal-footer">
-        <button type="button" data-dismiss="modal" id="modalButton" onclick="limpaCampos()">Voltar </button>
-        
-      </div>
-    </div>
-  </div>
-</div>
-  </body>	
-
-
-  <div>
-
-
-
-  </div>
-
-
-
+							</a>
+				   </div>
+					</form>
+				</div>
+		
+				<div class="mt-4">
+					<div class="d-flex justify-content-center links ">
+						Não possui uma conta?<a href="#" class="ml-2 links ">Faça uma !!</a>
+					</div>
+					<div class="d-flex justify-content-center links">
+						<a href="#" class="links">Esqueceu seu password ?</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</body>
 </html>

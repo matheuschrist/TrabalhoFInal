@@ -19,7 +19,6 @@ class Reserva {
 
 }
 
-
 class BD {
 
 	constructor() {
@@ -153,20 +152,20 @@ function carregaListaDispesas(reservas = Array(), filtro = false) {
 
 	reservas.forEach(function(d) {
 		let linha=listaDespesas.insertRow()
-		//linha.insertCell(0).innerHTML = d.dia+'/'+d.mes+'/'+d.ano
+		//linha.insertCell(0).innerHTML = d.dia + '/' + d.mes + '/' + d.ano
 		
 		switch(d.equipamento) {
 			case '1': 
-				d.equipamento='Notebook'
+				d.equipamento = 'Notebook'
 				break
 			case '2': 
-				d.equipamento='Tablet'
+				d.equipamento = 'Tablet'
 				break
 			case '3': 
-				d.equipamento='Headset'
+				d.equipamento = 'Headset'
 				break
 			case '4': 
-				d.equipamento='Microfone'
+				d.equipamento = 'Microfone'
 				break	
 		}
 
@@ -176,7 +175,6 @@ function carregaListaDispesas(reservas = Array(), filtro = false) {
 		linha.insertCell(3).innerHTML = d.RA
 
 		//Botão de Exclusão
-
 		let btn = document.createElement("button")
 		btn.className = 'btn btn-danger'
 		btn.id = d.id
@@ -206,4 +204,3 @@ function pesquisarDespesa() {
 	carregaListaDispesas(bd.pesquisar(reserva), true)	
 
  }
-

@@ -1,13 +1,42 @@
-module.exports = class Equipamento {
-    constructor(equipamentoId, patrimonio, status, dataCadastro, 
-                tipoDocumentoId, salaId, documentoRevisaoId)
+module.exports = (sequelize, Sequelize) => {
+
+    const equipamento = sequelize.define('Equipamento',
     {
-        this.EquipamentoId = equipamentoId,
-        this.Patrimonio = patrimonio,
-        this.Status = status,
-        this.DataCadastro = dataCriacao,
-        this.TipoEquipamentoId = tipoDocumentoId,
-        this.SalaId = salaId,
-        this.DocumentoRevisaoId = documentoRevisaoId
-    }
+        EquipamentoId: {
+            type: Sequelize.INTEGER,
+            allowNull : false,
+            primaryKey: true,
+            autoIncrement:true
+        },
+        Patrimonio: {
+            type: Sequelize.STRING,
+            allowNull : false
+        },
+        Status: {
+            type: Sequelize.INTEGER,
+            allowNull : false
+        },
+        DataCadastro: {
+            type: Sequelize.DATE,
+            allowNull : false,
+        },
+    },
+    {
+        timestamps: false, 
+        tablename: 'Equipamento', 
+        freezeTableName: true
+    })
+
+    return equipamento
+
 }
+const tipoEquipamento = require("./TipoEquipamento.model")
+
+
+equipamento.belongsTo(tipoEquipamento, 
+    {foreignKey: {
+        name : 'TipoEquipamentoId',
+        allowNull: false,
+        onDelete: 'RESTRICT',
+        onUpdate: 'RESTRICT'
+}})

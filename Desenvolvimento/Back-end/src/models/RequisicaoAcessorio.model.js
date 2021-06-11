@@ -1,3 +1,6 @@
+const requisicao = require("./Requisicao.model")
+const acessorio = require("./Acessorio.model")
+
 module.exports = (sequelize, Sequelize) => {
 
     const requisicaoAcessorio = sequelize.define('Requisicao_Acessorio',
@@ -13,12 +16,12 @@ module.exports = (sequelize, Sequelize) => {
         freezeTableName: true
     })
 
+
+    requisicaoAcessorio.associate = models => {
+        equisicao.belongsToMany(models.acessorio, { through: requisicaoAcessorio })
+        acessorio.belongsToMany(models.requisicao, { through: requisicaoAcessorio })
+    }
+
+
     return requisicaoAcessorio
-
 }
-
-const requisicao = require("./Requisicao.model")
-const acessorio = require("./Acessorio.model")
-
-requisicao.belongsToMany(acessorio, { through: requisicaoAcessorio })
-acessorio.belongsToMany(requisicao, { through: requisicaoAcessorio })

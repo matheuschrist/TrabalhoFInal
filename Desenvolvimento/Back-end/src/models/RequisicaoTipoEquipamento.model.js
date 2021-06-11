@@ -1,5 +1,7 @@
+const requisicao = require("./Requisicao.model")
+
 module.exports = (sequelize, Sequelize) => {
-  const RequisicaoTipoEquipamento = sequelize.define('RequisicaoTipoEquipamento',
+  const requisicaoTipoEquipamento = sequelize.define('RequisicaoTipoEquipamento',
   {
       QuantidadeSolicitada: {
           type: Sequelize.INTEGER,
@@ -12,5 +14,15 @@ module.exports = (sequelize, Sequelize) => {
       freezeTableName: true
   })
 
-  return RequisicaoTipoEquipamento
+  requisicaoTipoEquipamento.associate = models => {
+    requisicaoTipoEquipamento.belongToMany(models.requisicao,{
+        throught: 'Requisicao_TipoEquipamento'
+    })
+    requisicao.belongToMany(models.requisicaoTipoEquipamento,{
+        throught: 'Requisicao_TipoEquipamento'
+    })
+  }
+    
+
+  return requisicaoTipoEquipamento
 }

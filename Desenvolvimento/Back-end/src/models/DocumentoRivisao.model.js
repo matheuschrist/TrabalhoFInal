@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
     const documentoRevisao = sequelize.define('DocumentoRevisao',
     {
         DocumentoRevisaoId: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.BIGINT,
             allowNull: false,
             primaryKey: true,
             autoIncrement:true

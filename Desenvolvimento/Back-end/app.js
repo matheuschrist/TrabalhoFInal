@@ -1,7 +1,11 @@
 const express = require('express');
 const app = express();
 const morgan = require('morgan');
-const bodyParser = requere('body-parser');
+const bodyParser = require('body-parser');
+const rotas = require('./mysql').db;
+
+
+
 
 
 app.use(morgan('dev'));

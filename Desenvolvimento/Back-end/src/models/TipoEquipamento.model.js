@@ -2,14 +2,15 @@ module.exports = (sequelize, Sequelize) => {
   const TipoEquipamento = sequelize.define('TipoEquipamento',
   {
       TipoEquipamentoId: {
-          type: Sequelize.INTEGER,
+          type: Sequelize.BIGINT,
           allowNull : false,
           primaryKey: true,
           autoIncrement:true
       },
       NomeTipo: {
           type: Sequelize.STRING,
-          allowNull : false
+          allowNull : false,
+          unique: true
       },
   },
   {

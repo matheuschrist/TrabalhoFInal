@@ -3,7 +3,7 @@ module.exports = (sequelize, Sequelize) => {
     const acessorio = sequelize.define('Acessorio',
     {
         AcessorioId: {
-            type: Sequelize.INTEGER,
+            type: Sequelize.BIGINT,
             allowNull : false,
             primaryKey: true,
             autoIncrement:true

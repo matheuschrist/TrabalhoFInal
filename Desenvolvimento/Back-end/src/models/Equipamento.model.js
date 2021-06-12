@@ -14,7 +14,8 @@ module.exports = (sequelize, Sequelize) => {
         },
         Patrimonio: {
             type: Sequelize.STRING,
-            allowNull : false
+            allowNull : false,
+            unique: true
         },
         Status: {
             type: Sequelize.INTEGER,

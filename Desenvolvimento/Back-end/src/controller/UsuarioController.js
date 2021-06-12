@@ -8,19 +8,7 @@ const usuario = db.usuario
 
 router.post("/cadastro", (req, res) => { 
 
-    if(req.body.usuario.trim().lenght <= 3 || req.body.nome.trim().lenght <= 10 || req.body.senha.trim().lenght <= 3)
-    {
-        res.send({"Erro": "Os campos nome deve ter o tamanho maior que 10, usuário e senha devem ter o tamanho maior que 3"})
-    }
-    if(req.body.usuario.trim().lenght > 15 || req.body.nome.trim().lenght > 45 || req.body.senha.trim().lenght > 10)
-    {
-        res.send({"Erro": "Os campos usuário deve ter valor menor que 16, senha menor que 11 e nome deve ter valor menor que 46"})
-    }
-    if(req.body.identificacao.trim().lenght != 9)
-    {
-        res.send({"Erro": "O campo de identificação não pode ter tamanho diferente de 9"})
-    }
-
+    
     switch(req.body.tipo)
     {
         case 'Agente':
@@ -33,18 +21,45 @@ router.post("/cadastro", (req, res) => {
             req.body.tipo = 2;
             break;
     }
-    
-    usuario.create({
+    const Usuario = {
         Nome : req.body.nome,
         Usuario : req.body.usuario,
         Senha : req.body.senha,
         Identificacao : req.body.identificacao,
         Tipo : req.body.tipo,
-        Email: req.body.email
-    })
+        Email: req.body.email 
+    }
+
+    console.log(Usuario)
+    
+    usuario.create(Usuario)
     .then(retorno => {res.status(201).send(retorno)})
+    .catch(err => {res.status(500).send(err.errors[0].message)})
+            
+})
+
+router.patch('/atualizar/:id', (req, res) => {
+    const Usuario = {
+        Nome : req.body.nome,
+        Usuario : req.body.usuario,
+        Senha : req.body.senha,
+        Email: req.body.email 
+    }
+
+    console.log(Usuario)
+    
+    usuario.update(Usuario, {where : {UsuarioId: req.params.id}})
+    .then(retorno => {res.status(200).send('Usuario atualizado')})
     .catch(err => {res.status(500).send(err.errors[0].message)})
 })
 
+router.get('/perfis?usuarioid', (req, res) => {
+    let condicao = req.params.usuarioid ? req.params.usuarioid : null
+    
+    
+    usuario.findAll({where: condicao})
+    .then(retorno => {res.status(201).send(retorno)})
+    .catch(err => {res.status(500).send(err.errors[0].message)})
+})
 
 module.exports = router;

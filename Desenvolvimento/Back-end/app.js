@@ -6,7 +6,7 @@ const bodyParser = require('body-parser');
 const UsuarioController = require('./src/controller/UsuarioController')
 
 
-app.use("/usuarios", UsuarioController)
+
 
 
 app.use(morgan('dev'));
@@ -28,6 +28,7 @@ app.use((req, res, next) => {
     next();
 });
 
+app.use("/usuarios", UsuarioController)
 
 app.use((req, res, next) => {
     const erro = new Error('Não encontrado');
@@ -44,7 +45,6 @@ app.use((error, req, res, next) => {
     })
 });
 
-//app.use("/usuario", UsuarioController);
 
 
 module.exports = app;

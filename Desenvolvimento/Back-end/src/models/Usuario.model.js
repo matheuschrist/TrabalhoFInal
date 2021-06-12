@@ -10,19 +10,32 @@ module.exports = (sequelize, Sequelize) => {
         },
         Nome: {
             type: Sequelize.STRING,
-            allowNull : false
+            allowNull : false,
+            validate: {
+                len: [3,45]
+            }
         },
         Usuario: {
             type: Sequelize.STRING,
-            allowNull : false
+            allowNull : false,
+            validate: {
+                len: [3,15]
+            },
+            unique: true
         },
         Senha: {
             type: Sequelize.STRING,
             allowNull : false,
+            validate: {
+                len: [3,10]
+            }
         },
         Identificacao: {
             type: Sequelize.STRING,
             allowNull : false,
+            validate: {
+                len: [9]
+            }
         },
         Tipo: {
             type: Sequelize.INTEGER,
@@ -33,7 +46,8 @@ module.exports = (sequelize, Sequelize) => {
             allowNull: false,
             validation: {
                 isEmail: true
-            } 
+            },
+            unique: true 
         }
     },
     {

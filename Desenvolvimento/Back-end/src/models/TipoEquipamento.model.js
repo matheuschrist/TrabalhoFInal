@@ -1,5 +1,5 @@
 module.exports = (sequelize, Sequelize) => {
-  const TipoEquipamento = sequelize.define('TipoEquipamento',
+  const tipoEquipamento = sequelize.define('TipoEquipamento',
   {
       TipoEquipamentoId: {
           type: Sequelize.BIGINT,
@@ -19,5 +19,13 @@ module.exports = (sequelize, Sequelize) => {
       freezeTableName: true
   })
 
-  return TipoEquipamento
+  tipoEquipamento.associate = models => {
+    tipoEquipamento.belongsToMany(models.TipoEquipamento, {
+        through: 'RequisicaoTipoEquipamento',
+        as : 'requisicoes',
+        foreignKey : 'TipoEquipamentoId'
+    })
+  }
+
+  return tipoEquipamento
 }

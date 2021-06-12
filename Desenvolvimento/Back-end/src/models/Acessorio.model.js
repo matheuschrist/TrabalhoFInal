@@ -23,6 +23,19 @@ module.exports = (sequelize, Sequelize) => {
         freezeTableName: true
     })
 
+    acessorio.associate = models => {
+        acessorio.belongsToMany(models.Requisicao, { 
+            through: 'RequisicaoAcessorio',
+            as : 'requisicao',
+            foreignKey : 'RequisicaoId' 
+        })
+        acessorio.belongsToMany(models.sala, { 
+            through: 'SalaAcessorio',
+            as: 'sala',
+            foreignKey: 'AcessorioId' 
+        })
+    }
+
     return acessorio
 
 }

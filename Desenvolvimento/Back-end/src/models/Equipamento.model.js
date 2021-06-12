@@ -24,6 +24,20 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE,
             allowNull : false,
         },
+        DocumentoRevisaoId: {
+            type : Sequelize.BIGINT,
+            references: {model: 'DocumentoRevisao', key: 'DocumentoRevisaoId'},
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT',
+            allowNull: true
+        },
+        TipoEquipamentoId: {
+            type : Sequelize.BIGINT,
+            references: {model: 'TipoEquipamento', key: 'TipoEquipamentoId'},
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT',
+            allowNull: false
+        }
     },
     {
         timestamps: false, 
@@ -33,30 +47,18 @@ module.exports = (sequelize, Sequelize) => {
 
     equipamento.associate = models => {
 
-        equipamento.belongsTo(models.tipoEquipamento, 
+        equipamento.belongsTo(models.TipoEquipamento, 
         {
-            foreignKey: 
-            {
-                type: DataTypes.UUID,
-                
-                allowNull: false,
-            },
-            
-        
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
             as : 'tipoEquipamento',
         })
-        equipamento.belongsTo(models.documentoRevisao, 
+        equipamento.belongsTo(models.DocumentoRevisao, 
         {
-            foreignKey: 
-            {
-                type: DataTypes.UUID,
-                allowNull: true,
-            },
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
             as : 'documentosrevisao',
+        })
+        equipamento.belongsToMany(models.Requisicao,{
+            throught: 'RequisicaoEquipamento',
+            as : 'requisicoes',
+            foreignKey: 'EquipamentoId'
         })
 
     }

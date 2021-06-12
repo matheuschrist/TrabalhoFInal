@@ -3,24 +3,39 @@ const acessorio = require("./Acessorio.model")
 
 module.exports = (sequelize, Sequelize) => {
 
-    const requisicaoAcessorio = sequelize.define('Requisicao_Acessorio',
+    const requisicaoAcessorio = sequelize.define('RequisicaoAcessorio',
     {
+        RequisicaoAcessorioId: {
+            type: Sequelize.BIGINT,
+            allowNull : false,
+            primaryKey: true,
+            autoIncrement:true
+        },
         QuantidadeAcessorio: {
             type: Sequelize.INTEGER,
             allowNull : false,
-        }
+        },
+        RequisicaoId: {
+            type : Sequelize.BIGINT,
+            references: {model: 'Requisicao', key: 'RequisicaoId'},
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT',
+            allowNull: false
+        },
+        AcessorioId: {
+            type : Sequelize.BIGINT,
+            references: {model: 'Acessorio', key: 'AcessorioId'},
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT',
+            allowNull: false
+        },
     },
     {
         timestamps: false, 
-        tablename: 'Requisicao_Acessorio', 
+        tablename: 'RequisicaoAcessorio', 
         freezeTableName: true
     })
 
-
-    requisicaoAcessorio.associate = models => {
-        equisicao.belongsToMany(models.acessorio, { through: requisicaoAcessorio })
-        acessorio.belongsToMany(models.requisicao, { through: requisicaoAcessorio })
-    }
 
 
     return requisicaoAcessorio

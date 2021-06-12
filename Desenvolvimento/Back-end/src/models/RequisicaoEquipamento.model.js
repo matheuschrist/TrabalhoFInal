@@ -1,17 +1,12 @@
-const requisicao = require("./Requisicao.model")
-
 module.exports = (sequelize, Sequelize) => {
-  const requisicaoTipoEquipamento = sequelize.define('RequisicaoTipoEquipamento',
-  {
-        RequisicaoTipoEquipamentoId:{
+
+    const requisicaoEquipamento = sequelize.define('RequisicaoEquipamento',
+    {
+        RequisicaoEquipamentoId: {
             type: Sequelize.BIGINT,
             allowNull : false,
             primaryKey: true,
             autoIncrement: false
-        },
-        QuantidadeSolicitada: {
-            type: Sequelize.INTEGER,
-            allowNull : false
         },
         RequisicaoId: {
             type : Sequelize.BIGINT,
@@ -20,22 +15,22 @@ module.exports = (sequelize, Sequelize) => {
             onUpdate: 'RESTRICT',
             allowNull: false
         },
-        TipoEquipamentoId: {
+        EquipamentoId: {
             type : Sequelize.BIGINT,
-            references: {model: 'TipoEquipamento', key: 'TipoEquipamentoId'},
+            references: {model: 'Equipamento', key: 'EquipamentoId'},
             onDelete: 'RESTRICT',
             onUpdate: 'RESTRICT',
             allowNull: false
         },
-
-  },
-  {
-      timestamps: false, 
-      tablename: 'RequisicaoTipoEquipamento', 
-      freezeTableName: true
-  })
-
+        
+    },
+    {
+        timestamps: false, 
+        tablename: 'RequisicaoEquipamento', 
+        freezeTableName: true
+    })
     
 
-  return requisicaoTipoEquipamento
+    return requisicaoEquipamento
+
 }

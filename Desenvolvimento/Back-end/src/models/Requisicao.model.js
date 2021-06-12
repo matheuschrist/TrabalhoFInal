@@ -34,6 +34,13 @@ module.exports = (sequelize, Sequelize) => {
         DataCancelamento: {
             type: Sequelize.DATE,
             allowNull : true,
+        },
+        UsuarioId: {
+            type : Sequelize.BIGINT,
+            references: {model: 'Usuario', key: 'UsuarioId'},
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT',
+            allowNull: false
         }
     },
     {
@@ -44,21 +51,31 @@ module.exports = (sequelize, Sequelize) => {
 
     requisicao.associate = models => {
         requisicao.belongsTo(models.usuario,{
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
-            foreignKey: 
-            { 
-                type: Sequelize.UUID,
-                allowNull: false
-            },
             as: 'usuarios',
         })
 
-        requisicao.belongsToMany(models.equipamento,{
-            throught: 'Requisicao_Equipamento'
+        requisicao.belongsToMany(models.Equipamento,{
+            throught: 'RequisicaoEquipamento',
+            as : 'equipamentos',
+            foreignKey: 'RequisicaoId'
         })
-        equipamento.belongsToMany(models.requisicao,{
-            throught: 'Requisicao_Equipamento'
+
+        requisicao.belongsToMany(models.Sala, {
+            through: 'RequisicaoSala',
+            as : 'salas',
+            foreignKey : 'RequisicaoId'
+        })
+
+        requisicao.belongsToMany(models.TipoEquipamento, {
+            through: 'RequisicaoTipoEquipamento',
+            as : 'equipamentosSolicitados',
+            foreignKey : 'RequisicaoId'
+        })
+
+        requisicao.belongsToMany(models.Acessorio, { 
+            through: 'RequisicaoAcessorio',
+            as : 'acessorio',
+            foreignKey : 'AcessorioId' 
         })
     } 
     

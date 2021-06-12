@@ -28,6 +28,13 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull : false,
         },
+        DocumentoRevisaoId: {
+            type : Sequelize.BIGINT,
+            references: {model: 'DocumentoRevisao', key: 'DocumentoRevisaoId'},
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT',
+            allowNull: true
+        }
     },
     {
         timestamps: false, 
@@ -36,22 +43,18 @@ module.exports = (sequelize, Sequelize) => {
     })
 
     sala.associate = models => {
-        sala.belongsTo(models.documentoRevisao,{
+        sala.belongsTo(models.DocumentoRevisao,{
             as: 'documentosRevisao',
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
-            foreignKey: 
-            { 
-                type: DataTypes.UUID,
-                allowNull: true,
-            },
-    
         })
-        sala.belongsToMany(models.requisicao, {
-            through: 'Requisicao_Sala'
+        sala.belongsToMany(models.Requisicao, {
+            through: 'RequisicaoSala',
+            as : 'requisicoes',
+            foreignKey : 'SalaId'
         })
-        requisicao.belongsToMany(models.sala, {
-            through: 'Requisicao_Sala'
+        sala.belongsToMany(models.acessorio, { 
+            through: 'SalaAcessorio',
+            as: 'acessorio',
+            foreignKey: 'SalaId'
         })
     }
 

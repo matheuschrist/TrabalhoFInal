@@ -53,11 +53,11 @@ router.patch('/atualizar/:id', (req, res) => {
     .catch(err => {res.status(500).send(err.errors[0].message)})
 })
 
-router.get('/perfis?usuarioid', (req, res) => {
-    let condicao = req.params.usuarioid ? req.params.usuarioid : null
+router.get('/perfis', (req, res) => {
+    const condicao = req.query.usuarioid ? req.query.usuarioid : null
     
     
-    usuario.findAll({where: condicao})
+    usuario.findAll({where: {UsuarioId: condicao}})
     .then(retorno => {res.status(201).send(retorno)})
     .catch(err => {res.status(500).send(err.errors[0].message)})
 })

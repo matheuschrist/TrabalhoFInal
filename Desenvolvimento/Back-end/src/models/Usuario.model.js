@@ -27,6 +27,13 @@ module.exports = (sequelize, Sequelize) => {
         Tipo: {
             type: Sequelize.INTEGER,
             allowNull : false,
+        },
+        Email: {
+            type: Sequelize.STRING,
+            allowNull: false,
+            validation: {
+                isEmail: true
+            } 
         }
     },
     {

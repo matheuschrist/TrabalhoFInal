@@ -2,10 +2,11 @@ const express = require('express');
 const app = express();
 const morgan = require('morgan');
 const bodyParser = require('body-parser');
-const rotas = require('./mysql').db;
+
+const UsuarioController = require('./src/controller/UsuarioController')
 
 
-
+app.use("/usuarios", UsuarioController)
 
 
 app.use(morgan('dev'));
@@ -25,7 +26,7 @@ app.use((req, res, next) => {
         return res.status(200).send({});
     }
     next();
-})
+});
 
 
 app.use((req, res, next) => {
@@ -41,6 +42,9 @@ app.use((error, req, res, next) => {
             mensagem: error.message
         }
     })
-})
+});
+
+//app.use("/usuario", UsuarioController);
+
 
 module.exports = app;

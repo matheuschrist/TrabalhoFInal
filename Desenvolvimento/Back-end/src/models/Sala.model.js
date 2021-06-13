@@ -28,13 +28,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.INTEGER,
             allowNull : false,
         },
-        DocumentoRevisaoId: {
-            type : Sequelize.BIGINT,
-            references: {model: 'DocumentoRevisao', key: 'DocumentoRevisaoId'},
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
-            allowNull: true
-        }
     },
     {
         timestamps: false, 
@@ -43,9 +36,6 @@ module.exports = (sequelize, Sequelize) => {
     })
 
     sala.associate = models => {
-        sala.belongsTo(models.DocumentoRevisao,{
-            as: 'documentosRevisao',
-        })
         sala.belongsToMany(models.Requisicao, {
             through: 'RequisicaoSala',
             as : 'requisicoes',

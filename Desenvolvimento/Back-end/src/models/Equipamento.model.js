@@ -25,13 +25,6 @@ module.exports = (sequelize, Sequelize) => {
             type: Sequelize.DATE,
             allowNull : false,
         },
-        DocumentoRevisaoId: {
-            type : Sequelize.BIGINT,
-            references: {model: 'DocumentoRevisao', key: 'DocumentoRevisaoId'},
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
-            allowNull: true
-        },
         TipoEquipamentoId: {
             type : Sequelize.BIGINT,
             references: {model: 'TipoEquipamento', key: 'TipoEquipamentoId'},
@@ -51,10 +44,6 @@ module.exports = (sequelize, Sequelize) => {
         equipamento.belongsTo(models.TipoEquipamento, 
         {
             as : 'tipoEquipamento',
-        })
-        equipamento.belongsTo(models.DocumentoRevisao, 
-        {
-            as : 'documentosrevisao',
         })
         equipamento.belongsToMany(models.Requisicao,{
             throught: 'RequisicaoEquipamento',

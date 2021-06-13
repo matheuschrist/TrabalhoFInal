@@ -23,6 +23,20 @@ module.exports = (sequelize, Sequelize) => {
         Defeito: {
             type: Sequelize.BOOLEAN,
             allowNull : false,
+        },
+        EquipamentoId: {
+            type : Sequelize.BIGINT,
+            references: {model: 'Equipamento', key: 'EquipamentoId'},
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT',
+            allowNull: true
+        },
+        SalaId: {
+            type : Sequelize.BIGINT,
+            references: {model: 'Sala', key: 'SalaId'},
+            onDelete: 'RESTRICT',
+            onUpdate: 'RESTRICT',
+            allowNull: true
         }
 
     },
@@ -31,6 +45,17 @@ module.exports = (sequelize, Sequelize) => {
         tablename: 'DocumentoRevisao', 
         freezeTableName: true
     })
+
+    documentoRevisao.associate = models => {
+        documentoRevisao.belongsTo(models.Equipamento, 
+        {
+            as : 'equipamento',
+        })
+        documentoRevisao.belongsTo(models.Sala, 
+        {
+            as : 'equipamento',
+        })
+    }
 
     return documentoRevisao
 

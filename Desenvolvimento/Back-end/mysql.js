@@ -14,7 +14,6 @@ const openConnection = async() => {
     try 
     {
         await sequelize.authenticate();
-        
         console.log('Conexão ao banco de dados estabelecida com sucesso.');
     } 
     catch (error) 

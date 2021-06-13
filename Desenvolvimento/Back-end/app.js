@@ -4,6 +4,8 @@ const morgan = require('morgan');
 const bodyParser = require('body-parser');
 
 const UsuarioController = require('./src/controller/UsuarioController')
+const TipoEquipamento = require('./src/controller/TipoEquipamentoController')
+const Equipamento = require('./src/controller/EquipamentoController')
 
 
 
@@ -29,6 +31,8 @@ app.use((req, res, next) => {
 });
 
 app.use("/usuarios", UsuarioController)
+app.use("/tipoEquipamento", TipoEquipamento)
+app.use("/equipamento", Equipamento)
 
 app.use((req, res, next) => {
     const erro = new Error('Não encontrado');

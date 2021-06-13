@@ -1,4 +1,10 @@
-const  Sequelize  = require('sequelize');
+const Sequelize = require('sequelize');
+
+/* Servidor remoto para testes (Deivyd)
+const sequelize = new Sequelize('mfIMHFYIWD', 'mfIMHFYIWD', 'Efvdg0nU2D', {
+    host: 'remotemysql.com',
+    dialect: 'mysql'
+});*/
 
 /*const sequelize = new Sequelize('GerenciamentoRequisicao', 'root', '123456', {
     host: 'localhost',
@@ -14,8 +20,12 @@ const openConnection = async() => {
     try 
     {
         await sequelize.authenticate();
-        
         console.log('Conexão ao banco de dados estabelecida com sucesso.');
+
+        /*Sincronização do banco (criação de tabelas e colunas)
+        await sequelize.sync();
+        console.log('Sincronização do banco de dados concluida com sucesso.');
+        */
     } 
     catch (error) 
     {
@@ -26,7 +36,6 @@ const openConnection = async() => {
 const db = {}
 
 db.conexao = openConnection();
-
 
 db.usuario = require("./src/models/Usuario.model")(sequelize, Sequelize)
 db.requisicao = require("./src/models/Requisicao.model")(sequelize, Sequelize)

@@ -1,55 +1,33 @@
-const documentoRevisao = require("./DocumentoRivisao.model")
-const requisicao = require("./Requisicao.model")
+const { Model, DataTypes} = require('sequelize')
 
-module.exports = (sequelize, Sequelize) => {
+const sequelize = require("../../mysql")
 
-    const sala = sequelize.define('Sala',
-    {
-        SalaId: {
-            type: Sequelize.BIGINT,
-            allowNull : false,
-            primaryKey: true,
-            autoIncrement:true
-        },
-        NumeroSala: {
-            type: Sequelize.INTEGER,
-            allowNull : false, 
-            unique: true
-        },
-        Status: {
-            type: Sequelize.INTEGER,
-            allowNull : false
-        },
-        QuantidadeAluno: {
-            type: Sequelize.INTEGER,
-            allowNull : false,
-        },
-        QuantidadeAlunoPandemia: {
-            type: Sequelize.INTEGER,
-            allowNull : false,
-        },
+class Class extends Model {}
+
+Class.init({
+    NumeroSala: {
+        type: DataTypes.INTEGER,
+        allowNull : false, 
+        unique: true
     },
-    {
-        timestamps: false, 
-        tablename: 'Sala', 
-        freezeTableName: true
-    })
+    Status: {
+        type: DataTypes.INTEGER,
+        allowNull : false
+    },
+    QuantidadeAluno: {
+        type: DataTypes.INTEGER,
+        allowNull : false,
+    },
+    QuantidadeAlunoPandemia: {
+        type: DataTypes.INTEGER,
+        allowNull : false,
+    },
+},{
+    sequelize,
+    nameModel: 'class',
+    timestamps: false
+});
 
-    sala.associate = models => {
-        sala.belongsToMany(models.Requisicao, {
-            through: 'RequisicaoSala',
-            as : 'requisicoes',
-            foreignKey : 'SalaId'
-        })
-        sala.belongsToMany(models.acessorio, { 
-            through: 'SalaAcessorio',
-            as: 'acessorio',
-            foreignKey: 'SalaId'
-        })
-    }
 
-    
 
-    return sala
-
-}
+module.exports = Class

@@ -1,42 +1,18 @@
-const sala = require("./Sala.model")
-const acessorio = require("./Acessorio.model")
+const { Model, DataTypes} = require('sequelize')
 
-module.exports = (sequelize, Sequelize) => {
+const sequelize = require("../../mysql")
 
-    const salaAcessorio = sequelize.define('SalaAcessorio',
-    {
-        SalaAcessorioId:{
-            type: Sequelize.BIGINT,
-            allowNull : false,
-            primaryKey: true,
-            autoIncrement:true
-        },
-        QuantidadeAcessorio: {
-            type: Sequelize.INTEGER,
-            allowNull : false,
-        },
-        AcessorioId: {
-            type : Sequelize.BIGINT,
-            references: {model: 'Acessorio', key: 'AcessorioId'},
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
-            allowNull: false
-        },
-        SalaId: {
-            type : Sequelize.BIGINT,
-            references: {model: 'Sala', key: 'SalaId'},
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
-            allowNull: false
-        },
+class ClassAccessory extends Model {}
+
+ClassAccessory.init({
+    QuantidadeAcessorio: {
+        type: DataTypes.INTEGER,
+        allowNull : false,
     },
-    {
-        timestamps: false, 
-        tablename: 'SalaAcessorio', 
-        freezeTableName: true
-    })
+},{
+    sequelize,
+    nameModel: "classAccessory",
+    timestamps: false
+})
 
-    
-
-    return salaAcessorio
-}
+module.exports = ClassAccessory

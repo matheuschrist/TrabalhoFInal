@@ -1,8 +1,7 @@
 const express = require('express')
 const router = express.Router()
 
-const db = require("../../mysql")
-const usuario = db.usuario
+const usuario = require('../models/Usuario.model')
 
 
 

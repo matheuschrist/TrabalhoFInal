@@ -1,6 +1,11 @@
 const express = require('express');
 const app = express();
+const sequelize = require('./mysql')
+require('./associacoes')
 const morgan = require('morgan');
+
+const port = process.env.PORT || 3000;
+
 
 const UsuarioController = require('./src/controller/UsuarioController')
 const TipoEquipamento = require('./src/controller/TipoEquipamentoController')
@@ -27,7 +32,17 @@ app.use((req, res, next) => {
     next();
 });
 
-app.use("/usuarios", UsuarioController)
+app.listen(port, function() {
+    sequelize.sync({force: false})
+    .then(() => {
+        console.log("Temos conexão com o banco")
+    })
+    .catch(error => {
+        console.log("O erro produzido ", error)
+    })
+})
+
+app.use("/usuario", UsuarioController)
 app.use("/tipoEquipamento", TipoEquipamento)
 app.use("/equipamento", Equipamento)
 app.use("/sala", Sala)

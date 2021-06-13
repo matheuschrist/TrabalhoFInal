@@ -1,41 +1,19 @@
-const requisicao = require("./Requisicao.model")
+const { Model, DataTypes} = require('sequelize')
 
-module.exports = (sequelize, Sequelize) => {
-  const requisicaoTipoEquipamento = sequelize.define('RequisicaoTipoEquipamento',
-  {
-        RequisicaoTipoEquipamentoId:{
-            type: Sequelize.BIGINT,
-            allowNull : false,
-            primaryKey: true,
-            autoIncrement: false
-        },
-        QuantidadeSolicitada: {
-            type: Sequelize.INTEGER,
-            allowNull : false
-        },
-        RequisicaoId: {
-            type : Sequelize.BIGINT,
-            references: {model: 'Requisicao', key: 'RequisicaoId'},
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
-            allowNull: false
-        },
-        TipoEquipamentoId: {
-            type : Sequelize.BIGINT,
-            references: {model: 'TipoEquipamento', key: 'TipoEquipamentoId'},
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
-            allowNull: false
-        },
+const sequelize = require("../../mysql")
 
-  },
-  {
-      timestamps: false, 
-      tablename: 'RequisicaoTipoEquipamento', 
-      freezeTableName: true
-  })
 
-    
+class RequestTypeEquipment extends Model {}
 
-  return requisicaoTipoEquipamento
-}
+RequestTypeEquipment.init({
+    QuantidadeSolicitada: {
+        type: DataTypes.INTEGER,
+        allowNull : false
+    },
+},{
+    sequelize,
+    nameModel: 'requestTypeEquipment',
+    timestamps: false
+})
+
+module.exports = RequestTypeEquipment

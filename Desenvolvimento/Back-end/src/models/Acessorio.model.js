@@ -1,43 +1,25 @@
-module.exports = (sequelize, Sequelize) => {
+const { Model, DataTypes} = require('sequelize')
 
-    const acessorio = sequelize.define('Acessorio',
-    {
-        AcessorioId: {
-            type: Sequelize.BIGINT,
-            allowNull : false,
-            primaryKey: true,
-            autoIncrement:true
-        },
-        Tipo: {
-            type: Sequelize.STRING,
-            allowNull : false,
-            unique: true
-        },
-        Quantidade: {
-            type: Sequelize.INTEGER,
-            allowNull : false
-        },
+const sequelize = require("../../mysql")
+
+
+class Accessory extends Model {}
+
+Accessory.init({
+    Tipo: {
+        type: DataTypes.STRING,
+        allowNull : false,
+        unique: true
     },
-    {
-        timestamps: false, 
-        tablename: 'Acessorio', 
-        freezeTableName: true
-    })
+    Quantidade: {
+        type: DataTypes.INTEGER,
+        allowNull : false
+    },
+},{
+    sequelize,
+    modelName: 'accessory',
+    timestamps: false
+})
 
-    acessorio.associate = models => {
-        acessorio.belongsToMany(models.Requisicao, { 
-            through: 'RequisicaoAcessorio',
-            as : 'requisicao',
-            foreignKey : 'RequisicaoId' 
-        })
-        acessorio.belongsToMany(models.sala, { 
-            through: 'SalaAcessorio',
-            as: 'sala',
-            foreignKey: 'AcessorioId' 
-        })
-    }
-
-    return acessorio
-
-}
+module.exports = Accessory
  

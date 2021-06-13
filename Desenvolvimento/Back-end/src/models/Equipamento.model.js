@@ -1,59 +1,28 @@
-const tipoEquipamento = require("./TipoEquipamento.model")
-const documentoRevisao = require("./DocumentoRivisao.model")
+const { Model, DataTypes} = require('sequelize')
+
+const sequelize = require("../../mysql")
 
 
-module.exports = (sequelize, Sequelize) => {
+class Equipment extends Model{}
 
-    const equipamento = sequelize.define('Equipamento',
-    {
-        EquipamentoId: {
-            type: Sequelize.BIGINT,
-            allowNull : false,
-            primaryKey: true,
-            autoIncrement:true
-        },
-        Patrimonio: {
-            type: Sequelize.STRING,
-            allowNull : false,
-            unique: true
-        },
-        Status: {
-            type: Sequelize.INTEGER,
-            allowNull : false
-        },
-        DataCadastro: {
-            type: Sequelize.DATE,
-            allowNull : false,
-        },
-        TipoEquipamentoId: {
-            type : Sequelize.BIGINT,
-            references: {model: 'TipoEquipamento', key: 'TipoEquipamentoId'},
-            onDelete: 'RESTRICT',
-            onUpdate: 'RESTRICT',
-            allowNull: false
-        }
+Equipment.init({
+    Patrimonio: {
+        type: DataTypes.STRING,
+        allowNull : false,
+        unique: true
     },
-    {
-        timestamps: false, 
-        tablename: 'Equipamento', 
-        freezeTableName: true
-    })
+    Status: {
+        type: DataTypes.INTEGER,
+        allowNull : false
+    },
+    DataCadastro: {
+        type: DataTypes.DATE,
+        allowNull : false,
+    },
+},{
+    sequelize,
+    modelName: 'equipment',
+    timestamps: false
+});
 
-    equipamento.associate = models => {
-
-        equipamento.belongsTo(models.TipoEquipamento, 
-        {
-            as : 'tipoEquipamento',
-        })
-        equipamento.belongsToMany(models.Requisicao,{
-            throught: 'RequisicaoEquipamento',
-            as : 'requisicoes',
-            foreignKey: 'EquipamentoId'
-        })
-
-    }
-
-
-    return equipamento
-
-}
+module.exports = Equipment

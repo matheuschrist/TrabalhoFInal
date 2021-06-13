@@ -2,7 +2,7 @@ const express = require('express')
 const router = express.Router()
 
 const db = require("../../mysql")
-const tipoEquipamento = db.tipoEquipamento
+const tipoEquipamento = require('../models/TipoEquipamento.model')
 
 
 router.post('/cadastro', (req,res) => {

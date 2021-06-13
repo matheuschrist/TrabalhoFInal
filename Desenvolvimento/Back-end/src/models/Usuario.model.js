@@ -1,61 +1,56 @@
-module.exports = (sequelize, Sequelize) => {
+const { Model, DataTypes} = require('sequelize')
 
-    const usuario = sequelize.define('Usuario',
-    {
-        UsuarioId: {
-            type: Sequelize.BIGINT,
-            allowNull : false,
-            primaryKey: true,
-            autoIncrement:true
-        },
-        Nome: {
-            type: Sequelize.STRING,
-            allowNull : false,
-            validate: {
-                len: [3,45]
-            }
-        },
-        Usuario: {
-            type: Sequelize.STRING,
-            allowNull : false,
-            validate: {
-                len: [3,15]
-            },
-            unique: true
-        },
-        Senha: {
-            type: Sequelize.STRING,
-            allowNull : false,
-            validate: {
-                len: [3,10]
-            }
-        },
-        Identificacao: {
-            type: Sequelize.STRING,
-            allowNull : false,
-            validate: {
-                len: [9]
-            }
-        },
-        Tipo: {
-            type: Sequelize.INTEGER,
-            allowNull : false,
-        },
-        Email: {
-            type: Sequelize.STRING,
-            allowNull: false,
-            validation: {
-                isEmail: true
-            },
-            unique: true 
+const sequelize = require("../../mysql")
+
+class User extends Model {}
+
+User.init({
+    Nome: {
+        type: DataTypes.STRING,
+        allowNull : false,
+        validate: {
+            len: [3,45]
         }
     },
-    {
-        timestamps: false, 
-        tablename: 'Usuario', 
-        freezeTableName: true
-    })
+    Usuario: {
+        type: DataTypes.STRING,
+        allowNull : false,
+        validate: {
+            len: [3,15]
+        },
+        unique: true
+    },
+    Senha: {
+        type: DataTypes.STRING,
+        allowNull : false,
+        validate: {
+            len: [3,10]
+        }
+    },
+    Identificacao: {
+        type: DataTypes.STRING,
+        allowNull : false,
+        validate: {
+            len: [9]
+        }
+    },
+    Tipo: {
+        type: DataTypes.INTEGER,
+        allowNull : false,
+    },
+    Email: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validation: {
+            isEmail: true
+        },
+        unique: true 
+    }
+},{
+    sequelize,
+    nameModel: 'User', 
+    timestamps: false
+})
 
-    return usuario
 
-}
+module.exports = User

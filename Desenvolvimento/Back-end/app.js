@@ -5,6 +5,8 @@ const morgan = require('morgan');
 const UsuarioController = require('./src/controller/UsuarioController')
 const TipoEquipamento = require('./src/controller/TipoEquipamentoController')
 const Equipamento = require('./src/controller/EquipamentoController')
+const Sala = require('./src/controller/SalaController')
+const Acessorio = require('./src/controller/AcessorioController')
 
 app.use(morgan('dev'));
 app.use(express.urlencoded({ extended: true }));
@@ -28,6 +30,8 @@ app.use((req, res, next) => {
 app.use("/usuarios", UsuarioController)
 app.use("/tipoEquipamento", TipoEquipamento)
 app.use("/equipamento", Equipamento)
+app.use("/sala", Sala)
+app.use("/acessorio", Acessorio)
 
 app.use((req, res, next) => {
     const erro = new Error('Não encontrado');

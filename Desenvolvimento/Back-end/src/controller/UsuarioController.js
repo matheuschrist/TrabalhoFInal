@@ -54,9 +54,9 @@ router.patch('/atualizar/:id', (req, res) => {
 })
 
 router.get('/perfis', (req, res) => {
-    const condicao = req.query.usuarioid ? req.query.usuarioid : null
+    const condicao = req.query.usuarioid ? {UsuarioId: req.query.usuarioid} : null
     
-    usuario.findAll({where: {UsuarioId: condicao}})
+    usuario.findAll({where: condicao})
     .then(retorno => {res.status(201).send(retorno)})
     .catch(err => {res.status(500).send(err.errors[0].message)})
 })

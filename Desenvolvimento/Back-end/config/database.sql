@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 17-Jun-2021 às 00:04
+-- Generation Time: 17-Jun-2021 às 17:07
 -- Versão do servidor: 8.0.13-4
 -- versão do PHP: 7.2.24-0ubuntu0.18.04.7
 
@@ -34,6 +34,14 @@ CREATE TABLE `Acessorio` (
   `Quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
+--
+-- Extraindo dados da tabela `Acessorio`
+--
+
+INSERT INTO `Acessorio` (`AcessorioId`, `Tipo`, `Quantidade`) VALUES
+(1, 'Mouse', 0),
+(2, 'Fone de Ouvido', 22);
+
 -- --------------------------------------------------------
 
 --
@@ -46,6 +54,14 @@ CREATE TABLE `AcessorioSala` (
   `AcessorioId` bigint(20) NOT NULL,
   `SalaId` bigint(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `AcessorioSala`
+--
+
+INSERT INTO `AcessorioSala` (`AcessorioSalaId`, `QuantidadeAcessorio`, `AcessorioId`, `SalaId`) VALUES
+(34, 20, 1, 2),
+(35, 3, 2, 2);
 
 -- --------------------------------------------------------
 
@@ -87,6 +103,16 @@ INSERT INTO `Equipamento` (`EquipamentoId`, `Patrimonio`, `Status`, `DataCadastr
 (2, 'Patrimonio123', 1, '2021-06-15 20:16:26', 1, NULL),
 (4, 'Patrimonio124', 2, '2021-06-15 20:16:59', 2, NULL),
 (5, 'Patrimonio125', 0, '2021-06-15 22:35:35', 1, NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Login`
+--
+
+CREATE TABLE `Login` (
+  `UsuarioId` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
 
@@ -168,6 +194,14 @@ CREATE TABLE `Sala` (
   `QuantidadeAluno` int(11) NOT NULL,
   `QuantidadeAlunoPandemia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `Sala`
+--
+
+INSERT INTO `Sala` (`SalaId`, `NumeroSala`, `Status`, `QuantidadeAluno`, `QuantidadeAlunoPandemia`) VALUES
+(1, 404, 0, 25, 12),
+(2, 403, 0, 40, 20);
 
 -- --------------------------------------------------------
 
@@ -254,6 +288,12 @@ ALTER TABLE `Equipamento`
   ADD KEY `SalaId` (`SalaId`);
 
 --
+-- Indexes for table `Login`
+--
+ALTER TABLE `Login`
+  ADD UNIQUE KEY `UsuarioId` (`UsuarioId`) USING BTREE;
+
+--
 -- Indexes for table `Requisicao`
 --
 ALTER TABLE `Requisicao`
@@ -323,13 +363,13 @@ ALTER TABLE `Usuario`
 -- AUTO_INCREMENT for table `Acessorio`
 --
 ALTER TABLE `Acessorio`
-  MODIFY `AcessorioId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `AcessorioId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `AcessorioSala`
 --
 ALTER TABLE `AcessorioSala`
-  MODIFY `AcessorioSalaId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `AcessorioSalaId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `DocumentoRevisao`
@@ -365,7 +405,7 @@ ALTER TABLE `RequisicaoSala`
 -- AUTO_INCREMENT for table `Sala`
 --
 ALTER TABLE `Sala`
-  MODIFY `SalaId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `SalaId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `TipoEquipamento`
@@ -403,6 +443,12 @@ ALTER TABLE `DocumentoRevisao`
 ALTER TABLE `Equipamento`
   ADD CONSTRAINT `Equipamento_ibfk_1` FOREIGN KEY (`TipoEquipamentoId`) REFERENCES `TipoEquipamento` (`tipoequipamentoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `Equipamento_ibfk_2` FOREIGN KEY (`SalaId`) REFERENCES `Sala` (`salaid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Limitadores para a tabela `Login`
+--
+ALTER TABLE `Login`
+  ADD CONSTRAINT `Login_ibfk_1` FOREIGN KEY (`UsuarioId`) REFERENCES `Usuario` (`usuarioid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Limitadores para a tabela `Requisicao`

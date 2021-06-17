@@ -27,6 +27,7 @@
     "mysql2": "^2.2.5"
   },
   "devDependencies": {
+    "lite-server": "^2.6.1",
     "mysql-import": "^5.0.21",
     "nodemon": "^1.19.4"
   }

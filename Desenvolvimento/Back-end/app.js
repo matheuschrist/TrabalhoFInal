@@ -27,7 +27,8 @@ app.use((req, res, next) => {
 
 // Rota raíz 
 app.get('/', (req, res) => {
-  res.send("Página Principal.");
+
+    res.send("Página Principal.");
 });
 
 // Outras Rotas
@@ -35,6 +36,7 @@ const acessorioRoutes = require('./src/routes/Acessorio.routes');
 const acessorioSalaRoutes = require('./src/routes/AcessorioSala.routes');
 const documentoRevisaoRoutes = require('./src/routes/DocumentoRevisao.routes');
 const equipamentoRoutes = require('./src/routes/Equipamento.routes');
+const loginRoutes = require('./src/routes/Login.routes');
 const requisicaoRoutes = require('./src/routes/Requisicao.routes');
 const requisicaoAcessorioRoutes = require('./src/routes/RequisicaoAcessorio.routes');
 const requisicaoEquipamentoRoutes = require('./src/routes/RequisicaoEquipamento.routes');
@@ -48,6 +50,7 @@ app.use('/api/acessorios', acessorioRoutes);
 app.use('/api/acessoriosSala', acessorioSalaRoutes);
 app.use('/api/documentos', documentoRevisaoRoutes);
 app.use('/api/equipamentos', equipamentoRoutes);
+app.use('/api/login', loginRoutes);
 app.use('/api/requisicoes', requisicaoRoutes);
 app.use('/api/requisicoesAcessorio', requisicaoAcessorioRoutes);
 app.use('/api/requisicoesEquipamento', requisicaoEquipamentoRoutes);

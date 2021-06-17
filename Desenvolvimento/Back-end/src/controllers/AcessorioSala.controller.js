@@ -12,15 +12,15 @@ exports.cadastrar = function(req, res) {
         res.status(400).send({erro: true, mensagem: 'Preencha todos os campos obrigatórios.'});
     }else{
         // Obtem a quantidade de acessórios disponível
-        Acessorio.obterQuantidade(req.body.acessorioId, function(err, acessorio) {
+        Acessorio.obterQuantidade(req.body.acessorioId, function(err, qtdAcessorio) {
             if (err) {
                 res.send(err);
             }
-            
+
             // Impede o cadastro se o número for insuficiente
             var quantidadeSuficiente = true;
 
-            if (req.body.quantidadeAcessorio > acessorio[0].Quantidade) {
+            if (req.body.quantidadeAcessorio > qtdAcessorio) {
                 quantidadeSuficiente = false;
             }
 
@@ -50,13 +50,28 @@ exports.cadastrar = function(req, res) {
 
 exports.listarTodos = function(req, res) {
 
-    AcessorioSala.listarTodos(function(err, acessorioSala) {
-        if (err) {
-            res.send(err);
+    if(req.query.limite) {
+        // Assume página 1 caso ela não seja especificada
+        if(req.query.pagina == null) {
+            req.query.pagina = '1';
         }
-        //console.log('res', usuario);
-        res.send(acessorioSala);
-    });
+        // Lista de acordo com o limite e a página especificados
+        AcessorioSala.listarPagina(Number(req.query.limite), Number(req.query.pagina), function(err, acessorioSala) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(acessorioSala);
+        });
+    }
+    else {
+        // Lista todos se nenhum limite for especificado
+        AcessorioSala.listarTodos(function(err, acessorioSala) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(acessorioSala);
+        });
+    }     
 
 };
 
@@ -70,6 +85,18 @@ exports.listarId = function(req, res) {
     });
 
 };
+
+exports.pesquisar = function(req, res) {
+
+    AcessorioSala.pesquisar(req.query.id, req.query.idAcessorio, req.query.idSala, req.query.qtdAcessorio, function(err, acessorio) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(acessorio);
+    });
+
+}
+
 /*
 exports.atualizar = function(req, res) {
 

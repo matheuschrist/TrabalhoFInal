@@ -24,18 +24,34 @@ exports.cadastrar = function(req, res) {
 
 exports.listarTodos = function(req, res) {
 
-    Acessorio.listarTodos(function(err, acessorio) {
-        if (err) {
-            res.send(err);
+    if(req.query.limite) {
+        // Assume página 1 caso ela não seja especificada
+        if(req.query.pagina == null) {
+            req.query.pagina = '1';
         }
-        res.send(acessorio);
-    });
+        // Lista de acordo com o limite e a página especificados
+        Acessorio.listarPagina(Number(req.query.limite), Number(req.query.pagina), function(err, acessorio) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(acessorio);
+        });
+    }
+    else {
+        // Lista todos se nenhum limite for especificado
+        Acessorio.listarTodos(function(err, acessorio) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(acessorio);
+        });
+    }  
 
 };
 
 exports.listarId = function(req, res) {
 
-    Acessorio.listarId(req.params.id, function(err, acessorio) {
+    Acessorio.listarId(req.query.id, function(err, acessorio) {
         if (err) {
             res.send(err);
         }
@@ -43,6 +59,17 @@ exports.listarId = function(req, res) {
     });
 
 };
+
+exports.pesquisar = function(req, res) {
+
+    Acessorio.pesquisar(req.query.id, req.query.tipo, function(err, acessorio) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(acessorio);
+    });
+
+}
 
 exports.atualizar = function(req, res) {
 

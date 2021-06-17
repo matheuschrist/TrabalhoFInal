@@ -43,6 +43,25 @@ Acessorio.listarTodos = function (retorno) {
 
 };
 
+Acessorio.listarPagina = function (limite, pagina, retorno) {
+
+    // Obtem o offset para os objetos da página requisitada
+    var offset = (pagina - 1) * limite;
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Acessorio LIMIT ? OFFSET ? ", [limite, offset], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            console.log('Acessorio: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
 Acessorio.listarId = function (id, retorno) {
 
     // Comando SQL SELECT
@@ -58,6 +77,23 @@ Acessorio.listarId = function (id, retorno) {
 
 };
 
+Acessorio.pesquisar = function (id, tipo, retorno) {
+
+    tipo = ('%' + tipo + '%');
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Acessorio WHERE AcessorioId = ? OR Tipo LIKE ? ", [id, tipo], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+    
+}
+
 Acessorio.obterQuantidade = function (id, retorno) {
 
     // Comando SQL SELECT
@@ -67,7 +103,7 @@ Acessorio.obterQuantidade = function (id, retorno) {
             retorno(err, null);
         }
         else{
-            retorno(null, res);
+            retorno(null, res[0].Quantidade);
         }
     }); 
 

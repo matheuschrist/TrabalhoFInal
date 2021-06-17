@@ -31,7 +31,26 @@ AcessorioSala.cadastrar = function (acessorioSala, retorno) {
 AcessorioSala.listarTodos = function (retorno) {
 
     // Comando SQL SELECT
-    dbConn.query("SELECT * FROM AcessorioSala", function (err, res) {
+    dbConn.query("SELECT * FROM AcessorioSala ", function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            console.log('AcessorioSala: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
+AcessorioSala.listarPagina = function (limite, pagina, retorno) {
+
+    // Obtem o offset para os objetos da página requisitada
+    var offset = (pagina - 1) * limite;
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM AcessorioSala LIMIT ? OFFSET ? ", [limite, offset], function (err, res) {
         if(err) {
             console.log("Erro: ", err);
             retorno(err, null);
@@ -59,6 +78,23 @@ AcessorioSala.listarId = function (id, retorno) {
 
 };
 
+AcessorioSala.pesquisar = function (id, idAcessorio, idSala, qtdAcessorio, retorno) {
+
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM AcessorioSala WHERE AcessorioSalaId = ? OR AcessorioId = ? OR SalaId = ? OR QuantidadeAcessorio = ? ", 
+                [id, idAcessorio, idSala, qtdAcessorio], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
 AcessorioSala.obterQuantidade = function (id, retorno) {
 
     // Comando SQL SELECT
@@ -68,7 +104,7 @@ AcessorioSala.obterQuantidade = function (id, retorno) {
             retorno(err, null);
         }
         else{
-            retorno(null, res);
+            retorno(null, res[0].QuantidadeAcessorio);
         }
     }); 
 

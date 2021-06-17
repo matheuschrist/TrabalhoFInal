@@ -10,11 +10,11 @@ var Requisicao = function(requisicao) {
     this.tipo               = requisicao.tipo;
     this.status             = requisicao.status;
     this.turno              = requisicao.turno;
-    this.dataUtilizacao     = requisicao.dataUtilizacao;
+    this.dataUtilizacao     = requisicao.dataUtilizacao ? requisicao.dataUtilizacao : null;
     this.dataAbertura       = requisicao.dataAbertura;
     this.dataEntrega        = requisicao.dataEntrega ? requisicao.dataEntrega : null;
-    this.dataCancelamento   = requisicao.dataEntrega ? requisicao.dataEntrega : null;
-    this.dataConclusao      = requisicao.dataEntrega ? requisicao.dataEntrega : null;
+    this.dataCancelamento   = requisicao.dataCancelamento ? requisicao.dataCancelamento : null;
+    this.dataConclusao      = requisicao.dataConclusao ? requisicao.dataConclusao : null;
     this.usuarioId          = requisicao.usuarioId;
 
 };
@@ -47,7 +47,6 @@ Requisicao.cadastrar = function (requisicao, retorno) {
             requisicao.turno = 2
             break;
     }
-
 
     // Comando SQL INSERT
     dbConn.query("INSERT INTO Requisicao SET ?", [requisicao], function (err, res) {

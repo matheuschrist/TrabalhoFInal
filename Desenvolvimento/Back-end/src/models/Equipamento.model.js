@@ -10,7 +10,7 @@ var Equipamento = function(equipamento) {
 
     this.patrimonio         = equipamento.patrimonio;
     this.status             = equipamento.status;
-    this.dataCadastro       = new Date();
+    this.dataCadastro       = equipamento.dataCadastro;
     this.tipoEquipamentoId  = equipamento.tipoEquipamentoId;
     this.salaId             = equipamento.salaId ? equipamento.salaId : null;
 

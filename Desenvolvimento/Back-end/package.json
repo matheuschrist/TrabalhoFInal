@@ -1,31 +1,33 @@
 {
-  "name": "rest-api",
+  "name": "sistema_gerenciamento",
   "version": "1.0.0",
-  "description": "Projeto Integrador - Gerenciamento de Equipamento ",
-  "main": "index.js",
+  "description": "Projeto Integrador - Sistema de Gerenciamento de Equipamentos e Salas",
+  "main": "server.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "nodemon app.js"
+    "start": "nodemon server"
   },
   "keywords": [
-    "node",
-    "equipamento",
-    "projeto"
+    "nodejs",
+    "expressjs",
+    "mysql",
+    "api",
+    "restfulapi",
+    "javascript",
+    "es6"
   ],
-  "author": "Grupo do Projeto Integrador",
+  "author": "UniSales",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "dateformat": "^4.5.1",
     "express": "^4.17.1",
+    "moment": "^2.29.1",
     "morgan": "^1.10.0",
-    "mysql": "^2.18.1",
-    "mysql2": "^2.2.5",
-    "pg": "^8.6.0",
-    "sequelize": "^6.6.2",
-    "sequelize-cli": "^6.2.0",
-    "sqlite3": "^5.0.2"
+    "mysql": "^2.17.1",
+    "mysql2": "^2.2.5"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "mysql-import": "^5.0.21",
+    "nodemon": "^1.19.4"
   }
 }

@@ -1,33 +1,189 @@
-const { Model, DataTypes} = require('sequelize')
+'use strict';
 
-const sequelize = require("../../mysql")
+var dbConn = require('./../../config/db.config');
 
-class Class extends Model {}
+// Cria objeto Usuário
+var Sala = function(sala) {
 
-Class.init({
-    NumeroSala: {
-        type: DataTypes.INTEGER,
-        allowNull : false, 
-        unique: true
-    },
-    Status: {
-        type: DataTypes.INTEGER,
-        allowNull : false
-    },
-    QuantidadeAluno: {
-        type: DataTypes.INTEGER,
-        allowNull : false,
-    },
-    QuantidadeAlunoPandemia: {
-        type: DataTypes.INTEGER,
-        allowNull : false,
-    },
-},{
-    sequelize,
-    nameModel: 'class',
-    timestamps: false
-});
+    this.numeroSala                 = sala.numeroSala;
+    this.status                     = sala.status;
+    this.quantidadeAluno            = sala.quantidadeAluno;
+    this.quantidadeAlunoPandemia    = sala.quantidadeAlunoPandemia;
 
+};
 
+Sala.cadastrar = function (sala, retorno) {
 
-module.exports = Class
+    sala.status = 0
+    // Comando SQL INSERT
+    dbConn.query("INSERT INTO Sala SET ?", [sala], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else {
+            // Retorna Id do usuário inserido no banco
+            console.log(res.insertId);
+            retorno(null, res.insertId);
+        }
+    }); 
+
+}
+
+Sala.listarTodos = function (retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Sala", function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            console.log('Sala: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
+Sala.listarId = function (id, retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Sala WHERE SalaId = ? ", [id], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res); 
+        }
+    }); 
+};
+
+Sala.atualizarSatus = function(id) {
+    
+    this.listarId(id, function(err, res)
+    {
+        if(err)
+        {
+            console.log(err)
+        }
+        else
+        {
+            switch(res[0].Status)
+            {
+                case 0:
+                    res[0].Status = 1;
+                    break;
+                case 1:
+                    res[0].Status = 0;  
+            }
+            
+            dbConn.query("UPDATE Sala SET Status=? WHERE SalaId = ?", 
+                            [res[0].Status, id], 
+                            function (err, res) {
+                if(err) {
+                    console.log("Erro: ", err); 
+                }else{
+                    console.log(res)   
+                }
+            });
+        }
+    })
+     
+    
+}
+
+Sala.atualizar = function(id, sala, retorno) {
+
+    if(sala.quantidadeAluno && sala.quantidadeAlunoPandemia)
+    {
+        // Comando SQL UPDATE
+        dbConn.query("UPDATE Sala SET QuantidadeAluno=?, QuantidadeAlunoPandemia=? WHERE SalaId = ?", 
+                        [sala.quantidadeAluno, sala.quantidadeAlunoPandemia, id], 
+                        function (err, res) {
+            if(err) {
+                console.log("Erro: ", err);
+                retorno(null, err);
+            }else{   
+                retorno(null, res);
+            }
+        });
+    }
+    else if(sala.quantidadeAluno)
+    {
+        dbConn.query("UPDATE Sala SET  QuantidadeAluno=? WHERE SalaId = ?", 
+                        [sala.quantidadeAluno, id], 
+                        function (err, res) {
+            if(err) {
+                console.log("Erro: ", err);
+                retorno(null, err);
+            }else{   
+                retorno(null, res);
+            }
+        });
+    }
+    else if(sala.quantidadeAlunoPandemia)
+    {
+        dbConn.query("UPDATE Sala SET QuantidadeAlunoPandemia=? WHERE SalaId = ?", 
+                        [sala.quantidadeAlunoPandemia, id], 
+                        function (err, res) {
+            if(err) {
+                console.log("Erro: ", err);
+                retorno(null, err);
+            }else{   
+                retorno(null, res);
+            }
+        });
+    }
+    else
+    {
+
+        dbConn.query("UPDATE Sala SET Status=? WHERE SalaId = ?", 
+                        [sala.status, id], 
+                        function (err, res) {
+            if(err) {
+                console.log("Erro: ", err);
+                retorno(null, err);
+            }else{   
+                retorno(null, res);
+            }
+        });
+        
+        
+    }
+     
+
+};
+
+Sala.excluirId = function(retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM Sala WHERE SalaId = ?", [id], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Sala.excluirTodos = function(id, retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM Sala", function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+module.exports = Sala;

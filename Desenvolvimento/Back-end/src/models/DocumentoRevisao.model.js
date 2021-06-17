@@ -1,31 +1,113 @@
-const { Model, DataTypes} = require('sequelize')
+'use strict';
 
-const sequelize = require("../../mysql")
+var dbConn = require('./../../config/db.config');
 
-class ReviewDocument extends Model {}
+// Cria objeto Usuário
+var DocumentoRevisao = function(documentoRevisao) {
 
-ReviewDocument.init({
-    Descricaoproblema: {
-        type: DataTypes.TEXT,
-        allowNull : false,
-    },
-    Status: {
-        type: DataTypes.INTEGER,
-        allowNull : false,
-    },
-    DataConclusao: {
-        type: DataTypes.DATE,
-        allowNull : false,
-    },
-    Defeito: {
-        type: DataTypes.BOOLEAN,
-        allowNull : false,
-    },
-},{
-    sequelize,
-    modelName: 'reviewDocument',
-    timestamps: false
-})
+    this.descricaoProblema  = documentoRevisao.descricaoProblema;
+    this.status             = documentoRevisao.status;
+    this.dataAbertura       = documentoRevisao.dataAbertura;
+    this.dataConclusao      = documentoRevisao.dataConclusao ? dataConclusao : null;
+    this.defeito            = documentoRevisao.defeito;
+    this.equipamentoId      = documentoRevisao.equipamentoId ? documentoRevisao.equipamentoId : null;
+    this.salaId             = documentoRevisao.salaId ? documentoRevisao.salaId : null;
+};
 
-module.exports = ReviewDocument
+DocumentoRevisao.cadastrar = function (documentoRevisao, retorno) {
 
+    // Comando SQL INSERT
+    dbConn.query("INSERT INTO DocumentoRevisao SET ?", [documentoRevisao], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else {
+            // Retorna Id do usuário inserido no banco
+            console.log(res.insertId);
+            retorno(null, res.insertId);
+        }
+    }); 
+
+}
+
+DocumentoRevisao.listarTodos = function (retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM DocumentoRevisao", function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            console.log('DocumentoRevisao: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
+DocumentoRevisao.listarId = function (id, retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM DocumentoRevisao WHERE DocumentoRevisaoId = ? ", [id], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+DocumentoRevisao.atualizar = function(id, documentoRevisao, retorno) {
+
+    // Comando SQL UPDATE
+    dbConn.query("UPDATE DocumentoRevisao SET Satus=?, DataConclusao=? WHERE DocumentoRevisaoId = ?", 
+                    [documentoRevisao.status, documentoRevisao.dataConclusao, id], 
+                    function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }else{   
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+DocumentoRevisao.excluirId = function(id, retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM DocumentoRevisao WHERE DocumentoRevisaoId = ?", [id], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+DocumentoRevisao.excluirTodos = function(retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM DocumentoRevisao", function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+
+
+module.exports = DocumentoRevisao;

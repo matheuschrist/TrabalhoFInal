@@ -1,56 +1,111 @@
-const { Model, DataTypes} = require('sequelize')
+'use strict';
 
-const sequelize = require("../../mysql")
+var dbConn = require('./../../config/db.config');
 
-class User extends Model {}
+// Cria objeto Usuário
+var Usuario = function(usuario) {
 
-User.init({
-    Nome: {
-        type: DataTypes.STRING,
-        allowNull : false,
-        validate: {
-            len: [3,45]
+    this.nome           = usuario.nome;
+    this.login          = usuario.login;
+    this.senha          = usuario.senha;
+    this.identificacao  = usuario.identificacao;
+    this.tipo           = usuario.tipo;
+    this.email          = usuario.email;
+
+};
+
+Usuario.cadastrar = function (usuario, retorno) {
+
+    // Comando SQL INSERT
+    dbConn.query("INSERT INTO Usuario SET ?", [usuario], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
         }
-    },
-    Usuario: {
-        type: DataTypes.STRING,
-        allowNull : false,
-        validate: {
-            len: [3,15]
-        },
-        unique: true
-    },
-    Senha: {
-        type: DataTypes.STRING,
-        allowNull : false,
-        validate: {
-            len: [3,10]
+        else {
+            // Retorna Id do usuário inserido no banco
+            console.log(res.insertId);
+            retorno(null, res.insertId);
         }
-    },
-    Identificacao: {
-        type: DataTypes.STRING,
-        allowNull : false,
-        validate: {
-            len: [9]
+    }); 
+
+}
+
+Usuario.listarTodos = function (retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Usuario", function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
         }
-    },
-    Tipo: {
-        type: DataTypes.INTEGER,
-        allowNull : false,
-    },
-    Email: {
-        type: DataTypes.STRING,
-        allowNull: false,
-        validation: {
-            isEmail: true
-        },
-        unique: true 
-    }
-},{
-    sequelize,
-    nameModel: 'User', 
-    timestamps: false
-})
+        else{
+            console.log('Usuarios: ', res);  
+            retorno(null, res);
+        }
+    });   
 
+};
 
-module.exports = User
+Usuario.listarId = function (id, retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Usuario WHERE UsuarioId = ? ", [id], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Usuario.atualizar = function(id, usuario, retorno) {
+
+    // Comando SQL UPDATE
+    dbConn.query("UPDATE Usuario SET Nome=?, Login=?, Senha=?, Identificacao=?, Tipo=?, Email=? WHERE UsuarioId = ?", 
+                    [usuario.nome, usuario.login, usuario.senha, usuario.email, id], 
+                    function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }else{   
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Usuario.excluirId = function(id, retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM Usuario WHERE UsuarioId = ?", [id], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Usuario.excluirTodos = function( retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM Usuario", function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+module.exports = Usuario;

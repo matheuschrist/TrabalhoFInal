@@ -1,39 +1,129 @@
-const { Model, DataTypes} = require('sequelize')
+'use strict';
 
-const sequelize = require("../../mysql")
+var dbConn = require('./../../config/db.config');
+const DATE_FORMATER = require( 'dateformat' );
 
 
-class Request extends Model {}
+// Cria objeto Usuário
+var Requisicao = function(requisicao) {
 
-Request.init({
-    Tipo: {
-        type: DataTypes.INTEGER,
-        allowNull : false,
-    },
-    Status: {
-        type: DataTypes.INTEGER,
-        allowNull : false,
-    },
-    DataAbertura: {
-        type: DataTypes.DATE,
-        allowNull : false,
-    },
-    DataEntrega: {
-        type: DataTypes.DATE,
-        allowNull : true,
-    },
-    DataConclusao: {
-        type: DataTypes.DATE,
-        allowNull : true,
-    },
-    DataCancelamento: {
-        type: DataTypes.DATE,
-        allowNull : true,
-    },
-},{
-    sequelize,
-    modelName: 'request',
-    timestamps: false
-})
+    this.tipo               = requisicao.tipo;
+    this.status             = requisicao.status;
+    this.dataAbertura       = requisicao.dataAbertura;
+    this.dataEntrega        = requisicao.dataEntrega ? requisicao.dataEntrega : null;
+    this.dataCancelamento   = requisicao.dataEntrega ? requisicao.dataEntrega : null;
+    this.dataConclusao      = requisicao.dataEntrega ? requisicao.dataEntrega : null;
+    this.usuarioId          = requisicao.usuarioId;
 
-module.exports = Request
+};
+
+Requisicao.cadastrar = function (requisicao, retorno) {
+    
+    var datetime = DATE_FORMATER( new Date(), "yyyy-mm-dd HH:MM:ss" );
+    requisicao.status = 0
+    requisicao.dataAbertura = datetime
+
+    switch(requisicao.tipo)
+    {
+        case "Sala":
+            requisicao.tipo = 0            
+            break
+        case "Equipamento":
+            requisicao.tipo = 1
+            break
+    }
+
+
+    // Comando SQL INSERT
+    dbConn.query("INSERT INTO Requisicao SET ?", [requisicao], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else {
+            // Retorna Id do usuário inserido no banco
+            console.log(res.insertId);
+            retorno(null, res.insertId);
+        }
+    }); 
+
+}
+
+Requisicao.listarTodos = function (retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Requisicao", function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            console.log('Requisicao: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
+Requisicao.listarId = function (id, retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Requisicao WHERE RequisicaoId = ? ", [id], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Requisicao.atualizar = function(id, requisicao, retorno) {
+
+    // Comando SQL UPDATE
+    dbConn.query("UPDATE Requisicao SET Status=?, DataEntrega=?, DataConclusao=?, DataCancelamento=? WHERE RequisicaoId = ?", 
+                    [requisicao.status, requisicao.dataEntrega, requisicao.dataConclusao, requisicao.dataCancelamento, id], 
+                    function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }else{   
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Requisicao.excluirId = function(id, retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM Requisicao WHERE RequisicaoId = ?", [id], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Requisicao.excluirTodos = function(retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM Requisicao", function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(null, err);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+module.exports = Requisicao;

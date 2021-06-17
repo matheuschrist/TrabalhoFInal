@@ -3,18 +3,18 @@
 var dbConn = require('./../../config/db.config');
 
 // Cria objeto Usuário
-var RequisicaoAcessorio = function(requisicaoAcessorio) {
+var AcessorioSala = function(acessorioSala) {
 
-    this.requisicaoId           = requisicaoAcessorio.requisicaoId;
-    this.acessorioId            = requisicaoAcessorio.acessorioId;
-    this.quantidadeAcessorio    = requisicaoAcessorio.quantidadeAcessorio;
+    this.acessorioId            = acessorioSala.acessorioId;
+    this.quantidadeAcessorio    = acessorioSala.quantidadeAcessorio;
+    this.salaId                 = acessorioSala.salaId;
 
 };
 
-RequisicaoAcessorio.cadastrar = function (requisicaoAcessorio, retorno) {
+AcessorioSala.cadastrar = function (acessorioSala, retorno) {
 
     // Comando SQL INSERT
-    dbConn.query("INSERT INTO RequisicaoAcessorio SET ?", [requisicaoAcessorio], function (err, res) {
+    dbConn.query("INSERT INTO AcessorioSala SET ?", [acessorioSala], function (err, res) {
         if(err) {
             console.log("Erro: ", err);
             retorno(err, null);
@@ -28,26 +28,26 @@ RequisicaoAcessorio.cadastrar = function (requisicaoAcessorio, retorno) {
 
 }
 
-RequisicaoAcessorio.listarTodos = function (retorno) {
+AcessorioSala.listarTodos = function (retorno) {
 
     // Comando SQL SELECT
-    dbConn.query("SELECT * FROM RequisicaoAcessorio", function (err, res) {
+    dbConn.query("SELECT * FROM AcessorioSala", function (err, res) {
         if(err) {
             console.log("Erro: ", err);
             retorno(null, err);
         }
         else{
-            console.log('RequisicaoAcessorio: ', res);  
+            console.log('AcessorioSala: ', res);  
             retorno(null, res);
         }
     });   
 
 };
 
-RequisicaoAcessorio.listarId = function (id, retorno) {
+AcessorioSala.listarId = function (id, retorno) {
 
     // Comando SQL SELECT
-    dbConn.query("SELECT * FROM RequisicaoAcessorio WHERE RequisicaoAcessorioId = ? ", [id], function (err, res) {             
+    dbConn.query("SELECT * FROM AcessorioSala WHERE AcessorioSalaId = ? ", [id], function (err, res) {             
         if(err) {
             console.log("Erro: ", err);
             retorno(err, null);
@@ -59,11 +59,11 @@ RequisicaoAcessorio.listarId = function (id, retorno) {
 
 };
 
-RequisicaoAcessorio.atualizar = function(id, requisicaoAcessorio, retorno) {
+AcessorioSala.atualizar = function(id, acessorio, retorno) {
 
     // Comando SQL UPDATE
-    dbConn.query("UPDATE RequisicaoAcessorio SET QuantidadeAcessorio=? WHERE RequisicaoAcessorioId = ?", 
-                    [requisicaoAcessorio.quantidadeAcessorio, id], 
+    dbConn.query("UPDATE AcessorioSala SET QuantidadeAcessorio = ? WHERE AcessorioSalaId = ?", 
+                    [acessorio.quantidadeAcessorio, id], 
                     function (err, res) {
         if(err) {
             console.log("Erro: ", err);
@@ -75,10 +75,10 @@ RequisicaoAcessorio.atualizar = function(id, requisicaoAcessorio, retorno) {
 
 };
 
-RequisicaoAcessorio.excluirId = function(id, retorno) {
+AcessorioSala.excluirId = function(retorno) {
 
     // Comando SQL DELETE
-    dbConn.query("DELETE FROM RequisicaoAcessorio WHERE RequisicaoAcessorioId = ?", [id], function (err, res) {
+    dbConn.query("DELETE FROM AcessorioSala WHERE AcessorioSalaId = ?", [id], function (err, res) {
         if(err) {
             console.log("Erro: ", err);
             retorno(null, err);
@@ -90,10 +90,10 @@ RequisicaoAcessorio.excluirId = function(id, retorno) {
 
 };
 
-RequisicaoAcessorio.excluirTodos = function(retorno) {
+AcessorioSala.excluirTodos = function(id, retorno) {
 
     // Comando SQL DELETE
-    dbConn.query("DELETE FROM RequisicaoAcessorio", function (err, res) {
+    dbConn.query("DELETE FROM AcessorioSala", function (err, res) {
         if(err) {
             console.log("Erro: ", err);
             retorno(null, err);
@@ -105,4 +105,4 @@ RequisicaoAcessorio.excluirTodos = function(retorno) {
 
 };
 
-module.exports = RequisicaoAcessorio;
+module.exports = AcessorioSala;

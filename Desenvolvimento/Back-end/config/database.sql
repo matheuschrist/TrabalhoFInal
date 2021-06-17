@@ -1,0 +1,408 @@
+-- phpMyAdmin SQL Dump
+-- version 4.8.5
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: 15-Jun-2021 às 06:28
+-- Versão do servidor: 8.0.13-4
+-- versão do PHP: 7.2.24-0ubuntu0.18.04.7
+
+SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
+START TRANSACTION;
+SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `mfIMHFYIWD`
+--
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Acessorio`
+--
+
+CREATE TABLE `Acessorio` (
+  `AcessorioId` bigint(20) NOT NULL,
+  `Tipo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Quantidade` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `AcessorioSala`
+--
+
+CREATE TABLE `AcessorioSala` (
+  `AcessorioSalaId` bigint(20) NOT NULL,
+  `QuantidadeAcessorio` int(11) NOT NULL,
+  `AcessorioId` bigint(20) NOT NULL,
+  `SalaId` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `DocumentoRevisao`
+--
+
+CREATE TABLE `DocumentoRevisao` (
+  `DocumentoRevisaoId` bigint(20) NOT NULL,
+  `DescricaoProblema` text COLLATE utf8_unicode_ci NOT NULL,
+  `DataAbertura` datetime NOT NULL,
+  `Status` int(11) NOT NULL,
+  `DataConclusao` datetime DEFAULT NULL,
+  `Defeito` tinyint(1) NOT NULL,
+  `EquipamentoId` bigint(20) DEFAULT NULL,
+  `SalaId` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Equipamento`
+--
+
+CREATE TABLE `Equipamento` (
+  `EquipamentoId` bigint(20) NOT NULL,
+  `Patrimonio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Status` int(11) NOT NULL,
+  `DataCadastro` datetime NOT NULL,
+  `TipoEquipamentoId` bigint(20) NOT NULL,
+  `SalaId` bigint(20) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Requisicao`
+--
+
+CREATE TABLE `Requisicao` (
+  `RequisicaoId` bigint(20) NOT NULL,
+  `Tipo` int(11) NOT NULL,
+  `Status` int(11) NOT NULL,
+  `DataAbertura` datetime NOT NULL,
+  `DataEntrega` datetime DEFAULT NULL,
+  `DataConclusao` datetime DEFAULT NULL,
+  `DataCancelamento` datetime DEFAULT NULL,
+  `UsuarioId` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `RequisicaoAcessorio`
+--
+
+CREATE TABLE `RequisicaoAcessorio` (
+  `RequisicaoAcessorioId` bigint(20) NOT NULL,
+  `QuantidadeAcessorio` int(11) NOT NULL,
+  `RequisicaoId` bigint(20) NOT NULL,
+  `AcessorioId` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `RequisicaoEquipamento`
+--
+
+CREATE TABLE `RequisicaoEquipamento` (
+  `RequisicaoEquipamentoId` bigint(20) NOT NULL,
+  `RequisicaoId` bigint(20) NOT NULL,
+  `EquipamentoId` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `RequisicaoSala`
+--
+
+CREATE TABLE `RequisicaoSala` (
+  `RequisicaoSalaId` bigint(20) NOT NULL,
+  `RequisicaoId` bigint(20) NOT NULL,
+  `SalaId` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `RequisicaoTipoEquipamento`
+--
+
+CREATE TABLE `RequisicaoTipoEquipamento` (
+  `RequisicaoTipoEquipamentoId` bigint(20) NOT NULL,
+  `QuantidadeSolicitada` int(11) NOT NULL,
+  `RequisicaoId` bigint(20) NOT NULL,
+  `TipoEquipamentoId` bigint(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Sala`
+--
+
+CREATE TABLE `Sala` (
+  `SalaId` bigint(20) NOT NULL,
+  `NumeroSala` int(11) NOT NULL,
+  `Status` int(11) NOT NULL,
+  `QuantidadeAluno` int(11) NOT NULL,
+  `QuantidadeAlunoPandemia` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `TipoEquipamento`
+--
+
+CREATE TABLE `TipoEquipamento` (
+  `TipoEquipamentoId` bigint(20) NOT NULL,
+  `NomeTipo` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Estrutura da tabela `Usuario`
+--
+
+CREATE TABLE `Usuario` (
+  `UsuarioId` bigint(20) NOT NULL,
+  `Nome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Login` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Senha` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Identificacao` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Tipo` int(11) NOT NULL,
+  `Email` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Indexes for dumped tables
+--
+
+--
+-- Indexes for table `Acessorio`
+--
+ALTER TABLE `Acessorio`
+  ADD PRIMARY KEY (`AcessorioId`),
+  ADD UNIQUE KEY `Tipo` (`Tipo`);
+
+--
+-- Indexes for table `AcessorioSala`
+--
+ALTER TABLE `AcessorioSala`
+  ADD PRIMARY KEY (`AcessorioSalaId`),
+  ADD UNIQUE KEY `AcessorioSala_SalaId_AcessorioId_unique` (`AcessorioId`,`SalaId`),
+  ADD KEY `SalaId` (`SalaId`);
+
+--
+-- Indexes for table `DocumentoRevisao`
+--
+ALTER TABLE `DocumentoRevisao`
+  ADD PRIMARY KEY (`DocumentoRevisaoId`),
+  ADD KEY `EquipamentoId` (`EquipamentoId`),
+  ADD KEY `SalaId` (`SalaId`);
+
+--
+-- Indexes for table `Equipamento`
+--
+ALTER TABLE `Equipamento`
+  ADD PRIMARY KEY (`EquipamentoId`),
+  ADD UNIQUE KEY `Patrimonio` (`Patrimonio`),
+  ADD KEY `TipoEquipamentoId` (`TipoEquipamentoId`),
+  ADD KEY `SalaId` (`SalaId`);
+
+--
+-- Indexes for table `Requisicao`
+--
+ALTER TABLE `Requisicao`
+  ADD PRIMARY KEY (`RequisicaoId`),
+  ADD KEY `UsuarioId` (`UsuarioId`);
+
+--
+-- Indexes for table `RequisicaoAcessorio`
+--
+ALTER TABLE `RequisicaoAcessorio`
+  ADD PRIMARY KEY (`RequisicaoAcessorioId`),
+  ADD UNIQUE KEY `RequisicaoAcessorio_RequisicaoId_AcessorioId_unique` (`RequisicaoId`,`AcessorioId`),
+  ADD KEY `AcessorioId` (`AcessorioId`);
+
+--
+-- Indexes for table `RequisicaoEquipamento`
+--
+ALTER TABLE `RequisicaoEquipamento`
+  ADD PRIMARY KEY (`RequisicaoEquipamentoId`),
+  ADD UNIQUE KEY `RequisicaoEquipamento_RequisicaoId_EquipamentoId_unique` (`RequisicaoId`,`EquipamentoId`),
+  ADD KEY `EquipamentoId` (`EquipamentoId`);
+
+--
+-- Indexes for table `RequisicaoSala`
+--
+ALTER TABLE `RequisicaoSala`
+  ADD PRIMARY KEY (`RequisicaoSalaId`),
+  ADD UNIQUE KEY `RequisicaoSala_SalaId_RequisicaoId_unique` (`RequisicaoId`,`SalaId`),
+  ADD KEY `SalaId` (`SalaId`);
+
+--
+-- Indexes for table `RequisicaoTipoEquipamento`
+--
+ALTER TABLE `RequisicaoTipoEquipamento`
+  ADD PRIMARY KEY (`RequisicaoTipoEquipamentoId`),
+  ADD UNIQUE KEY `RequisicaoTipoEquipamento_TipoEquipamentoId_RequisicaoId_unique` (`RequisicaoId`,`TipoEquipamentoId`),
+  ADD KEY `TipoEquipamentoId` (`TipoEquipamentoId`);
+
+--
+-- Indexes for table `Sala`
+--
+ALTER TABLE `Sala`
+  ADD PRIMARY KEY (`SalaId`),
+  ADD UNIQUE KEY `NumeroSala` (`NumeroSala`);
+
+--
+-- Indexes for table `TipoEquipamento`
+--
+ALTER TABLE `TipoEquipamento`
+  ADD PRIMARY KEY (`TipoEquipamentoId`),
+  ADD UNIQUE KEY `NomeTipo` (`NomeTipo`);
+
+--
+-- Indexes for table `Usuario`
+--
+ALTER TABLE `Usuario`
+  ADD PRIMARY KEY (`UsuarioId`),
+  ADD UNIQUE KEY `Usuario` (`Login`),
+  ADD UNIQUE KEY `Email` (`Email`),
+  ADD UNIQUE KEY `Identificacao` (`Identificacao`);
+
+--
+-- AUTO_INCREMENT for dumped tables
+--
+
+--
+-- AUTO_INCREMENT for table `Acessorio`
+--
+ALTER TABLE `Acessorio`
+  MODIFY `AcessorioId` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `AcessorioSala`
+--
+ALTER TABLE `AcessorioSala`
+  MODIFY `AcessorioSalaId` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `DocumentoRevisao`
+--
+ALTER TABLE `DocumentoRevisao`
+  MODIFY `DocumentoRevisaoId` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Equipamento`
+--
+ALTER TABLE `Equipamento`
+  MODIFY `EquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Requisicao`
+--
+ALTER TABLE `Requisicao`
+  MODIFY `RequisicaoId` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `RequisicaoAcessorio`
+--
+ALTER TABLE `RequisicaoAcessorio`
+  MODIFY `RequisicaoAcessorioId` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Sala`
+--
+ALTER TABLE `Sala`
+  MODIFY `SalaId` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `TipoEquipamento`
+--
+ALTER TABLE `TipoEquipamento`
+  MODIFY `TipoEquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `Usuario`
+--
+ALTER TABLE `Usuario`
+  MODIFY `UsuarioId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Limitadores para a tabela `AcessorioSala`
+--
+ALTER TABLE `AcessorioSala`
+  ADD CONSTRAINT `AcessorioSala_ibfk_1` FOREIGN KEY (`AcessorioId`) REFERENCES `Acessorio` (`acessorioid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `AcessorioSala_ibfk_2` FOREIGN KEY (`SalaId`) REFERENCES `Sala` (`salaid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Limitadores para a tabela `DocumentoRevisao`
+--
+ALTER TABLE `DocumentoRevisao`
+  ADD CONSTRAINT `DocumentoRevisao_ibfk_1` FOREIGN KEY (`EquipamentoId`) REFERENCES `Equipamento` (`equipamentoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `DocumentoRevisao_ibfk_2` FOREIGN KEY (`SalaId`) REFERENCES `Sala` (`salaid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Limitadores para a tabela `Equipamento`
+--
+ALTER TABLE `Equipamento`
+  ADD CONSTRAINT `Equipamento_ibfk_1` FOREIGN KEY (`TipoEquipamentoId`) REFERENCES `TipoEquipamento` (`tipoequipamentoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `Equipamento_ibfk_2` FOREIGN KEY (`SalaId`) REFERENCES `Sala` (`salaid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Limitadores para a tabela `Requisicao`
+--
+ALTER TABLE `Requisicao`
+  ADD CONSTRAINT `Requisicao_ibfk_1` FOREIGN KEY (`UsuarioId`) REFERENCES `Usuario` (`UsuarioId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Limitadores para a tabela `RequisicaoAcessorio`
+--
+ALTER TABLE `RequisicaoAcessorio`
+  ADD CONSTRAINT `RequisicaoAcessorio_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`requisicaoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `RequisicaoAcessorio_ibfk_2` FOREIGN KEY (`AcessorioId`) REFERENCES `Acessorio` (`acessorioid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Limitadores para a tabela `RequisicaoEquipamento`
+--
+ALTER TABLE `RequisicaoEquipamento`
+  ADD CONSTRAINT `RequisicaoEquipamento_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`requisicaoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `RequisicaoEquipamento_ibfk_2` FOREIGN KEY (`EquipamentoId`) REFERENCES `Equipamento` (`equipamentoid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Limitadores para a tabela `RequisicaoSala`
+--
+ALTER TABLE `RequisicaoSala`
+  ADD CONSTRAINT `RequisicaoSala_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`requisicaoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `RequisicaoSala_ibfk_2` FOREIGN KEY (`SalaId`) REFERENCES `Sala` (`salaid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+
+--
+-- Limitadores para a tabela `RequisicaoTipoEquipamento`
+--
+ALTER TABLE `RequisicaoTipoEquipamento`
+  ADD CONSTRAINT `RequisicaoTipoEquipamento_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`requisicaoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `RequisicaoTipoEquipamento_ibfk_2` FOREIGN KEY (`TipoEquipamentoId`) REFERENCES `TipoEquipamento` (`tipoequipamentoid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

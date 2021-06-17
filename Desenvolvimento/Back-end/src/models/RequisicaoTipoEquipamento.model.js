@@ -44,6 +44,19 @@ RequisicaoTipoEquipamento.listarTodos = function (retorno) {
 
 };
 
+RequisicaoTipoEquipamento.listarAssociacaoReq = function(id, retorno)
+{
+    dbConn.query("SELECT * FROM RequisicaoTipoEquipamento WHERE RequisicaoId = ? ", [id], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    });
+}
+
 RequisicaoTipoEquipamento.listarId = function (id, retorno) {
 
     // Comando SQL SELECT

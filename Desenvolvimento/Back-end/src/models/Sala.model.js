@@ -76,7 +76,11 @@ Sala.atualizarSatus = function(id) {
                     res[0].Status = 1;
                     break;
                 case 1:
-                    res[0].Status = 0;  
+                    res[0].Status = 2;
+                    break;
+                case 2:
+                    res[0].Status = 0;
+                    break 
             }
             
             dbConn.query("UPDATE Sala SET Status=? WHERE SalaId = ?", 

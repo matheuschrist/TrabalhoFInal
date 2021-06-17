@@ -41,6 +41,18 @@ RequisicaoSala.listarTodos = function (retorno) {
 
 };
 
+RequisicaoSala.listarAssociacaoReq = function(id, retorno) {
+    dbConn.query("SELECT * FROM RequisicaoSala WHERE RequisicaoId = ? ", [id], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    });
+}
+
 RequisicaoSala.listarId = function (id, retorno) {
 
     // Comando SQL SELECT

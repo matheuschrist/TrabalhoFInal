@@ -50,10 +50,49 @@ DocumentoRevisao.listarTodos = function (retorno) {
 
 };
 
+DocumentoRevisao.listarPagina = function (limite, pagina, retorno) {
+
+    // Obtem o offset para os objetos da página requisitada
+    var offset = (pagina - 1) * limite;
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM DocumentoRevisao LIMIT ? OFFSET ? ", [limite, offset], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            console.log('DocumentoRevisao: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+}; 
+
 DocumentoRevisao.listarId = function (id, retorno) {
 
     // Comando SQL SELECT
     dbConn.query("SELECT * FROM DocumentoRevisao WHERE DocumentoRevisaoId = ? ", [id], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+DocumentoRevisao.pesquisar = function (id, descricaoProblema, status, dataAbertura, dataConclusao, defeito, equipamentoId, salaId, retorno) {
+
+    // Prepara a string
+    descricaoProblema = ('%' + descricaoProblema + '%');
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM DocumentoRevisao WHERE DocumentoRevisaoId = ? OR DescricaoProblema LIKE ? OR Status = ? OR DataAbertura = ? "
+                + "OR DataConclusao = ? OR Defeito = ? OR EquipamentoId = ? OR SalaId = ? ", 
+                [id, descricaoProblema, status, dataAbertura, dataConclusao, defeito, equipamentoId, salaId], function (err, res) {             
         if(err) {
             console.log("Erro: ", err);
             retorno(err, null);

@@ -43,6 +43,25 @@ RequisicaoEquipamento.listarTodos = function (retorno) {
 
 };
 
+RequisicaoEquipamento.listarPagina = function (limite, pagina, retorno) {
+
+    // Obtem o offset para os objetos da página requisitada
+    var offset = (pagina - 1) * limite;
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM RequisicaoEquipamento LIMIT ? OFFSET ? ", [limite, offset], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            console.log('RequisicaoEquipamento: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
 RequisicaoEquipamento.listarId = function (id, retorno) {
 
     // Comando SQL SELECT

@@ -44,12 +44,28 @@ exports.listarId = function(req, res) {
 
 exports.listarTodos = function(req, res) {
 
-    RequisicaoAcessorio.listarTodos(function(err, requisicao) {
-        if (err) {
-            res.send(err);
+    if(req.query.limite) {
+        // Assume página 1 caso ela não seja especificada
+        if(req.query.pagina == null) {
+            req.query.pagina = '1';
         }
-        res.send(requisicao);
-    });
+        // Lista de acordo com o limite e a página especificados
+        RequisicaoAcessorio.listarPagina(Number(req.query.limite), Number(req.query.pagina), function(err, requisicaoAcessorio) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(requisicaoAcessorio);
+        });
+    }
+    else {
+        // Lista todos se nenhum limite for especificado
+        RequisicaoAcessorio.listarTodos(function(err, requisicaoAcessorio) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(requisicaoAcessorio);
+        });
+    }
 
 };
 

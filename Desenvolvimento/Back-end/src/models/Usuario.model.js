@@ -47,10 +47,51 @@ Usuario.listarTodos = function (retorno) {
 
 };
 
+Usuario.listarPagina = function (limite, pagina, retorno) {
+
+    // Obtem o offset para os objetos da página requisitada
+    var offset = (pagina - 1) * limite;
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Usuario LIMIT ? OFFSET ? ", [limite, offset], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            console.log('Usuarios: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
 Usuario.listarId = function (id, retorno) {
 
     // Comando SQL SELECT
     dbConn.query("SELECT * FROM Usuario WHERE UsuarioId = ? ", [id], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Usuario.pesquisar = function (id, nome, login, identificacao, tipo, email, retorno) {
+
+    // Prepara as strings
+    nome = ('%' + nome + '%');
+    login = ('%' + login + '%');
+    identificacao = ('%' + identificacao + '%');
+    email = ('%' + email + '%');
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Usuario WHERE UsuarioId = ? OR Nome LIKE ? OR Login LIKE ? OR Identificacao LIKE ? OR Tipo = ? OR Email LIKE ? ", 
+                [id, nome, login, identificacao, tipo, email], function (err, res) {             
         if(err) {
             console.log("Erro: ", err);
             retorno(err, null);

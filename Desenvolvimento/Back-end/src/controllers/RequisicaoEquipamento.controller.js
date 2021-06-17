@@ -22,12 +22,28 @@ exports.cadastrar = function(req, res) {
 
 exports.listarTodos = function(req, res) {
 
-    RequisicaoEquipamento.listarTodos(function(err, requisicaoEquipamento) {
-        if (err) {
-            res.send(err);
+    if(req.query.limite) {
+        // Assume página 1 caso ela não seja especificada
+        if(req.query.pagina == null) {
+            req.query.pagina = '1';
         }
-        res.send(requisicaoEquipamento);
-    });
+        // Lista de acordo com o limite e a página especificados
+        RequisicaoEquipamento.listarPagina(Number(req.query.limite), Number(req.query.pagina), function(err, requisicaoEquipamento) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(requisicaoEquipamento);
+        });
+    }
+    else {
+        // Lista todos se nenhum limite for especificado
+        RequisicaoEquipamento.listarTodos(function(err, requisicaoEquipamento) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(requisicaoEquipamento);
+        });
+    }
 
 };
 

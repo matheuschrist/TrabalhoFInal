@@ -22,13 +22,28 @@ exports.cadastrar = function(req, res) {
 
 exports.listarTodos = function(req, res) {
 
-    Sala.listarTodos(function(err, sala) {
-        if (err) {
-            res.send(err);
+    if(req.query.limite) {
+        // Assume página 1 caso ela não seja especificada
+        if(req.query.pagina == null) {
+            req.query.pagina = '1';
         }
-        //console.log('res', usuario);
-        res.send(sala);
-    });
+        // Lista de acordo com o limite e a página especificados
+        Sala.listarPagina(Number(req.query.limite), Number(req.query.pagina), function(err, sala) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(sala);
+        });
+    }
+    else {
+        // Lista todos se nenhum limite for especificado
+        Sala.listarTodos(function(err, sala) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(sala);
+        });
+    }
 
 };
 
@@ -42,6 +57,18 @@ exports.listarId = function(req, res) {
     });
 
 };
+
+exports.pesquisar = function(req, res) {
+
+    Sala.pesquisar(req.query.id, req.query.numeroSala, req.query.status, req.query.quantidadeAluno, 
+                      req.query.quantidadeAlunoPandemia, function(err, sala) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(sala);
+    });
+
+}
 
 exports.atualizar = function(req, res) {
 

@@ -19,12 +19,10 @@ exports.realizar = function(req, res) {
                         res.send(err);
                     }
                     logado = true;
-                    console.log('TESTE 1 ' + logado)
                     res.json({ erro: false, mensagem: 'Usuário logado com sucesso!', idUsuario: usuario[i].UsuarioId });
                 });
             }/*
             else if(i == (usuario.length - 1) && logado == false) {
-                console.log('TESTE 2 ' + logado)
                 res.json({ erro: true, mensagem: 'Usuário ou Senha de login incorretos!' });
             }*/ 
         }  

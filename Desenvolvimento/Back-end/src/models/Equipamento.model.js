@@ -52,10 +52,49 @@ Equipamento.listarTodos = function (retorno) {
 
 };
 
+Equipamento.listarPagina = function (limite, pagina, retorno) {
+
+    // Obtem o offset para os objetos da página requisitada
+    var offset = (pagina - 1) * limite;
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Equipamento LIMIT ? OFFSET ? ", [limite, offset], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            console.log('Equipamento: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
 Equipamento.listarId = function (id, retorno) {
 
     // Comando SQL SELECT
     dbConn.query("SELECT * FROM Equipamento WHERE EquipamentoId = ? ", [id], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Equipamento.pesquisar = function (id, patrimonio, status, dataCadastro, tipoEquipamentoId, salaId, retorno) {
+
+    // Prepara a string
+    patrimonio = ('%' + patrimonio + '%');
+    dataCadastro = ('%' + dataCadastro + '%');
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Equipamento WHERE EquipamentoId = ? OR Patrimonio LIKE ? OR Status = ? OR dataCadastro LIKE ? OR TipoEquipamentoId = ? OR SalaId = ? ", 
+                [id, patrimonio, status, dataCadastro, tipoEquipamentoId, salaId], function (err, res) {             
         if(err) {
             console.log("Erro: ", err);
             retorno(err, null);

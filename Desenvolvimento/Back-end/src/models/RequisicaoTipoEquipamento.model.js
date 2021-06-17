@@ -44,6 +44,25 @@ RequisicaoTipoEquipamento.listarTodos = function (retorno) {
 
 };
 
+RequisicaoTipoEquipamento.listarPagina = function (limite, pagina, retorno) {
+
+    // Obtem o offset para os objetos da página requisitada
+    var offset = (pagina - 1) * limite;
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM RequisicaoTipoEquipamento LIMIT ? OFFSET ? ", [limite, offset], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            console.log('RequisicaoTipoEquipamento: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
 RequisicaoTipoEquipamento.listarAssociacaoReq = function(id, retorno)
 {
     dbConn.query("SELECT * FROM RequisicaoTipoEquipamento WHERE RequisicaoId = ? ", [id], function (err, res) {             

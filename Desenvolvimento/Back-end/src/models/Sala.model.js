@@ -46,6 +46,41 @@ Sala.listarTodos = function (retorno) {
 
 };
 
+Sala.listarPagina = function (limite, pagina, retorno) {
+
+    // Obtem o offset para os objetos da página requisitada
+    var offset = (pagina - 1) * limite;
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Sala LIMIT ? OFFSET ? ", [limite, offset], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            console.log('Sala: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
+Sala.pesquisar = function (id, numeroSala, status, quantidadeAluno, quantidadeAlunoPandemia, retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Sala WHERE SalaId = ? OR NumeroSala = ? OR Status = ? OR QuantidadeAluno = ? OR QuantidadeAlunoPandemia = ? ", 
+                [id, numeroSala, status, quantidadeAluno, quantidadeAlunoPandemia], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
 Sala.listarId = function (id, retorno) {
 
     // Comando SQL SELECT

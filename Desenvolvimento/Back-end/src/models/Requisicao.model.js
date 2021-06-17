@@ -79,6 +79,25 @@ Requisicao.listarTodos = function (retorno) {
 
 };
 
+Requisicao.listarPagina = function (limite, pagina, retorno) {
+
+    // Obtem o offset para os objetos da página requisitada
+    var offset = (pagina - 1) * limite;
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Requisicao LIMIT ? OFFSET ? ", [limite, offset], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            console.log('Requisicao: ', res);  
+            retorno(null, res);
+        }
+    });   
+
+};
+
 Requisicao.listarId = function (id, retorno) {
 
     // Comando SQL SELECT
@@ -94,9 +113,26 @@ Requisicao.listarId = function (id, retorno) {
 
 };
 
+Requisicao.pesquisar = function (id, tipo, status, turno, dataUtilizacao, dataAbertura, dataEntrega, dataCancelamento, dataConclusao, usuarioId, retorno) {
+
+    // Comando SQL SELECT
+    dbConn.query("SELECT * FROM Requisicao WHERE RequisicaoId = ? OR Tipo = ? OR Status = ? OR Turno = ? OR DataUtilizacao = ? OR DataAbertura = ? " +
+                 "OR DataEntrega = ? OR DataCancelamento = ? OR DataConclusao = ? OR UsuarioId = ?", 
+                [id, tipo, status, turno, dataUtilizacao, dataAbertura, dataEntrega, dataCancelamento, dataConclusao, usuarioId], function (err, res) {             
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
 Requisicao.atualizar = function(id, requisicao, retorno) {
 
-    if(requisicao.status === 1)
+    if(requisicao.status === 1) // Confirmada
     {
         dbConn.query("UPDATE Requisicao SET Status=? WHERE RequisicaoId = ?", 
                     [requisicao.status, id], 
@@ -109,7 +145,7 @@ Requisicao.atualizar = function(id, requisicao, retorno) {
             }
         });
     }
-    if(requisicao.status === 2)
+    if(requisicao.status === 2) // Em Uso
     {
         dbConn.query("UPDATE Requisicao SET Status=?, DataEntrega=? WHERE RequisicaoId = ?", 
                     [requisicao.status, requisicao.dataEntrega, id], 
@@ -122,7 +158,7 @@ Requisicao.atualizar = function(id, requisicao, retorno) {
             }
         });
     }
-    if(requisicao.status === 3)
+    if(requisicao.status === 3) // Finalizada
     {
         dbConn.query("UPDATE Requisicao SET Status=?, DataConclusao=? WHERE RequisicaoId = ?", 
                     [requisicao.status, requisicao.dataConclusao, id], 
@@ -135,7 +171,7 @@ Requisicao.atualizar = function(id, requisicao, retorno) {
             }
         });
     }
-    if(requisicao.status === 4)
+    if(requisicao.status === 4) // Cancelada
     {
         dbConn.query("UPDATE Requisicao SET Status=?, DataCancelamento=? WHERE RequisicaoId = ?", 
                     [requisicao.status, requisicao.dataCancelamento, id], 

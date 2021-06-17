@@ -22,7 +22,7 @@ router.get('/', requisicaoSalaController.listarTodos);
 
 // Recupera um usuário pela Id
 // Exemplo: GET localhost:3000/api/usuarios/1
-router.get('/:id', requisicaoSalaController.listarId);
+router.get('/id/:id', requisicaoSalaController.listarId);
 
 // Atualiza um usuário pela Id
 // Exemplo: PUT localhost:3000/api/usuarios/1

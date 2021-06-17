@@ -22,12 +22,28 @@ exports.cadastrar = function(req, res) {
 
 exports.listarTodos = function(req, res) {
 
-    Usuario.listarTodos(function(err, usuario) {
-        if (err) {
-            res.send(err);
+    if(req.query.limite) {
+        // Assume página 1 caso ela não seja especificada
+        if(req.query.pagina == null) {
+            req.query.pagina = '1';
         }
-        res.send(usuario);
-    });
+        // Lista de acordo com o limite e a página especificados
+        Usuario.listarPagina(Number(req.query.limite), Number(req.query.pagina), function(err, usuario) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(usuario);
+        });
+    }
+    else {
+        // Lista todos se nenhum limite for especificado
+        Usuario.listarTodos(function(err, usuario) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(usuario);
+        });
+    }
 
 };
 
@@ -41,6 +57,18 @@ exports.listarId = function(req, res) {
     });
 
 };
+
+exports.pesquisar = function(req, res) {
+
+    Usuario.pesquisar(req.query.id, req.query.nome, req.query.login, req.query.identificacao, 
+                      req.query.tipo, req.query.email, function(err, usuario) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(usuario);
+    });
+
+}
 
 exports.atualizar = function(req, res) {
 

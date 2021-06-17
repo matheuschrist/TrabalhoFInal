@@ -24,12 +24,28 @@ exports.cadastrar = function(req, res) {
 
 exports.listarTodos = function(req, res) {
 
-    Equipamento.listarTodos(function(err, equipamento) {
-        if (err) {
-            res.send(err);
+    if(req.query.limite) {
+        // Assume página 1 caso ela não seja especificada
+        if(req.query.pagina == null) {
+            req.query.pagina = '1';
         }
-        res.send(equipamento);
-    });
+        // Lista de acordo com o limite e a página especificados
+        Equipamento.listarPagina(Number(req.query.limite), Number(req.query.pagina), function(err, equipamento) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(equipamento);
+        });
+    }
+    else {
+        // Lista todos se nenhum limite for especificado
+        Equipamento.listarTodos(function(err, equipamento) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(equipamento);
+        });
+    }
 
 };
 
@@ -43,6 +59,18 @@ exports.listarId = function(req, res) {
     });
 
 };
+
+exports.pesquisar = function(req, res) {
+
+    Equipamento.pesquisar(req.query.id, req.query.patrimonio, req.query.status, req.query.dataCadastro, 
+                      req.query.tipoEquipamentoId, req.query.salaId, function(err, equipamento) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(equipamento);
+    });
+
+}
 
 exports.atualizar = function(req, res) {
 

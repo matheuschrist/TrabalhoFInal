@@ -59,12 +59,28 @@ exports.cadastrar = function(req, res) {
 
 exports.listarTodos = function(req, res) {
 
-    DocumentoRevisao.listarTodos(function(err, documentoRevisao) {
-        if (err) {
-            res.send(err);
+    if(req.query.limite) {
+        // Assume página 1 caso ela não seja especificada
+        if(req.query.pagina == null) {
+            req.query.pagina = '1';
         }
-        res.send(documentoRevisao);
-    });
+        // Lista de acordo com o limite e a página especificados
+        DocumentoRevisao.listarPagina(Number(req.query.limite), Number(req.query.pagina), function(err, documentoRevisao) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(documentoRevisao);
+        });
+    }
+    else {
+        // Lista todos se nenhum limite for especificado
+        DocumentoRevisao.listarTodos(function(err, documentoRevisao) {
+            if (err) {
+                res.send(err);
+            }
+            res.send(documentoRevisao);
+        });
+    }     
 
 };
 
@@ -78,6 +94,18 @@ exports.listarId = function(req, res) {
     });
 
 };
+
+exports.pesquisar = function(req, res) {
+
+    Usuario.pesquisar(req.query.id, req.query.descricaoProblema, req.query.status, req.query.dataAbertura, req.query.dataConclusao,
+                      req.query.defeito, req.query.equipamentoId, req.query.salaId, function(err, documentoRevisao) {
+        if (err) {
+            res.send(err);
+        }
+        res.send(documentoRevisao);
+    });
+
+}
 
 exports.atualizar = function(req, res) {
 

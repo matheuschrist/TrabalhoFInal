@@ -51,7 +51,7 @@ exports.listarTodos = function(req, res) {
 
 exports.listarId = function(req, res) {
 
-    Acessorio.listarId(req.query.id, function(err, acessorio) {
+    Acessorio.listarId(req.params.id, function(err, acessorio) {
         if (err) {
             res.send(err);
         }

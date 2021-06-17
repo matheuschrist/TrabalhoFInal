@@ -22,7 +22,7 @@ router.get('/', acessorioController.listarTodos);
 
 // Recupera um usuário pela Id
 // Exemplo: GET localhost:3000/api/usuarios/1
-router.get('/id', acessorioController.listarId);
+router.get('/id/:id', acessorioController.listarId);
 
 // Pesquisa usuários de acordo com o parâmetro inserido
 // Exemplo: GET localhost:3000/api/usuarios/pesquisa/nome?=Deivyd

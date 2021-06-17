@@ -67,6 +67,43 @@ Equipamento.listarId = function (id, retorno) {
 
 };
 
+Equipamento.atualizarStatus = function (id, retorno) {
+    this.listarId(id, function(err, res) {
+        if(err)
+        {
+            console.log(err)
+        }
+        else
+        {
+
+            switch(res[0].status)
+            {
+                case 0:
+                    res[0].status = 1;
+                    break
+                case 1:
+                    res[0].status = 0;
+                    break
+                default:
+                    break
+            }
+
+            dbConn.query("UPDATE Equipamento SET Status=? WHERE EquipamentoId = ?", 
+                    [res[0].status, id], 
+                    function (err, res) {
+                if(err) {
+                    console.log("Erro: ", err);
+                    retorno(null, err);
+                }else{   
+                    retorno(null, res);
+                }
+            });
+        }
+    })
+
+    
+}
+
 Equipamento.atualizar = function(id, equipamento, retorno) {
     if(equipamento.salaId)
     {
@@ -80,11 +117,12 @@ Equipamento.atualizar = function(id, equipamento, retorno) {
             }else{   
                 retorno(null, res);
             }
-        }); 
+        });
     }
     else
     {
-        dbConn.query("UPDATE Equipamento SET Status=? WHERE EquipamentoId = ?", 
+        // Comando SQL UPDATE
+        dbConn.query("UPDATE Equipamento SET Stauts=? WHERE EquipamentoId = ?", 
                         [equipamento.status, id], 
                         function (err, res) {
             if(err) {
@@ -95,7 +133,6 @@ Equipamento.atualizar = function(id, equipamento, retorno) {
             }
         });
     }
-    
 
 };
 

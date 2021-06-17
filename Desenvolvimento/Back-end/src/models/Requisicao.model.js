@@ -9,6 +9,8 @@ var Requisicao = function(requisicao) {
 
     this.tipo               = requisicao.tipo;
     this.status             = requisicao.status;
+    this.turno              = requisicao.turno;
+    this.dataUtilizacao     = requisicao.dataUtilizacao;
     this.dataAbertura       = requisicao.dataAbertura;
     this.dataEntrega        = requisicao.dataEntrega ? requisicao.dataEntrega : null;
     this.dataCancelamento   = requisicao.dataEntrega ? requisicao.dataEntrega : null;
@@ -31,6 +33,19 @@ Requisicao.cadastrar = function (requisicao, retorno) {
         case "Equipamento":
             requisicao.tipo = 1
             break
+    }
+
+    switch(requisicao.turno)
+    {
+        case "Integral":
+            requisicao.turno = 0
+            break;
+        case "Matutino":
+            requisicao.turno = 1
+            break;
+        case "Noturno":
+            requisicao.turno = 2
+            break;
     }
 
 
@@ -82,17 +97,58 @@ Requisicao.listarId = function (id, retorno) {
 
 Requisicao.atualizar = function(id, requisicao, retorno) {
 
-    // Comando SQL UPDATE
-    dbConn.query("UPDATE Requisicao SET Status=?, DataEntrega=?, DataConclusao=?, DataCancelamento=? WHERE RequisicaoId = ?", 
-                    [requisicao.status, requisicao.dataEntrega, requisicao.dataConclusao, requisicao.dataCancelamento, id], 
+    if(requisicao.status === 1)
+    {
+        dbConn.query("UPDATE Requisicao SET Status=? WHERE RequisicaoId = ?", 
+                    [requisicao.status, id], 
                     function (err, res) {
-        if(err) {
-            console.log("Erro: ", err);
-            retorno(null, err);
-        }else{   
-            retorno(null, res);
-        }
-    }); 
+            if(err) {
+                console.log("Erro: ", err);
+                retorno(null, err);
+            }else{   
+                retorno(null, res);
+            }
+        });
+    }
+    if(requisicao.status === 2)
+    {
+        dbConn.query("UPDATE Requisicao SET Status=?, DataEntrega=? WHERE RequisicaoId = ?", 
+                    [requisicao.status, requisicao.dataEntrega, id], 
+                    function (err, res) {
+            if(err) {
+                console.log("Erro: ", err);
+                retorno(null, err);
+            }else{   
+                retorno(null, res);
+            }
+        });
+    }
+    if(requisicao.status === 3)
+    {
+        dbConn.query("UPDATE Requisicao SET Status=?, DataConclusao=? WHERE RequisicaoId = ?", 
+                    [requisicao.status, requisicao.dataConclusao, id], 
+                    function (err, res) {
+            if(err) {
+                console.log("Erro: ", err);
+                retorno(null, err);
+            }else{   
+                retorno(null, res);
+            }
+        });
+    }
+    if(requisicao.status === 4)
+    {
+        dbConn.query("UPDATE Requisicao SET Status=?, DataCancelamento=? WHERE RequisicaoId = ?", 
+                    [requisicao.status, requisicao.dataCancelamento, id], 
+                    function (err, res) {
+            if(err) {
+                console.log("Erro: ", err);
+                retorno(null, err);
+            }else{   
+                retorno(null, res);
+            }
+        });
+    }
 
 };
 

@@ -1,6 +1,8 @@
 'use strict';
 
 const DocumentoRevisao = require('../models/DocumentoRevisao.model');
+var Sala = require('../models/Sala.model')
+var Equipamento = require('../models/Equipamento.model')
 
 exports.cadastrar = function(req, res) {
 
@@ -17,6 +19,39 @@ exports.cadastrar = function(req, res) {
                 res.send(err);
             }
             res.json({ erro: false, mensagem: 'DocumentoRevisao cadastrado com sucesso!', idDocumentoRevisao: documentoRevisao });
+            if(req.body.salaId && req.body.defeito)
+            {
+                let sala = new Sala({
+                    status: 3
+                })
+                Sala.atualizar(req.body.salaId, sala, function(err, res) {
+                    if(err)
+                    {
+                        console.log(err)
+                    }
+                    else
+                    {
+                        console.log(res)
+                    }
+                })
+            }
+            else if(req.body.defeito)
+            {
+                let equipamento = new Equipamento({
+                    status: 2
+                })
+                Equipamento.atualizar(req.body.equipamentoId, equipamento, function(err, res) {
+                    if(err)
+                    {
+                        console.log(err)
+                    }
+                    else
+                    {
+                        console.log(res)
+                    }
+                })
+            }
+
         });
     }
 

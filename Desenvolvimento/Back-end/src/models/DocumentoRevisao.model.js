@@ -1,6 +1,7 @@
 'use strict';
 
 var dbConn = require('./../../config/db.config');
+const DATE_FORMATER = require( 'dateformat' );
 
 // Cria objeto Usuário
 var DocumentoRevisao = function(documentoRevisao) {
@@ -15,7 +16,9 @@ var DocumentoRevisao = function(documentoRevisao) {
 };
 
 DocumentoRevisao.cadastrar = function (documentoRevisao, retorno) {
-
+    var datetime = DATE_FORMATER( new Date(), "yyyy-mm-dd HH:MM:ss" );
+    documentoRevisao.dataAbertura = datetime;
+    documentoRevisao.status = 0;
     // Comando SQL INSERT
     dbConn.query("INSERT INTO DocumentoRevisao SET ?", [documentoRevisao], function (err, res) {
         if(err) {

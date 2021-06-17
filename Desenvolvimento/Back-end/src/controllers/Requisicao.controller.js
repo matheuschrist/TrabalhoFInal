@@ -3,6 +3,10 @@
 const Requisicao = require('../models/Requisicao.model');
 var RequisicaoSala = require('../models/RequisicaoSala.model');
 var Sala = require('../models/Sala.model');
+var Equipamento = require('../models/Equipamento.model');
+var RequisicaoEquipamento = require('../models/RequisicaoEquipamento.model')
+var RequisicaoTipoEquipamento = require('../models/RequisicaoTipoEquipamento.model')
+var RequisicaoAcessorio = require('../models/RequisicaoAcessorio.model')
 
 exports.cadastrar = function(req, res) {
 
@@ -22,26 +26,113 @@ exports.cadastrar = function(req, res) {
                 res.send(err);
             }
             res.json({ erro: false, mensagem: 'Requisicao cadastrada com sucesso!', idRequisicao: requisicao });
-
-            for(let i=0; i<req.body.salaId.length; i++)
+            if(req.body.salaId.length > 0)
             {
-                var requisicaoSala = new RequisicaoSala({
-                    requisicaoId : requisicao,
-                    salaId : req.body.salaId[i]
-                })
-                Sala.atualizarSatus( req.body.salaId[i])
-                RequisicaoSala.cadastrar(requisicaoSala , function(err,res)
+                for(let i=0; i<req.body.salaId.length; i++)
                 {
-                    if(err)
+                    var requisicaoSala = new RequisicaoSala({
+                        requisicaoId : requisicao,
+                        salaId : req.body.salaId[i]
+                    })
+                    RequisicaoSala.cadastrar(requisicaoSala , function(err,res)
                     {
-                        console.log(err)
-                    }
-                    else
-                    {
-                        console.log(res)
-                    }
-                })
+                        if(err)
+                        {
+                            console.log(err)
+                        }
+                        else
+                        {
+                            console.log(res)
+                        }
+                    })
+                }
             }
+            else
+            {
+                if(req.body.tipoEquipamentoId.length > 0 && req.body.acessorioId.length > 0)
+                {
+                    for(let i=0; i<req.body.tipoEquipamentoId.length; i++)
+                    {
+                        var requisicaoEquipamento = new RequisicaoTipoEquipamento({
+                            requisicaoId : requisicao,
+                            tipoEquipamentoId : req.body.tipoEquipamentoId[i],
+                            quantidadeSolicitada: req.body.quantidadeSolicitada[i]
+                        })
+                        RequisicaoTipoEquipamento.cadastrar(requisicaoEquipamento , function(err,res)
+                        {
+                            if(err)
+                            {
+                                console.log(err)
+                            }
+                            else
+                            {
+                                console.log(res)
+                            }
+                        })
+                    }
+                    for(let i=0; i<req.body.acessorioId.length; i++)
+                    {
+                        var requisicaoAcessorio = new RequisicaoAcessorio({
+                            requisicaoId : requisicao,
+                            acessorioId : req.body.acessorioId[i],
+                            quantidadeAcessorio: req.body.quantidadeAcessorio[i]
+                        })
+                        RequisicaoAcessorio.cadastrar(requisicaoAcessorio, function(err, res) {
+                            if(err)
+                            {
+                                console.log(err)
+                            }
+                            else
+                            {
+                                console.log(res)
+                            }
+                        })
+                    }
+                }
+                else if(req.body.tipoEquipamentoId.length > 0)
+                {
+                    for(let i=0; i<req.body.tipoEquipamentoId.length; i++)
+                    {
+                        var requisicaoEquipamento = new RequisicaoTipoEquipamento({
+                            requisicaoId : requisicao,
+                            tipoEquipamentoId : req.body.tipoEquipamentoId[i],
+                            quantidadeSolicitada: req.body.quantidadeSolicitada[i]
+                        })
+                        RequisicaoTipoEquipamento.cadastrar(requisicaoEquipamento , function(err,res)
+                        {
+                            if(err)
+                            {
+                                console.log(err)
+                            }
+                            else
+                            {
+                                console.log(res)
+                            }
+                        })
+                    }
+                }
+                else
+                {
+                    for(let i=0; i<req.body.acessorioId.length; i++)
+                    {
+                        var requisicaoAcessorio = new RequisicaoAcessorio({
+                            requisicaoId : requisicao,
+                            acessorioId : req.body.acessorioId[i],
+                            quantidadeAcessorio: req.body.quantidadeAcessorio[i]
+                        })
+                        RequisicaoAcessorio.cadastrar(requisicaoAcessorio, function(err, res) {
+                            if(err)
+                            {
+                                console.log(err)
+                            }
+                            else
+                            {
+                                console.log(res)
+                            }
+                        })
+                    }
+                }
+            }  
         });
     }
 
@@ -80,6 +171,51 @@ exports.atualizar = function(req, res) {
                 res.send(err);
             }
             res.json({ erro: false, mensagem: 'Requisicao atualizada com sucesso!' });
+
+            if(req.status === 1)
+            {
+                let salaAt = RequisicaoSala.listarAssociacaoReq(req.params.id);                
+                for(let i=0; i<salaAt.length; i++)
+                {
+                    Sala.atualizarSatus(salaAt[i])
+                }               
+            }
+            if(req.status === 2)
+            {
+                let salaAt = RequisicaoSala.listarAssociacaoReq(req.params.id);                
+                for(let i=0; i<salaAt.length; i++)
+                {
+                    Sala.atualizarSatus(salaAt[i])
+                }
+                for(let i=0; i<req.body.equipamentoId.length; i++)
+                {
+                    Equipamento.atualizar(req.body.equipamentoId[i])
+                }               
+            }
+            if(req.status === 3)
+            {
+                let salaAt = RequisicaoSala.listarAssociacaoReq(req.params.id);                
+                for(let i=0; i<salaAt.length; i++)
+                {
+                    Sala.atualizarSatus(salaAt[i])
+                }
+                for(let i=0; i<req.body.equipamentoId.length; i++)
+                {
+                    Equipamento.atualizar(req.body.equipamentoId[i])
+                } 
+            }
+            if(req.status === 4)
+            {
+                let salaAt = RequisicaoSala.listarAssociacaoReq(req.params.id);                
+                for(let i=0; i<salaAt.length; i++)
+                {
+                    Sala.atualizarSatus(salaAt[i])
+                }
+                for(let i=0; i<req.body.equipamentoId.length; i++)
+                {
+                    Equipamento.atualizar(req.body.equipamentoId[i])
+                } 
+            }
         });
     }
   

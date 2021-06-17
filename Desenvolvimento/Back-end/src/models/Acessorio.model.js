@@ -33,7 +33,7 @@ Acessorio.listarTodos = function (retorno) {
     dbConn.query("SELECT * FROM Acessorio", function (err, res) {
         if(err) {
             console.log("Erro: ", err);
-            retorno(null, err);
+            retorno(err, null);
         }
         else{
             console.log('Acessorio: ', res);  
@@ -58,29 +58,13 @@ Acessorio.listarId = function (id, retorno) {
 
 };
 
-Acessorio.atualizar = function(id, acessorio, retorno) {
+Acessorio.obterQuantidade = function (id, retorno) {
 
-    // Comando SQL UPDATE
-    dbConn.query("UPDATE Acessorio SET Quantidade = ? WHERE AcessorioId = ?", 
-                    [acessorio.quantidade, id], 
-                    function (err, res) {
+    // Comando SQL SELECT
+    dbConn.query("SELECT Quantidade FROM Acessorio WHERE AcessorioId = ? ", [id], function (err, res) {             
         if(err) {
             console.log("Erro: ", err);
-            retorno(null, err);
-        }else{   
-            retorno(null, res);
-        }
-    }); 
-
-};
-
-Acessorio.excluirId = function(retorno) {
-
-    // Comando SQL DELETE
-    dbConn.query("DELETE FROM Acessorio WHERE AcessorioId = ?", [id], function (err, res) {
-        if(err) {
-            console.log("Erro: ", err);
-            retorno(null, err);
+            retorno(err, null);
         }
         else{
             retorno(null, res);
@@ -89,13 +73,60 @@ Acessorio.excluirId = function(retorno) {
 
 };
 
-Acessorio.excluirTodos = function(id, retorno) {
+Acessorio.atualizarQuantidade = function(id, quantidade, retorno) {
+
+    // Comando SQL UPDATE
+    dbConn.query("UPDATE Acessorio SET Quantidade = (Quantidade + ?) WHERE AcessorioId = ?", 
+                    [quantidade, id], 
+                    function (err) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err);
+        }else{   
+            retorno(null);
+        }
+    }); 
+
+};
+
+Acessorio.atualizar = function(id, acessorio, retorno) {
+
+    // Comando SQL UPDATE
+    dbConn.query("UPDATE Acessorio SET Quantidade = ? WHERE AcessorioId = ?", 
+                    [acessorio.quantidade, id], 
+                    function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }else{   
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Acessorio.excluirId = function(id, retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM Acessorio WHERE AcessorioId = ?", [id], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+Acessorio.excluirTodos = function(retorno) {
 
     // Comando SQL DELETE
     dbConn.query("DELETE FROM Acessorio", function (err, res) {
         if(err) {
             console.log("Erro: ", err);
-            retorno(null, err);
+            retorno(err, null);
         }
         else{
             retorno(null, res);

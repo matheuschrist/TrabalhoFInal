@@ -8,7 +8,6 @@ const mysql = require('mysql2');
   user: 'mfIMHFYIWD',
   password: 'Efvdg0nU2D',
   database: 'mfIMHFYIWD',
-  //port: 3122,
   waitForConnections: true,
   connectionLimit: 5,
   queueLimit: 0

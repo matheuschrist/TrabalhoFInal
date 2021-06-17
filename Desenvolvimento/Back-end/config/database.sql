@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 15-Jun-2021 às 06:28
+-- Generation Time: 17-Jun-2021 às 00:04
 -- Versão do servidor: 8.0.13-4
 -- versão do PHP: 7.2.24-0ubuntu0.18.04.7
 
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `Acessorio` (
   `AcessorioId` bigint(20) NOT NULL,
-  `Tipo` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Tipo` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Quantidade` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
@@ -55,7 +55,7 @@ CREATE TABLE `AcessorioSala` (
 
 CREATE TABLE `DocumentoRevisao` (
   `DocumentoRevisaoId` bigint(20) NOT NULL,
-  `DescricaoProblema` text COLLATE utf8_unicode_ci NOT NULL,
+  `DescricaoProblema` text CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `DataAbertura` datetime NOT NULL,
   `Status` int(11) NOT NULL,
   `DataConclusao` datetime DEFAULT NULL,
@@ -72,12 +72,21 @@ CREATE TABLE `DocumentoRevisao` (
 
 CREATE TABLE `Equipamento` (
   `EquipamentoId` bigint(20) NOT NULL,
-  `Patrimonio` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Patrimonio` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Status` int(11) NOT NULL,
   `DataCadastro` datetime NOT NULL,
   `TipoEquipamentoId` bigint(20) NOT NULL,
   `SalaId` bigint(20) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `Equipamento`
+--
+
+INSERT INTO `Equipamento` (`EquipamentoId`, `Patrimonio`, `Status`, `DataCadastro`, `TipoEquipamentoId`, `SalaId`) VALUES
+(2, 'Patrimonio123', 1, '2021-06-15 20:16:26', 1, NULL),
+(4, 'Patrimonio124', 2, '2021-06-15 20:16:59', 2, NULL),
+(5, 'Patrimonio125', 0, '2021-06-15 22:35:35', 1, NULL);
 
 -- --------------------------------------------------------
 
@@ -168,8 +177,17 @@ CREATE TABLE `Sala` (
 
 CREATE TABLE `TipoEquipamento` (
   `TipoEquipamentoId` bigint(20) NOT NULL,
-  `NomeTipo` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `NomeTipo` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `TipoEquipamento`
+--
+
+INSERT INTO `TipoEquipamento` (`TipoEquipamentoId`, `NomeTipo`) VALUES
+(1, 'Notebook'),
+(2, 'Tablet'),
+(3, 'Teste');
 
 -- --------------------------------------------------------
 
@@ -179,13 +197,25 @@ CREATE TABLE `TipoEquipamento` (
 
 CREATE TABLE `Usuario` (
   `UsuarioId` bigint(20) NOT NULL,
-  `Nome` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Nome` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Login` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
-  `Senha` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
-  `Identificacao` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
+  `Senha` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
+  `Identificacao` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL,
   `Tipo` int(11) NOT NULL,
-  `Email` varchar(255) COLLATE utf8_unicode_ci NOT NULL
+  `Email` varchar(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+--
+-- Extraindo dados da tabela `Usuario`
+--
+
+INSERT INTO `Usuario` (`UsuarioId`, `Nome`, `Login`, `Senha`, `Identificacao`, `Tipo`, `Email`) VALUES
+(6, 'Deivyd', 'deivyd', 'deivyd123', 'Deivyd', 1, 'deivyd@gmail.com'),
+(7, 'TesteEditado', 'testeedit', 'deivyd123', 'Deivyd257527', 1, 'testeedit1@gmail.com'),
+(8, 'DeivydEditado', 'deivydedit', 'deivyd123', 'DeivydEdit123', 1, 'deivydedit1@gmail.com'),
+(9, 'Deivyd2', 'deivydw2', 'deivyd123', 'Deivyd1234562', 0, 'deivyd2@gmail.com'),
+(10, '123Deivyd456', 'deivydw123', 'deivyd123', 'Deivyd111', 0, 'deivyd123@gmail.com'),
+(11, 'TesteDeivyd', 'testedeivyd', 'teste', 'TesteDeivyd', 0, 'testedeivyd@gmail.com');
 
 --
 -- Indexes for dumped tables
@@ -311,7 +341,7 @@ ALTER TABLE `DocumentoRevisao`
 -- AUTO_INCREMENT for table `Equipamento`
 --
 ALTER TABLE `Equipamento`
-  MODIFY `EquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `EquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `Requisicao`
@@ -326,6 +356,12 @@ ALTER TABLE `RequisicaoAcessorio`
   MODIFY `RequisicaoAcessorioId` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `RequisicaoSala`
+--
+ALTER TABLE `RequisicaoSala`
+  MODIFY `RequisicaoSalaId` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `Sala`
 --
 ALTER TABLE `Sala`
@@ -335,13 +371,13 @@ ALTER TABLE `Sala`
 -- AUTO_INCREMENT for table `TipoEquipamento`
 --
 ALTER TABLE `TipoEquipamento`
-  MODIFY `TipoEquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `TipoEquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `Usuario`
 --
 ALTER TABLE `Usuario`
-  MODIFY `UsuarioId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `UsuarioId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- Constraints for dumped tables
@@ -372,7 +408,7 @@ ALTER TABLE `Equipamento`
 -- Limitadores para a tabela `Requisicao`
 --
 ALTER TABLE `Requisicao`
-  ADD CONSTRAINT `Requisicao_ibfk_1` FOREIGN KEY (`UsuarioId`) REFERENCES `Usuario` (`UsuarioId`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `Requisicao_ibfk_1` FOREIGN KEY (`UsuarioId`) REFERENCES `Usuario` (`usuarioid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Limitadores para a tabela `RequisicaoAcessorio`

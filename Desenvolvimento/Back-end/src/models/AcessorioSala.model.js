@@ -34,7 +34,7 @@ AcessorioSala.listarTodos = function (retorno) {
     dbConn.query("SELECT * FROM AcessorioSala", function (err, res) {
         if(err) {
             console.log("Erro: ", err);
-            retorno(null, err);
+            retorno(err, null);
         }
         else{
             console.log('AcessorioSala: ', res);  
@@ -59,29 +59,13 @@ AcessorioSala.listarId = function (id, retorno) {
 
 };
 
-AcessorioSala.atualizar = function(id, acessorio, retorno) {
+AcessorioSala.obterQuantidade = function (id, retorno) {
 
-    // Comando SQL UPDATE
-    dbConn.query("UPDATE AcessorioSala SET QuantidadeAcessorio = ? WHERE AcessorioSalaId = ?", 
-                    [acessorio.quantidadeAcessorio, id], 
-                    function (err, res) {
+    // Comando SQL SELECT
+    dbConn.query("SELECT QuantidadeAcessorio FROM AcessorioSala WHERE AcessorioSalaId = ? ", [id], function (err, res) {             
         if(err) {
             console.log("Erro: ", err);
-            retorno(null, err);
-        }else{   
-            retorno(null, res);
-        }
-    }); 
-
-};
-
-AcessorioSala.excluirId = function(retorno) {
-
-    // Comando SQL DELETE
-    dbConn.query("DELETE FROM AcessorioSala WHERE AcessorioSalaId = ?", [id], function (err, res) {
-        if(err) {
-            console.log("Erro: ", err);
-            retorno(null, err);
+            retorno(err, null);
         }
         else{
             retorno(null, res);
@@ -90,13 +74,44 @@ AcessorioSala.excluirId = function(retorno) {
 
 };
 
-AcessorioSala.excluirTodos = function(id, retorno) {
+AcessorioSala.atualizar = function(id, acessorio, retorno) {
+
+    // Comando SQL UPDATE
+    dbConn.query("UPDATE AcessorioSala SET QuantidadeAcessorio = ? WHERE AcessorioSalaId = ?", 
+                    [acessorio.quantidadeAcessorio, id], 
+                    function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }else{   
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+AcessorioSala.excluirId = function(id, retorno) {
+
+    // Comando SQL DELETE
+    dbConn.query("DELETE FROM AcessorioSala WHERE AcessorioSalaId = ?", [id], function (err, res) {
+        if(err) {
+            console.log("Erro: ", err);
+            retorno(err, null);
+        }
+        else{
+            retorno(null, res);
+        }
+    }); 
+
+};
+
+AcessorioSala.excluirTodos = function(retorno) {
 
     // Comando SQL DELETE
     dbConn.query("DELETE FROM AcessorioSala", function (err, res) {
         if(err) {
             console.log("Erro: ", err);
-            retorno(null, err);
+            retorno(err, null);
         }
         else{
             retorno(null, res);

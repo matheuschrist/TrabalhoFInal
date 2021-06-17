@@ -1,6 +1,7 @@
 'use strict';
 
 const Acessorio = require('../models/Acessorio.model');
+const AcessorioSala = require('../models/AcessorioSala.model');
 
 exports.cadastrar = function(req, res) {
 
@@ -14,7 +15,8 @@ exports.cadastrar = function(req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ erro: false, mensagem: 'Acessorio cadastrado com sucesso!', idAcessorio: acessorio });
+            
+            res.json({ erro: false, mensagem: 'Acessório cadastrado com sucesso!', idAcessorio: acessorio });
         });
     }
 
@@ -52,7 +54,7 @@ exports.atualizar = function(req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ erro: false, mensagem: 'Acessorio atualizado com sucesso!' });
+            res.json({ erro: false, mensagem: 'Acessório atualizado com sucesso!' });
         });
     }
   
@@ -65,7 +67,7 @@ exports.excluirId = function(req, res) {
         if (err) {
             res.send(err);
         }
-        res.json({ erro: false, mensagem: 'Acessorio excluído com sucesso!' });
+        res.json({ erro: false, mensagem: 'Acessório excluído com sucesso!' });
     });
 
 };
@@ -76,7 +78,7 @@ exports.excluirTodos = function(req, res) {
         if (err) {
             res.send(err);
         }
-        res.json({ erro: false, mensagem: 'Todos os acessorio excluídos com sucesso!' });
+        res.json({ erro: false, mensagem: 'Todos os Acessórios excluídos com sucesso!' });
     });
 
 };

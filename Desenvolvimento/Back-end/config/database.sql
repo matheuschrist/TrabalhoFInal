@@ -363,13 +363,13 @@ ALTER TABLE `Usuario`
 -- AUTO_INCREMENT for table `Acessorio`
 --
 ALTER TABLE `Acessorio`
-  MODIFY `AcessorioId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `AcessorioId` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `AcessorioSala`
 --
 ALTER TABLE `AcessorioSala`
-  MODIFY `AcessorioSalaId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `AcessorioSalaId` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `DocumentoRevisao`
@@ -381,7 +381,7 @@ ALTER TABLE `DocumentoRevisao`
 -- AUTO_INCREMENT for table `Equipamento`
 --
 ALTER TABLE `Equipamento`
-  MODIFY `EquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `EquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Requisicao`
@@ -405,19 +405,19 @@ ALTER TABLE `RequisicaoSala`
 -- AUTO_INCREMENT for table `Sala`
 --
 ALTER TABLE `Sala`
-  MODIFY `SalaId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `SalaId` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `TipoEquipamento`
 --
 ALTER TABLE `TipoEquipamento`
-  MODIFY `TipoEquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `TipoEquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `Usuario`
 --
 ALTER TABLE `Usuario`
-  MODIFY `UsuarioId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `UsuarioId` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

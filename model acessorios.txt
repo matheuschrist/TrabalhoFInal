@@ -1,8 +1,0 @@
-module.exports=class acessorio{
-    constructor(tipo,quantidade)
-    {
-    this.Tipo=Tipo,
-    this.Quantidade=Quantidade
-    }
- }
- 

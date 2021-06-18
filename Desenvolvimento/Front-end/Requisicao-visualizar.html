@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="pt-br" style="margin-top: 0px;">
+   <head>
+      <title>Requisições / Visualizar</title>
+      <meta charset="utf-8">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge">
+      <meta name="robots" content="noindex">
+      <meta name="versao" content="f709fd6c06056efa3722b9b25caf3e20w1485">
+      <link rel="shortcut icon" href="imagens/favicon.ico">
+      <link rel="stylesheet" href="css/jquery-ui-1.9.2.custom.min.css">
+      <link rel="stylesheet" href="css/bootstrap.min.css">
+      <link rel="stylesheet" href="css/bootstrap-tagsinput.css">
+      <link rel="stylesheet" href="css/fullcalendar.min.css">
+      <link rel="stylesheet" href="css/lightbox.min.css">
+      <link rel="stylesheet" href="css/buttons.dataTables.min.css">
+      <link rel="stylesheet" href="css/slim.min.css">
+      <link rel="stylesheet" href="css/multiple-select.css">
+      <link rel="stylesheet" href="css/tabela.css">
+      <link rel="stylesheet" href="css/select2.css">
+      <link rel="stylesheet" media="print" href="css/print.css">
+      <link rel="stylesheet" href="css/default2.css">
+      <link rel="stylesheet" href="css/portal.css">
+      <link rel="stylesheet" href="css/font-awesome.min.css">
+      <link rel="stylesheet" type="text/css" id="u0" href="css/skin.min.css">
+   </head>
+   <body style="overflow: visible;">
+      <script async="" src="https://www.google-analytics.com/analytics.js"></script>
+      <script>(function (i, s, o, g, r, a, m) {
+         i['GoogleAnalyticsObject'] = r;
+         i[r] = i[r] || function () {
+             (i[r].q = i[r].q || []).push(arguments)
+         }, i[r].l = 1 * new Date();
+         a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+         a.async = 1;
+         a.src = g;
+         m.parentNode.insertBefore(a, m)
+         })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+         ga('create', 'UA-88604387-1', 'auto');
+         ga('send', 'pageview');
+      </script>
+      <nav id="new-sidebar">
+        <a class="avatar-usuario" title="Administrador" href="#">
+        <img style="width: 30px; border: 1px solid rgba(0, 0, 0, 0.5); border-radius: 50%; float:left; margin-top:-5px; margin-right:4px;" src="imagens/logo-vertical.png"> 
+        Administrador 
+        </a>
+        <a href="#" class="toggle-sidebar">
+        <span style="float: left; margin-top: 3px;">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        </span>
+        <span style="margin-left: 15px;">Sistemas</span>
+        </a>
+        <ul id="new-sidebar-itens" class="unstyled">
+           <li>
+              <a target="_blank" rel="noopener noreferrer" class="active" href="#">
+              Requisições                        </a>
+           </li>
+           <li>
+              <a target="_blank" rel="noopener noreferrer" class="" href="#">
+              Meu Painel                        </a>
+           </li>
+        </ul>
+     </nav>
+     <div class="header">
+        <div class="container">
+           <div class="container nav-sistemas">
+              <ul class="nav nav-pills sub-menu-sistemas">
+                 <li class="dropdown ">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Requisições <b class="caret"></b></a>
+                    <ul class="dropdown-menu ">
+                       <li><a href="#">Novo</a></li>
+                       <li><a href="Lista.html">Listar</a></li>
+                       <li><a href="#">Pesquisar</a></li>
+                    </ul>
+                 </li>
+                 <a style="margin: 5px -30px 0 0;" class="pull-right" href="Lista.html"><img src="imagens/logo-top.png"></a>
+              </ul>
+           </div>
+        </div>
+     </div>
+      <input type="hidden" name="logado" value="1">
+      <input type="hidden" name="perfilCompleto" value="1">
+      <input type="hidden" name="Negocios" data-usuario="" data-cpf="">
+      <div class="container segment-chamados" id="content">
+         <div class="row">
+            <div class="span12">
+               <h4 class="titulo">
+                  Requisição <b id="id-chamado-mask">#00002</b>
+                  <div class="pull-right" style="margin-top: -10px;">
+                     <span style="font-size:12px;">Status: </span>
+                     <span data-original-title="Aberto"
+                        style="padding: 5.2px 10px;font-size: 15px;font-weight: inherit;"
+                        class="label label-info tooltip2">Solicitado</span>
+                     <a title="" style="font-weight: normal;" class="btn btn-small botaoImprimir tooltip2" href="#"
+                        data-original-title="Imprimir">
+                     <span class="icon-print"></span>
+                     </a>
+                     <a title="" style="font-weight: normal;" class="btn btn-small tooltip2" href="chamado/listar"
+                        data-original-title="Voltar">
+                     <span class="icon-arrow-left"></span>
+                     </a>
+                  </div>
+               </h4>
+            </div>
+         </div>
+         <div class="row">
+            <div class="span12">
+               <div class="row">
+                  <div class="span8">
+                     <div class="well well-small"
+                        style="padding-bottom: 0; min-height: 110px; font-size: 12px; background-color: #fefefe;">
+                        <ul class="unstyled">
+                           <li>Tipo: <b>Equipamento</b></li>
+                           <li>Categoria: <b>Solicitação</b> </li>
+                           <li>Prioridade: <b>Normal</b></li>
+                           <li>Assunto: <b>Solicitação de Notebook</b></li>
+                           <li>Sala / Laboratório: <b> 401 </b></li>
+                           <li>Turma: <b> Noturno </b></li>
+                        </ul>
+                     </div>
+                  </div>
+                  <div class="span4">
+                     <div class="well well-small"
+                        style="padding-bottom: 0; min-height: 130px; font-size: 12px; background-color: #fefefe;">
+                        <ul class="unstyled">
+                           <li>Solicitante: <b>Fulano</b></li>
+                           <li>Contato Solicitante: <b>(27)99999-9999</b></li>
+                           <li>Aberto em: <b>18/05/2021 às 12:00</b></li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="span12">
+               <h4 class="titulo">
+                  Descrição
+                  <div id="box-descricao-info-chamado" class="pull-right" style="margin-top:-10px;">
+                     <a data-content="<div  class=&quot;alert alert-info&quot;>Este chamado não possui anexos.</div>"
+                        class="btn btn-small popover-anexos" data-original-title="Anexos" data-trigger="click"
+                        data-placement="bottom" data-html="true" data-toggle="popover" style="font-weight: normal;"
+                        href="#">
+                     <span class="icon-file"></span>
+                     </a>
+                     <a disabled="" id="" title="" class="btn btn-small tooltip2 disabled"
+                        data-loading-text="Aguarde..." style="font-weight: normal;" href="#"
+                        data-original-title="Apenas para serviços com informações e formulários extras">
+                     <span class="icon-list-alt"></span>
+                     </a>
+                     <a title="" href="#" class="btn btn-small abrirInstrucoesEspecialista"
+                        style="font-weight: normal;">
+                     <span class="icon-info-sign"></span>
+                     </a>
+                  </div>
+               </h4>
+               <div id="box-descricao">
+                  <p>Bom dia!</p>
+                  <p>Solicito um notebook.</p>
+               </div>
+            </div>
+         </div>
+         <div class="row">
+            <div class="span12">
+               <h4 class="titulo">Interações</h4>
+               <ul class="media-list">
+                  <li class="media" style="padding-bottom: 6px;">
+                     <div class="media-body">
+                        <small style="
+                           font-style: italic; 
+                           font-weight: normal;
+                           font-size:12px;">
+                           Autor: Fulano
+                           <span class="icon-info-sign tooltip2" data-html="true" title=""
+                              data-original-title=" Cargo: Gerente de Relacionamento <br/>Telefone: (27)99829-7163"></span>
+                           |
+                           Em: 18/05/2021 12:00 |
+                           Status: Solicitado
+                           <div class="pull-right">
+                              <a title="" class="btn btn-small tooltip2 tornarPublicoPrivado" href="#4500565"
+                                 data-original-title="Comentário Público"><span class="icon-eye-open"></span></a>
+                           </div>
+                        </small>
+                        <div style="
+                           font-weight: normal; 
+                           margin: 0 0 5px 0px; 
+                           padding-left: 10px; 
+                           min-height: 40px;
+                           font-size: 15px; 
+                           border-left: 1px solid #efefef;
+                           border-bottom: 1px solid #efefef;
+                           ">
+                           <p>Solicitação de Sala / Equipamento</p>
+                        </div>
+                     </div>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <form id="form-interacao" method="post" enctype="multipart/form-data" novalidate="novalidate">
+            <div class="row">
+               <div class="span10">
+                  <label>Sala / Equipamento <span class="text-error">*</span></label>
+                  <div class="select2-container span10 select2" id="s2id_autogen1">
+                     <a href="javascript:void(0)"
+                        class="select2-choice" tabindex="-1"> <span class="select2-chosen"
+                        id="select2-chosen-2"></span><abbr class="select2-search-choice-close"></abbr> <span
+                        class="select2-arrow" role="presentation"><b role="presentation"></b></span></a><label
+                        for="s2id_autogen2" class="select2-offscreen"></label><input
+                        class="select2-focusser select2-offscreen" type="text" aria-haspopup="true" role="button"
+                        aria-labelledby="select2-chosen-2" id="s2id_autogen2">
+                     <div class="select2-drop select2-display-none select2-with-searchbox">
+                        <div class="select2-search"> <label for="s2id_autogen2_search"
+                           class="select2-offscreen"></label> <input type="text" autocomplete="off"
+                           autocorrect="off" autocapitalize="off" spellcheck="false" class="select2-input"
+                           role="combobox" aria-expanded="true" aria-autocomplete="list"
+                           aria-owns="select2-results-2" id="s2id_autogen2_search" placeholder=""> </div>
+                        <ul class="select2-results" role="listbox" id="select2-results-2"> </ul>
+                     </div>
+                  </div>
+                  <select name="Servico" class="span10 select2" required="" tabindex="-1" title=""
+                     style="display: none;" aria-required="true">
+                     <option data-bolcategoriza="0" data-bolprivado="0" value="607"></option>
+                  </select>
+               </div>
+               <div class="span2">
+                  <label>Prioridade</label>
+                  <select name="IdTipoPrioridade" class="span2">
+                     <option value="1">Urgente</option>
+                     <option value="3">Alta</option>
+                     <option selected="" value="2">Normal</option>
+                  </select>
+               </div>
+               <div class="span2 hide">
+                  <label>Categoria</label>
+                  <select name="IdTipoCategoria" class="span2">
+                     <option value="">Nenhuma</option>
+                     <option value="1" disabled="">Solicitação</option>
+                     <option value="2" disabled="">Incidente</option>
+                  </select>
+               </div>
+            </div>
+            <div class="row">
+               <div class="span12">
+                  <label for="Descricao">Descrição <span class="text-error">*</span></label>
+                  <div id="descricao-servico"></div>
+                  <div id="mceu_13" class="mce-tinymce mce-container mce-panel" hidefocus="1" tabindex="-1"
+                     role="application" style="visibility: hidden; border-width: 1px;">
+                     <div id="mceu_13-body" class="mce-container-body mce-stack-layout">
+                        <div id="mceu_14"
+                           class="mce-toolbar-grp mce-container mce-panel mce-stack-layout-item mce-first"
+                           hidefocus="1" tabindex="-1" role="group">
+                           <div id="mceu_14-body" class="mce-container-body mce-stack-layout">
+                              <div id="mceu_15"
+                                 class="mce-container mce-toolbar mce-stack-layout-item mce-first mce-last"
+                                 role="toolbar">
+                                 <div id="mceu_15-body" class="mce-container-body mce-flow-layout">
+                                    <div id="mceu_16"
+                                       class="mce-container mce-flow-layout-item mce-first mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_16-body">
+                                          <div id="mceu_0" class="mce-widget mce-btn mce-first" tabindex="-1"
+                                             aria-labelledby="mceu_0" role="button" aria-label="Bold"><button
+                                             role="presentation" type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-bold"></i></button></div>
+                                          <div id="mceu_1" class="mce-widget mce-btn mce-last" tabindex="-1"
+                                             aria-labelledby="mceu_1" role="button" aria-label="Italic">
+                                             <button role="presentation" type="button" tabindex="-1"><i
+                                                class="mce-ico mce-i-italic"></i></button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div id="mceu_17" class="mce-container mce-flow-layout-item mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_17-body">
+                                          <div id="mceu_2" class="mce-widget mce-btn mce-first" tabindex="-1"
+                                             aria-labelledby="mceu_2" role="button" aria-label="Align left">
+                                             <button role="presentation" type="button" tabindex="-1"><i
+                                                class="mce-ico mce-i-alignleft"></i></button>
+                                          </div>
+                                          <div id="mceu_3" class="mce-widget mce-btn" tabindex="-1"
+                                             aria-labelledby="mceu_3" role="button"
+                                             aria-label="Align center"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-aligncenter"></i></button></div>
+                                          <div id="mceu_4" class="mce-widget mce-btn" tabindex="-1"
+                                             aria-labelledby="mceu_4" role="button" aria-label="Align right">
+                                             <button role="presentation" type="button" tabindex="-1"><i
+                                                class="mce-ico mce-i-alignright"></i></button>
+                                          </div>
+                                          <div id="mceu_5" class="mce-widget mce-btn mce-last" tabindex="-1"
+                                             aria-labelledby="mceu_5" role="button" aria-label="Justify">
+                                             <button role="presentation" type="button" tabindex="-1"><i
+                                                class="mce-ico mce-i-alignjustify"></i></button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div id="mceu_18" class="mce-container mce-flow-layout-item mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_18-body">
+                                          <div id="mceu_6"
+                                             class="mce-widget mce-btn mce-splitbtn mce-menubtn mce-first"
+                                             role="button" tabindex="-1" aria-label="Bullet list"
+                                             aria-haspopup="true"><button type="button" hidefocus="1"
+                                             tabindex="-1"><i
+                                             class="mce-ico mce-i-bullist"></i></button><button
+                                             type="button" class="mce-open" hidefocus="1" tabindex="-1">
+                                             <i class="mce-caret"></i></button>
+                                          </div>
+                                          <div id="mceu_7" class="mce-widget mce-btn mce-splitbtn mce-menubtn"
+                                             role="button" tabindex="-1" aria-label="Numbered list"
+                                             aria-haspopup="true"><button type="button" hidefocus="1"
+                                             tabindex="-1"><i
+                                             class="mce-ico mce-i-numlist"></i></button><button
+                                             type="button" class="mce-open" hidefocus="1" tabindex="-1">
+                                             <i class="mce-caret"></i></button>
+                                          </div>
+                                          <div id="mceu_8" class="mce-widget mce-btn" tabindex="-1"
+                                             aria-labelledby="mceu_8" role="button"
+                                             aria-label="Decrease indent"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-outdent"></i></button></div>
+                                          <div id="mceu_9" class="mce-widget mce-btn mce-last" tabindex="-1"
+                                             aria-labelledby="mceu_9" role="button"
+                                             aria-label="Increase indent"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-indent"></i></button></div>
+                                       </div>
+                                    </div>
+                                    <div id="mceu_19" class="mce-container mce-flow-layout-item mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_19-body">
+                                          <div id="mceu_10" class="mce-widget mce-btn mce-first" tabindex="-1"
+                                             aria-labelledby="mceu_10" role="button"
+                                             aria-label="Insert/edit link"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-link"></i></button></div>
+                                          <div id="mceu_11" class="mce-widget mce-btn mce-last" tabindex="-1"
+                                             aria-labelledby="mceu_11" role="button"
+                                             aria-label="Insert/edit image"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-image"></i></button></div>
+                                       </div>
+                                    </div>
+                                    <div id="mceu_20"
+                                       class="mce-container mce-flow-layout-item mce-last mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_20-body">
+                                          <div id="mceu_12"
+                                             class="mce-widget mce-btn mce-menubtn mce-listbox mce-first mce-last mce-btn-has-text"
+                                             tabindex="-1" aria-labelledby="mceu_12" role="button"
+                                             aria-haspopup="true"><button id="mceu_12-open"
+                                             role="presentation" type="button" tabindex="-1"><span
+                                             class="mce-txt">Mensagem Padrão</span> <i
+                                             class="mce-caret"></i></button></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div id="mceu_21" class="mce-edit-area mce-container mce-panel mce-stack-layout-item"
+                           hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><iframe
+                           id="descricao_ifr" frameborder="0" allowtransparency="true"
+                           title="Área de texto formatado. Pressione ALT-F9 para exibir o menu, ALT-F10 para exibir a barra de ferramentas ou ALT-0 para exibir a ajuda"
+                           src="javascript:&quot;&quot;"
+                           style="width: 100%; height: 350px; display: block;"></iframe></div>
+                        <div id="mceu_22"
+                           class="mce-statusbar mce-container mce-panel mce-stack-layout-item mce-last"
+                           hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;">
+                           <div id="mceu_22-body" class="mce-container-body mce-flow-layout">
+                              <div id="mceu_23" class="mce-path mce-flow-layout-item mce-first">
+                                 <div role="button" class="mce-path-item mce-last" data-index="0" tabindex="-1"
+                                    id="mceu_23-0" aria-level="0">p</div>
+                              </div>
+                              <span id="mceu_50"
+                                 class="mce-wordcount mce-widget mce-label mce-flow-layout-item">Palavras:
+                              0</span>
+                              <div id="mceu_24" class="mce-flow-layout-item mce-resizehandle mce-last"><i
+                                 class="mce-ico mce-i-resize"></i></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <textarea id="descricao" class="span12 tiny" name="Descricao" style="display: none;"
+                     aria-hidden="true"></textarea>
+               </div>
+            </div>
+            <div class="row box-arquivos">
+               <div id="content-arquivos" class="span12" style="display: none;">
+                  <hr>
+                  <table class="table-default table table-striped table-bordered table-hover">
+                     <thead>
+                        <tr>
+                           <th>Arquivo</th>
+                           <th style="width: 60px;" class="center">Ação</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                     </tbody>
+                  </table>
+               </div>
+               <div class="span12 btn-toolbar">
+                  <div class="btn-group">
+                     <a class="btn disabled" disabled="" href="#" title="Arquivar Requisição">Arquivar</a>
+                  </div>
+                  <div class="pull-right">
+                     <select name="BolExclusivoEspecialista" class="span2" style="margin: 3px 6px 0 6px;">
+                        <option selected="" value="0">Público</option>
+                        <option value="1">Privado</option>
+                     </select>
+                     <input id="enviarArquivo" type="button" class="btn " value="Anexar Arquivo"
+                        data-loading-text="Enviando...">
+                     <div id="btnInteracao" class="btn-group dropup">
+                        <a id="btnPrincipal" class="btn btn-success btnSubmitFormInteracao" data-value="1"
+                           href="#"> <b>Salvar</b></a>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </form>
+         <div name="reabertura" style="display: none;">
+            <div class="row">
+               <div class="span8">
+                  <div id="mceu_38" class="mce-tinymce mce-container mce-panel" hidefocus="1" tabindex="-1"
+                     role="application" style="visibility: hidden; border-width: 1px;">
+                     <div id="mceu_38-body" class="mce-container-body mce-stack-layout">
+                        <div id="mceu_39"
+                           class="mce-toolbar-grp mce-container mce-panel mce-stack-layout-item mce-first"
+                           hidefocus="1" tabindex="-1" role="group">
+                           <div id="mceu_39-body" class="mce-container-body mce-stack-layout">
+                              <div id="mceu_40"
+                                 class="mce-container mce-toolbar mce-stack-layout-item mce-first mce-last"
+                                 role="toolbar">
+                                 <div id="mceu_40-body" class="mce-container-body mce-flow-layout">
+                                    <div id="mceu_41"
+                                       class="mce-container mce-flow-layout-item mce-first mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_41-body">
+                                          <div id="mceu_25" class="mce-widget mce-btn mce-first" tabindex="-1"
+                                             aria-labelledby="mceu_25" role="button" aria-label="Bold">
+                                             <button role="presentation" type="button" tabindex="-1"><i
+                                                class="mce-ico mce-i-bold"></i></button>
+                                          </div>
+                                          <div id="mceu_26" class="mce-widget mce-btn mce-last" tabindex="-1"
+                                             aria-labelledby="mceu_26" role="button" aria-label="Italic">
+                                             <button role="presentation" type="button" tabindex="-1"><i
+                                                class="mce-ico mce-i-italic"></i></button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div id="mceu_42" class="mce-container mce-flow-layout-item mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_42-body">
+                                          <div id="mceu_27" class="mce-widget mce-btn mce-first" tabindex="-1"
+                                             aria-labelledby="mceu_27" role="button" aria-label="Align left">
+                                             <button role="presentation" type="button" tabindex="-1"><i
+                                                class="mce-ico mce-i-alignleft"></i></button>
+                                          </div>
+                                          <div id="mceu_28" class="mce-widget mce-btn" tabindex="-1"
+                                             aria-labelledby="mceu_28" role="button"
+                                             aria-label="Align center"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-aligncenter"></i></button></div>
+                                          <div id="mceu_29" class="mce-widget mce-btn" tabindex="-1"
+                                             aria-labelledby="mceu_29" role="button"
+                                             aria-label="Align right"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-alignright"></i></button></div>
+                                          <div id="mceu_30" class="mce-widget mce-btn mce-last" tabindex="-1"
+                                             aria-labelledby="mceu_30" role="button" aria-label="Justify">
+                                             <button role="presentation" type="button" tabindex="-1"><i
+                                                class="mce-ico mce-i-alignjustify"></i></button>
+                                          </div>
+                                       </div>
+                                    </div>
+                                    <div id="mceu_43" class="mce-container mce-flow-layout-item mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_43-body">
+                                          <div id="mceu_31"
+                                             class="mce-widget mce-btn mce-splitbtn mce-menubtn mce-first"
+                                             role="button" tabindex="-1" aria-label="Bullet list"
+                                             aria-haspopup="true"><button type="button" hidefocus="1"
+                                             tabindex="-1"><i
+                                             class="mce-ico mce-i-bullist"></i></button><button
+                                             type="button" class="mce-open" hidefocus="1" tabindex="-1">
+                                             <i class="mce-caret"></i></button>
+                                          </div>
+                                          <div id="mceu_32"
+                                             class="mce-widget mce-btn mce-splitbtn mce-menubtn"
+                                             role="button" tabindex="-1" aria-label="Numbered list"
+                                             aria-haspopup="true"><button type="button" hidefocus="1"
+                                             tabindex="-1"><i
+                                             class="mce-ico mce-i-numlist"></i></button><button
+                                             type="button" class="mce-open" hidefocus="1" tabindex="-1">
+                                             <i class="mce-caret"></i></button>
+                                          </div>
+                                          <div id="mceu_33" class="mce-widget mce-btn" tabindex="-1"
+                                             aria-labelledby="mceu_33" role="button"
+                                             aria-label="Decrease indent"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-outdent"></i></button></div>
+                                          <div id="mceu_34" class="mce-widget mce-btn mce-last" tabindex="-1"
+                                             aria-labelledby="mceu_34" role="button"
+                                             aria-label="Increase indent"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-indent"></i></button></div>
+                                       </div>
+                                    </div>
+                                    <div id="mceu_44" class="mce-container mce-flow-layout-item mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_44-body">
+                                          <div id="mceu_35" class="mce-widget mce-btn mce-first" tabindex="-1"
+                                             aria-labelledby="mceu_35" role="button"
+                                             aria-label="Insert/edit link"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-link"></i></button></div>
+                                          <div id="mceu_36" class="mce-widget mce-btn mce-last" tabindex="-1"
+                                             aria-labelledby="mceu_36" role="button"
+                                             aria-label="Insert/edit image"><button role="presentation"
+                                             type="button" tabindex="-1"><i
+                                             class="mce-ico mce-i-image"></i></button></div>
+                                       </div>
+                                    </div>
+                                    <div id="mceu_45"
+                                       class="mce-container mce-flow-layout-item mce-last mce-btn-group"
+                                       role="group">
+                                       <div id="mceu_45-body">
+                                          <div id="mceu_37"
+                                             class="mce-widget mce-btn mce-menubtn mce-listbox mce-first mce-last mce-btn-has-text"
+                                             tabindex="-1" aria-labelledby="mceu_37" role="button"
+                                             aria-haspopup="true"><button id="mceu_37-open"
+                                             role="presentation" type="button" tabindex="-1"><span
+                                             class="mce-txt">Mensagem Padrão</span> <i
+                                             class="mce-caret"></i></button></div>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div id="mceu_46" class="mce-edit-area mce-container mce-panel mce-stack-layout-item"
+                           hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;"><iframe
+                           id="BoxMotivo_ifr" frameborder="0" allowtransparency="true"
+                           title="Área de texto formatado. Pressione ALT-F9 para exibir o menu, ALT-F10 para exibir a barra de ferramentas ou ALT-0 para exibir a ajuda"
+                           src="javascript:&quot;&quot;"
+                           style="width: 100%; height: 350px; display: block;"></iframe></div>
+                        <div id="mceu_47"
+                           class="mce-statusbar mce-container mce-panel mce-stack-layout-item mce-last"
+                           hidefocus="1" tabindex="-1" role="group" style="border-width: 1px 0px 0px;">
+                           <div id="mceu_47-body" class="mce-container-body mce-flow-layout">
+                              <div id="mceu_48" class="mce-path mce-flow-layout-item mce-first">
+                                 <div class="mce-path-item">&nbsp;</div>
+                              </div>
+                              <span id="mceu_51"
+                                 class="mce-wordcount mce-widget mce-label mce-flow-layout-item">Palavras:
+                              0</span>
+                              <div id="mceu_49" class="mce-flow-layout-item mce-resizehandle mce-last"><i
+                                 class="mce-ico mce-i-resize"></i></div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <textarea name="BoxMotivo" class="span8 tiny" style="height: 200px; display: none;"
+                     id="BoxMotivo" aria-hidden="true"></textarea>
+               </div>
+            </div>
+            <div class="row">
+               <div id="content-arquivos" class="span8">
+                  <hr>
+                  <table class="table-default table table-striped table-bordered table-hover">
+                     <thead>
+                        <tr>
+                           <th>Arquivo</th>
+                           <th style="width: 60px;" class="center">Ação</th>
+                        </tr>
+                     </thead>
+                     <tbody>
+                        <tr id="tr-0">
+                           <td colspan="2">Não existem dados para exibição
+                           </td>
+                        </tr>
+                     </tbody>
+                  </table>
+               </div>
+            </div>
+         </div>
+      </div>
+      <script>
+         var base_url = '';
+         var c_module = 'chamados';
+         var c_controller = 'chamado';
+         var c_method = 'visualizar';
+      </script>
+      <div id="tpl2-mask-load" style="width:100%;height:100%;position: absolute;left:0;top:0;background-color: rgba(96, 96, 96, 0.3);z-index: 9999999;" class="hide">
+        <div id="tpl2-box-load" style="top: 304px; left: 405.5px; margin-top: -25px; position: absolute; background: rgb(83, 130, 191); border: 1px solid rgb(84, 65, 168); text-align: center; font: 14px sans-serif; width: 180px; padding: 8px; border-radius: 4px;">
+           <img style="margin-right: 10px; margin-left: 20px; float: left; width: 31px;" src="imagens/loading.gif">
+           <div style="padding-top: 7px; margin-left: 25px; text-align: left; font-size: 16px; font-weight: bold;">Aguarde...</div>
+        </div>
+     </div>
+      <style>
+         .buorg {
+         color: #222;
+         background-color: #ffeb3b;
+         border-color: #ff9800;
+         position: fixed;
+         min-height: 0;
+         }
+         .burog-icon {
+         display: block !important;
+         width: 100%;
+         }
+         .buorg-moremsg {
+         width: 100%;
+         display: block;
+         margin-bottom: 10px;
+         }
+      </style>
+      <span role="status" aria-live="polite" class="select2-hidden-accessible"></span>
+      <div
+         style="display: block; position: absolute; overflow: hidden; margin: 0px; padding: 0px; opacity: 0; direction: ltr; height: 30px; z-index: 16777270;">
+         <input type="file" name="uploadfile" multiple=""
+            style="position: relative; right: 0px; margin: 0px; padding: 0px; font-family: sans-serif; cursor: pointer; width: 100%; height: 100%; z-index: 16777270;">
+      </div>
+   </body>
+</html>

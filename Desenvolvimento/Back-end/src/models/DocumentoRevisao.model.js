@@ -84,15 +84,15 @@ DocumentoRevisao.listarId = function (id, retorno) {
 
 };
 
-DocumentoRevisao.pesquisar = function (id, descricaoProblema, status, dataAbertura, dataConclusao, defeito, equipamentoId, salaId, retorno) {
+DocumentoRevisao.pesquisar = function (id, status, dataAbertura, dataConclusao, defeito, equipamentoId, salaId, retorno) {
 
     // Prepara a string
     descricaoProblema = ('%' + descricaoProblema + '%');
 
     // Comando SQL SELECT
-    dbConn.query("SELECT * FROM DocumentoRevisao WHERE DocumentoRevisaoId = ? OR DescricaoProblema LIKE ? OR Status = ? OR DataAbertura = ? "
+    dbConn.query("SELECT * FROM DocumentoRevisao WHERE DocumentoRevisaoId = ? OR Status = ? OR DataAbertura = ? "
                 + "OR DataConclusao = ? OR Defeito = ? OR EquipamentoId = ? OR SalaId = ? ", 
-                [id, descricaoProblema, status, dataAbertura, dataConclusao, defeito, equipamentoId, salaId], function (err, res) {             
+                [id, status, dataAbertura, dataConclusao, defeito, equipamentoId, salaId], function (err, res) {             
         if(err) {
             console.log("Erro: ", err);
             retorno(err, null);

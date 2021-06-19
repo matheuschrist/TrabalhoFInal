@@ -18,8 +18,8 @@ exports.cadastrar = function(req, res) {
             if (err) {
                 res.send(err);
             }
-            res.json({ erro: false, mensagem: 'DocumentoRevisao cadastrado com sucesso!', idDocumentoRevisao: documentoRevisao });
-            if(req.body.salaId && req.body.defeito)
+
+            if(req.body.salaId && req.body.defeito == 1)
             {
                 let sala = new Sala({
                     status: 3
@@ -35,7 +35,7 @@ exports.cadastrar = function(req, res) {
                     }
                 })
             }
-            else if(req.body.defeito)
+            else if(req.body.defeito == 1)
             {
                 let equipamento = new Equipamento({
                     status: 2
@@ -51,6 +51,9 @@ exports.cadastrar = function(req, res) {
                     }
                 })
             }
+
+
+            res.json({ erro: false, mensagem: 'DocumentoRevisao cadastrado com sucesso!', idDocumentoRevisao: documentoRevisao });
 
         });
     }

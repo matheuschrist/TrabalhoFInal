@@ -25,6 +25,7 @@ RequisicaoSala.cadastrar = function (requisicaoSala, retorno) {
 
 }
 
+
 RequisicaoSala.listarTodos = function (retorno) {
 
     // Comando SQL SELECT

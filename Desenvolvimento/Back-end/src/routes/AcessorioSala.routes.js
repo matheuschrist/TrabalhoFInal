@@ -3,14 +3,7 @@ const router = express.Router()
 const acessorioSalaController = require('../controllers/AcessorioSala.controller');
 
 // Cadastra um novo AcessorioSala
-/* Exemplo: POST localhost:3000/api/acessoriosSala
-JSON: 
-    {
-        "quantidadeAcessorio": "3",
-        "acessorioId": "2",
-        "salaId": "2"
-    }
-*/ 
+// Exemplo: POST localhost:3000/api/acessoriosSala
 router.post('/', acessorioSalaController.cadastrar);
 
 // Recupera todos os AcessoriosSala
@@ -22,7 +15,7 @@ router.get('/', acessorioSalaController.listarTodos);
 router.get('/id/:id', acessorioSalaController.listarId);
 
 // Pesquisa AcessoriosSala de acordo com o parâmetro inserido
-// Exemplo: GET localhost:3000/api/acessoriosSala/pesquisa/idSala?=2
+// Exemplo: GET localhost:3000/api/acessoriosSala/pesquisar?idSala=2
 router.get('/pesquisar', acessorioSalaController.pesquisar);
 
 // Atualiza um AcessorioSala pela Id

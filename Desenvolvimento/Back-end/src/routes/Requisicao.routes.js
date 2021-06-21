@@ -2,42 +2,32 @@ const express = require('express')
 const router = express.Router()
 const requisicaoController = require('../controllers/Requisicao.controller');
 
-// Cadastra um novo usuário
-/* Exemplo: POST localhost:3000/api/usuarios
-JSON: 
-    {
-        "nome": "Deivyd",
-        "login": "deivydw",
-        "senha": "deivyd123",
-        "identificacao": "12345678911",
-        "tipo": 0,
-        "email": "deivyd.email@gmail.com"
-    }
-*/ 
+// Cadastra uma nova requisição
+//Exemplo: POST localhost:3000/api/requisicoes
 router.post('/', requisicaoController.cadastrar);
 
-// Recupera todos os usuários
-// Exemplo: GET localhost:3000/api/usuarios/
+// Recupera todos as requisições
+// Exemplo: GET localhost:3000/api/requisicoes/
 router.get('/', requisicaoController.listarTodos);
 
-// Recupera um usuário pela Id
-// Exemplo: GET localhost:3000/api/usuarios/1
+// Recupera uma requisição pela Id
+// Exemplo: GET localhost:3000/api/requisicoes/id/1
 router.get('/id/:id', requisicaoController.listarId);
 
-// Pesquisa usuários de acordo com o parâmetro inserido
-// Exemplo: GET localhost:3000/api/usuario/pesquisa/nome?=Deivyd
+// Pesquisa requisições de acordo com o parâmetro inserido
+// Exemplo: GET localhost:3000/api/requisicoes/pesquisar?id=1
 router.get('/pesquisar', requisicaoController.pesquisar);
 
-// Atualiza um usuário pela Id
-// Exemplo: PUT localhost:3000/api/usuarios/1
+// Atualiza uma requisição pela Id
+// Exemplo: PUT localhost:3000/api/requisicoes/1
 router.put('/:id', requisicaoController.atualizar);
 
-// Exclui um usuário pela Id (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/1
+// Exclui uma requisição pela Id
+// Exemplo: DELETE localhost:3000/api/requisicoes/1
 router.delete('/:id', requisicaoController.excluirId);
 
-// Exclui todos os usuários (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/
+// Exclui todas as requisições
+// Exemplo: DELETE localhost:3000/api/requisicoes/
 router.delete('/', requisicaoController.excluirTodos);
 
 module.exports = router

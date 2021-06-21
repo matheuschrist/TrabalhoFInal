@@ -2,42 +2,31 @@ const express = require('express')
 const router = express.Router()
 const SalaController = require('../controllers/Sala.controller');
 
-// Cadastra um novo usuário
-/* Exemplo: POST localhost:3000/api/usuarios
-JSON: 
-    {
-        "nome": "Deivyd",
-        "login": "deivydw",
-        "senha": "deivyd123",
-        "identificacao": "12345678911",
-        "tipo": 0,
-        "email": "deivyd.email@gmail.com"
-    }
-*/ 
+// Cadastra uma nova sala
 router.post('/', SalaController.cadastrar);
 
-// Recupera todos os usuários
-// Exemplo: GET localhost:3000/api/usuarios/
+// Recupera todos as salas
+// Exemplo: GET localhost:3000/api/salas/
 router.get('/', SalaController.listarTodos);
 
-// Recupera um usuário pela Id
-// Exemplo: GET localhost:3000/api/usuarios/1
+// Recupera uma sala pela Id
+// Exemplo: GET localhost:3000/api/salas/id/1
 router.get('/id/:id', SalaController.listarId);
 
-// Pesquisa usuários de acordo com o parâmetro inserido
-// Exemplo: GET localhost:3000/api/usuario/pesquisa/nome?=Deivyd
+// Pesquisa salas de acordo com o parâmetro inserido
+// Exemplo: GET localhost:3000/api/salas/pesquisar?numeroSala=400
 router.get('/pesquisar', SalaController.pesquisar);
 
-// Atualiza um usuário pela Id
-// Exemplo: PUT localhost:3000/api/usuarios/1
+// Atualiza uma sala pela Id
+// Exemplo: PUT localhost:3000/api/salas/1
 router.put('/:id', SalaController.atualizar);
 
-// Exclui um usuário pela Id (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/1
+// Exclui uma sala pela Id
+// Exemplo: DELETE localhost:3000/api/salas/1
 router.delete('/:id', SalaController.excluirId);
 
-// Exclui todos os usuários (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/
+// Exclui todas as salas
+// Exemplo: DELETE localhost:3000/api/salas/
 router.delete('/', SalaController.excluirTodos);
 
 module.exports = router

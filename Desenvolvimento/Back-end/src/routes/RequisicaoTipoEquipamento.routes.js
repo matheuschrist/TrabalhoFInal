@@ -2,38 +2,28 @@ const express = require('express')
 const router = express.Router()
 const RequisicaoTipoEquipamentoController = require('../controllers/RequisicaoTipoEquipamento.controller');
 
-// Cadastra um novo usuário
-/* Exemplo: POST localhost:3000/api/usuarios
-JSON: 
-    {
-        "nome": "Deivyd",
-        "login": "deivydw",
-        "senha": "deivyd123",
-        "identificacao": "12345678911",
-        "tipo": 0,
-        "email": "deivyd.email@gmail.com"
-    }
-*/ 
+// Cadastra uma requisição de tipo de equipamento
+//Exemplo: POST localhost:3000/api/requisicoesTipoEquipamento
 router.post('/', RequisicaoTipoEquipamentoController.cadastrar);
 
-// Recupera todos os usuários
-// Exemplo: GET localhost:3000/api/usuarios/
+// Recupera todos as requisições de tipo de equipamento
+// Exemplo: GET localhost:3000/api/requisicoesTipoEquipamento/
 router.get('/', RequisicaoTipoEquipamentoController.listarTodos);
 
-// Recupera um usuário pela Id
-// Exemplo: GET localhost:3000/api/usuarios/1
+// Recupera uma requisição de tipo de equipamento pela Id
+// Exemplo: GET localhost:3000/api/requisicoesTipoEquipamento/id/1
 router.get('/id/:id', RequisicaoTipoEquipamentoController.listarId);
 
-// Atualiza um usuário pela Id
-// Exemplo: PUT localhost:3000/api/usuarios/1
+// Atualiza uma requisição de tipo de equipamento pela Id
+// Exemplo: PUT localhost:3000/api/requisicoesTipoEquipamento/1
 //router.put('/:id', requisicaoController.atualizar);
 
-// Exclui um usuário pela Id (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/1
+// Exclui uma requisição de tipo de equipamento pela Id
+// Exemplo: DELETE localhost:3000/api/requisicoesTipoEquipamento/1
 router.delete('/:id', RequisicaoTipoEquipamentoController.excluirId);
 
-// Exclui todos os usuários (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/
+// Exclui todas as requisições de tipo de equipamento
+// Exemplo: DELETE localhost:3000/api/requisicoesTipoEquipamento/
 router.delete('/', RequisicaoTipoEquipamentoController.excluirTodos);
 
 module.exports = router

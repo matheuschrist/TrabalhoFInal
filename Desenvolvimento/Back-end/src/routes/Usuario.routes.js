@@ -25,7 +25,7 @@ router.get('/', usuarioController.listarTodos);
 router.get('/id/:id', usuarioController.listarId);
 
 // Pesquisa usuários de acordo com o parâmetro inserido
-// Exemplo: GET localhost:3000/api/usuario/pesquisa/nome?=Deivyd
+// Exemplo: GET localhost:3000/api/usuario/pesquisar?nome=Deivyd
 router.get('/pesquisar', usuarioController.pesquisar);
 
 // Atualiza um usuário pela Id

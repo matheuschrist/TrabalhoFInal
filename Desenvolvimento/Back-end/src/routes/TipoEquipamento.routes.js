@@ -2,38 +2,25 @@ const express = require('express')
 const router = express.Router()
 const tipoEquipamentoController = require('../controllers/TipoEquipamento.controller');
 
-// Cadastra um novo usuário
-/* Exemplo: POST localhost:3000/api/usuarios
-JSON: 
-    {
-        "nome": "Deivyd",
-        "login": "deivydw",
-        "senha": "deivyd123",
-        "identificacao": "12345678911",
-        "tipo": 0,
-        "email": "deivyd.email@gmail.com"
-    }
-*/ 
+// Cadastra um novo tipo de equipamento
 router.post('/', tipoEquipamentoController.cadastrar);
 
-// Recupera todos os usuários
-// Exemplo: GET localhost:3000/api/usuarios/
+// Recupera todos os tipos de equipamento
 router.get('/', tipoEquipamentoController.listarTodos);
 
-// Recupera um usuário pela Id
-// Exemplo: GET localhost:3000/api/usuarios/1
+// Recupera um tipo de equipamento pela Id
 router.get('/id/:id', tipoEquipamentoController.listarId);
 
-// Atualiza um usuário pela Id
-// Exemplo: PUT localhost:3000/api/usuarios/1
+// Pesquisa tipos de equipamento de acordo com o parâmetro inserido
+router.get('/pesquisar', tipoEquipamentoController.pesquisar);
+
+// Atualiza um tipo de equipamento pela Id
 router.put('/:id', tipoEquipamentoController.atualizar);
 
-// Exclui um usuário pela Id (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/1
+// Exclui um tipo de equipamento pela Id
 router.delete('/:id', tipoEquipamentoController.excluirId);
 
-// Exclui todos os usuários (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/
+// Exclui todos os tipos de equipamentos
 router.delete('/', tipoEquipamentoController.excluirTodos);
 
 module.exports = router

@@ -2,38 +2,28 @@ const express = require('express')
 const router = express.Router()
 const requisicaoEquipamentoController = require('../controllers/RequisicaoEquipamento.controller');
 
-// Cadastra um novo usuário
-/* Exemplo: POST localhost:3000/api/usuarios
-JSON: 
-    {
-        "nome": "Deivyd",
-        "login": "deivydw",
-        "senha": "deivyd123",
-        "identificacao": "12345678911",
-        "tipo": 0,
-        "email": "deivyd.email@gmail.com"
-    }
-*/ 
+// Cadastra uma nova requisição de equipamento
+// Exemplo: POST localhost:3000/api/requisicoesEquipamento
 router.post('/', requisicaoEquipamentoController.cadastrar);
 
-// Recupera todos os usuários
-// Exemplo: GET localhost:3000/api/usuarios/
+// Recupera todos as requisições de equipamentos
+// Exemplo: GET localhost:3000/api/requisicoesEquipamento/
 router.get('/', requisicaoEquipamentoController.listarTodos);
 
-// Recupera um usuário pela Id
-// Exemplo: GET localhost:3000/api/usuarios/1
+// Recupera uma requisição de equipamento pela Id
+// Exemplo: GET localhost:3000/api/requisicoesEquipamento/id/1
 router.get('/id/:id', requisicaoEquipamentoController.listarId);
 
-// Atualiza um usuário pela Id
-// Exemplo: PUT localhost:3000/api/usuarios/1
+// Atualiza uma requisição de equipamento pela Id
+// Exemplo: PUT localhost:3000/api/requisicoesEquipamento/1
 //router.put('/:id', requisicaoController.atualizar);
 
-// Exclui um usuário pela Id (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/1
+// Exclui uma requisição de equipamento pela Id
+// Exemplo: DELETE localhost:3000/api/requisicoesEquipamento/1
 router.delete('/:id', requisicaoEquipamentoController.excluirId);
 
-// Exclui todos os usuários (para teste)
-// Exemplo: DELETE localhost:3000/api/usuarios/
+// Exclui todos as requisições de equipamento
+// Exemplo: DELETE localhost:3000/api/requisicoesEquipamento/
 router.delete('/', requisicaoEquipamentoController.excluirTodos);
 
 module.exports = router

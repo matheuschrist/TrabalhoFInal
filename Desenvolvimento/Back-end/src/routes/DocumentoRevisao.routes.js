@@ -14,7 +14,7 @@ router.get('/', documentoRevisaoController.listarTodos);
 // Exemplo: GET localhost:3000/api/documentos/id/1
 router.get('/id/:id', documentoRevisaoController.listarId);
 
-// Pesquisa documento de revisão de acordo com o parâmetro inserido
+// Pesquisa documentos de revisão de acordo com o parâmetro inserido
 // Exemplo: GET localhost:3000/api/documentos/pesquisar?id=1
 router.get('/pesquisar', documentoRevisaoController.pesquisar);
 

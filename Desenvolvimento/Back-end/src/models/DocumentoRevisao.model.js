@@ -3,7 +3,7 @@
 var dbConn = require('./../../config/db.config');
 const DATE_FORMATER = require( 'dateformat' );
 
-// Cria objeto Usuário
+// Cria objeto DocumentoRevisao
 var DocumentoRevisao = function(documentoRevisao) {
 
     this.descricaoProblema  = documentoRevisao.descricaoProblema;

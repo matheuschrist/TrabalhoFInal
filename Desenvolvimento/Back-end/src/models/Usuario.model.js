@@ -2,7 +2,7 @@
 
 var dbConn = require('./../../config/db.config');
 
-// Cria objeto Usuário
+// Cria objeto Usuario
 var Usuario = function(usuario) {
 
     this.nome           = usuario.nome;

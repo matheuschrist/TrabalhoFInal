@@ -29,6 +29,7 @@ app.use((req, res, next) => {
 app.get('/', (req, res) => {
 
     res.send("Página Principal.");
+    
 });
 
 // Outras Rotas

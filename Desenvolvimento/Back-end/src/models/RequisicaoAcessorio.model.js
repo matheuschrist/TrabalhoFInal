@@ -2,7 +2,7 @@
 
 var dbConn = require('./../../config/db.config');
 
-// Cria objeto Usuário
+// Cria objeto RequisicaoAcessorio
 var RequisicaoAcessorio = function(requisicaoAcessorio) {
 
     this.requisicaoId           = requisicaoAcessorio.requisicaoId;

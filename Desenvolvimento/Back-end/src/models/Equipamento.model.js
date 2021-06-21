@@ -5,7 +5,7 @@ const DATE_FORMATER = require( 'dateformat' );
 
 var dbConn = require('./../../config/db.config');
 
-// Cria objeto Usuário
+// Cria objeto Equipamento
 var Equipamento = function(equipamento) {
 
     this.patrimonio         = equipamento.patrimonio;

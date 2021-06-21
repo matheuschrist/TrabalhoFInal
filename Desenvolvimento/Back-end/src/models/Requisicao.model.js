@@ -4,7 +4,7 @@ var dbConn = require('./../../config/db.config');
 const DATE_FORMATER = require( 'dateformat' );
 
 
-// Cria objeto Usuário
+// Cria objeto Requisicao
 var Requisicao = function(requisicao) {
 
     this.tipo               = requisicao.tipo;

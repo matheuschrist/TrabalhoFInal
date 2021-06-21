@@ -2,7 +2,7 @@
 
 var dbConn = require('./../../config/db.config');
 
-// Cria objeto Usuário
+// Cria objeto AcessorioSala
 var AcessorioSala = function(acessorioSala) {
 
     this.acessorioId            = acessorioSala.acessorioId;

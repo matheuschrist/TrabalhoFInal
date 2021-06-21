@@ -3,7 +3,14 @@ const router = express.Router()
 const acessorioSalaController = require('../controllers/AcessorioSala.controller');
 
 // Cadastra um novo acessório de sala
-// Exemplo: POST localhost:3000/api/acessoriosSala
+/* Exemplo: POST localhost:3000/api/acessoriosSala
+JSON:
+    {
+        "quantidadeAcessorio": "3",
+        "acessorioId": "2",
+        "salaId": "2"
+    }
+*/
 router.post('/', acessorioSalaController.cadastrar);
 
 // Recupera todos os acessórios de salas

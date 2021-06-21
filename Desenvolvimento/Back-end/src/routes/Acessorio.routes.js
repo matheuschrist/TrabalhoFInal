@@ -3,7 +3,13 @@ const router = express.Router()
 const acessorioController = require('../controllers/Acessorio.controller');
 
 // Cadastra um novo acessório
-// Exemplo: POST localhost:3000/api/acessorios 
+/* Exemplo: POST localhost:3000/api/acessorios
+JSON:
+    {
+        "tipo": "Fone de Ouvido",
+        "quantidade": "30"
+    }
+*/
 router.post('/', acessorioController.cadastrar);
 
 // Recupera todos os acessórios

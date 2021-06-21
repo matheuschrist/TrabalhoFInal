@@ -3,7 +3,13 @@ const router = express.Router()
 const loginController = require('../controllers/Login.controller');
 
 // Realiza sessão de login
-// Exemplo: POST localhost:3000/api/login
+/* Exemplo: POST localhost:3000/api/login
+JSON: 
+    {
+        "login": "admin",
+        "senha": "admin"
+    }
+*/ 
 router.post('/', loginController.realizar);
 
 // Recupera dados de um usuário logado

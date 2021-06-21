@@ -3,6 +3,15 @@ const router = express.Router()
 const SalaController = require('../controllers/Sala.controller');
 
 // Cadastra uma nova sala
+/* Exemplo: POST localhost:3000/api/salas/
+JSON:
+    {
+        "numeroSala": "403",
+        "status": "0",
+        "quantidadeAluno": "40",
+        "quantidadeAlunoPandemia": "20"
+    }
+*/
 router.post('/', SalaController.cadastrar);
 
 // Recupera todos as salas

@@ -3,6 +3,12 @@ const router = express.Router()
 const tipoEquipamentoController = require('../controllers/TipoEquipamento.controller');
 
 // Cadastra um novo tipo de equipamento
+/* Exemplo: POST localhost:3000/api/tiposEquipamento/
+JSON:
+    {
+        "nomeTipo": "Teste"
+    }
+*/
 router.post('/', tipoEquipamentoController.cadastrar);
 
 // Recupera todos os tipos de equipamento

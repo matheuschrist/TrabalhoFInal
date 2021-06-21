@@ -3,7 +3,15 @@ const router = express.Router()
 const equipamentoController = require('../controllers/Equipamento.controller');
 
 // Cadastra um novo equipamento
-// Exemplo: POST localhost:3000/api/equipamentos
+/* Exemplo: POST localhost:3000/api/equipamentos
+JSON: 
+    {
+        "patrimonio": "Patrimonio125",
+        "status": "0",
+        "tipoEquipamentoId": "1",
+        "salaId": null
+    }
+*/ 
 router.post('/', equipamentoController.cadastrar);
 
 // Recupera todos os equipamentos

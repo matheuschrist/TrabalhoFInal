@@ -3,7 +3,15 @@ const router = express.Router()
 const documentoRevisaoController = require('../controllers/DocumentoRevisao.controller');
 
 // Cadastra um novo documento de revisão
-// Exemplo: POST localhost:3000/api/documentos
+/* Exemplo: POST localhost:3000/api/documentos
+JSON:
+    {
+        "descricaoProblema": "Notebook com defeito na tela.",
+        "defeito": "1",
+        "equipamentoId": "2",
+        "SalaId": null
+    }
+*/
 router.post('/', documentoRevisaoController.cadastrar);
 
 // Recupera todos os documentos de revisão

@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Generation Time: 17-Jun-2021 às 17:07
+-- Generation Time: 21-Jun-2021 às 21:07
 -- Versão do servidor: 8.0.13-4
 -- versão do PHP: 7.2.24-0ubuntu0.18.04.7
 
@@ -125,7 +125,7 @@ CREATE TABLE `Requisicao` (
   `Tipo` int(11) NOT NULL,
   `Status` int(11) NOT NULL,
   `Turno` int(11) NOT NULL,
-  `DataUtilizacao` datetime NOT NULL,
+  `DataUtilizacao` datetime DEFAULT NULL,
   `DataAbertura` datetime NOT NULL,
   `DataEntrega` datetime DEFAULT NULL,
   `DataConclusao` datetime DEFAULT NULL,
@@ -222,8 +222,7 @@ CREATE TABLE `TipoEquipamento` (
 
 INSERT INTO `TipoEquipamento` (`TipoEquipamentoId`, `NomeTipo`) VALUES
 (1, 'Notebook'),
-(2, 'Tablet'),
-(3, 'Teste');
+(2, 'Tablet');
 
 -- --------------------------------------------------------
 
@@ -250,7 +249,6 @@ INSERT INTO `Usuario` (`UsuarioId`, `Nome`, `Login`, `Senha`, `Identificacao`, `
 (7, 'TesteEditado', 'testeedit', 'deivyd123', 'Deivyd257527', 1, 'testeedit1@gmail.com'),
 (8, 'DeivydEditado', 'deivydedit', 'deivyd123', 'DeivydEdit123', 1, 'deivydedit1@gmail.com'),
 (9, 'Deivyd2', 'deivydw2', 'deivyd123', 'Deivyd1234562', 0, 'deivyd2@gmail.com'),
-(10, '123Deivyd456', 'deivydw123', 'deivyd123', 'Deivyd111', 0, 'deivyd123@gmail.com'),
 (11, 'TesteDeivyd', 'testedeivyd', 'teste', 'TesteDeivyd', 0, 'testedeivyd@gmail.com');
 
 --
@@ -365,13 +363,13 @@ ALTER TABLE `Usuario`
 -- AUTO_INCREMENT for table `Acessorio`
 --
 ALTER TABLE `Acessorio`
-  MODIFY `AcessorioId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `AcessorioId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `AcessorioSala`
 --
 ALTER TABLE `AcessorioSala`
-  MODIFY `AcessorioSalaId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `AcessorioSalaId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
 
 --
 -- AUTO_INCREMENT for table `DocumentoRevisao`
@@ -383,7 +381,7 @@ ALTER TABLE `DocumentoRevisao`
 -- AUTO_INCREMENT for table `Equipamento`
 --
 ALTER TABLE `Equipamento`
-  MODIFY `EquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `EquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `Requisicao`
@@ -407,19 +405,19 @@ ALTER TABLE `RequisicaoSala`
 -- AUTO_INCREMENT for table `Sala`
 --
 ALTER TABLE `Sala`
-  MODIFY `SalaId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `SalaId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `TipoEquipamento`
 --
 ALTER TABLE `TipoEquipamento`
-  MODIFY `TipoEquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `TipoEquipamentoId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `Usuario`
 --
 ALTER TABLE `Usuario`
-  MODIFY `UsuarioId` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `UsuarioId` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- Constraints for dumped tables
@@ -462,28 +460,28 @@ ALTER TABLE `Requisicao`
 -- Limitadores para a tabela `RequisicaoAcessorio`
 --
 ALTER TABLE `RequisicaoAcessorio`
-  ADD CONSTRAINT `RequisicaoAcessorio_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`requisicaoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `RequisicaoAcessorio_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`RequisicaoId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `RequisicaoAcessorio_ibfk_2` FOREIGN KEY (`AcessorioId`) REFERENCES `Acessorio` (`acessorioid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Limitadores para a tabela `RequisicaoEquipamento`
 --
 ALTER TABLE `RequisicaoEquipamento`
-  ADD CONSTRAINT `RequisicaoEquipamento_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`requisicaoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `RequisicaoEquipamento_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`RequisicaoId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `RequisicaoEquipamento_ibfk_2` FOREIGN KEY (`EquipamentoId`) REFERENCES `Equipamento` (`equipamentoid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Limitadores para a tabela `RequisicaoSala`
 --
 ALTER TABLE `RequisicaoSala`
-  ADD CONSTRAINT `RequisicaoSala_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`requisicaoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `RequisicaoSala_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`RequisicaoId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `RequisicaoSala_ibfk_2` FOREIGN KEY (`SalaId`) REFERENCES `Sala` (`salaid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Limitadores para a tabela `RequisicaoTipoEquipamento`
 --
 ALTER TABLE `RequisicaoTipoEquipamento`
-  ADD CONSTRAINT `RequisicaoTipoEquipamento_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`requisicaoid`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `RequisicaoTipoEquipamento_ibfk_1` FOREIGN KEY (`RequisicaoId`) REFERENCES `Requisicao` (`RequisicaoId`) ON DELETE RESTRICT ON UPDATE RESTRICT,
   ADD CONSTRAINT `RequisicaoTipoEquipamento_ibfk_2` FOREIGN KEY (`TipoEquipamentoId`) REFERENCES `TipoEquipamento` (`tipoequipamentoid`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 COMMIT;
 

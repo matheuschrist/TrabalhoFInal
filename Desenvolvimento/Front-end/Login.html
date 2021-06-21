@@ -24,8 +24,8 @@
                   <img id="meuAvatar" src="imagens/logo-vertical.png">
                   <form id="form-login" action="" method="post" novalidate="novalidate">
                      <input type="hidden" name="resolucao" value="1366x768">
-                     <input type="text" name="usuario" placeholder="Usuário" autofocus="" aria-required="true" class="valid" aria-invalid="false">
-                     <input type="password" name="senha" placeholder="Senha" aria-required="true" class="valid" aria-invalid="false">
+                     <input type="text" name="Usuario" placeholder="Usuário" autofocus="" aria-required="true" class="valid" aria-invalid="false">
+                     <input type="password" name="Senha" placeholder="Senha" aria-required="true" class="valid" aria-invalid="false">
                      <input type="submit" name="Logar" class="btn-success btn-block" value="Entrar" data-loading-text="Autenticando...">
                   </form>
                   <br>
@@ -40,23 +40,4 @@
          </div>
       </div>
    </body>
-
-   <script>
-         
-      async function getContent()
-      {
-         try {
-            const response = await fetch('http://localhost:3080/api/login/')
-            const data = await response.json()
-
-            console.log(data);
-         } catch (error) {
-            console.log(error);
-         }
-      }
-
-      getContent()
-      
-   
-</script>
 </html>

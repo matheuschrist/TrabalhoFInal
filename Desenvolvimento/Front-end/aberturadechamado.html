@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="pt-br" style="margin-top: 0px;"><head>
+        <title>Requisições / requisição / Cadastrar</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="robots" content="noindex">
+        <!--<meta name="versao" content="f709fd6c06056efa3722b9b25caf3e20w1485"> -->
+        <link rel="shortcut icon" href="imagens/favicon.ico">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/css/jquery-ui-1.9.2.custom.min.css">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/css/bootstrap-tagsinput.css">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/css/fullcalendar.min.css">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/libraries/lightbox2/css/lightbox.min.css">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/libraries/datatables/css/buttons.dataTables.min.css">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/libraries/slim/slim.min.css">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/libraries/multiple-select/css/multiple-select.css">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/css/tabela.css">        
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/css/select2.css?f709fd6c06056efa3722b9b25caf3e20w1485">        
+        <link rel="stylesheet" media="print" href="https://apps.sicoobes.com.br/portal/assets/css/print.css">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/css/default2.css?f709fd6c06056efa3722b9b25caf3e20w1485">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/css/portal.css?f709fd6c06056efa3722b9b25caf3e20w1485">
+        <link rel="stylesheet" href="https://apps.sicoobes.com.br/portal/assets/css/font-awesome.min.css">
+        <link rel="stylesheet" href="css/login.css">
+        <link rel="stylesheet" href="css/lista.css">
+
+        <!-- HTML5 shim, for IE6-8 support of HTML5 elements -->
+        <!--[if lt IE 9]>
+          <script src='https://apps.sicoobes.com.br/portal/assets/js/html5.js'></script>
+        <![endif]-->
+        
+            <script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="https://apps.sicoobes.com.br/portal/assets/main.js?f709fd6c06056efa3722b9b25caf3e20w1485" src="https://apps.sicoobes.com.br/portal/assets/main.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/jquery.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="control" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/control.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="sicoobNegocios" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/sicoobNegocios.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="chamados/chamado/cadastrar" src="https://apps.sicoobes.com.br/portal//assets/modules/chamados/chamado/cadastrar.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="box" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/box.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jqueryui" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/jquery-ui.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="ManipularAnexos" src="https://apps.sicoobes.com.br/portal//assets/modules/../modules/chamados/chamados-helper/ManipularAnexos.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="FormExtra" src="https://apps.sicoobes.com.br/portal//assets/modules/../modules/chamados/chamados-helper/FormExtra.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="TextAreaDescricao" src="https://apps.sicoobes.com.br/portal//assets/modules/../modules/chamados/chamados-helper/TextAreaDescricao.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="util" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/util.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="FAQ" src="https://apps.sicoobes.com.br/portal//assets/modules/../modules/chamados/chamados-helper/FAQ.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="select2" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/select2.min.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="maskedinput" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/maskedinput.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="maskMoney" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/maskMoney.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="tinyMCE" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/tinymce/tinymce.min.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery.validate" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/jquery.validate.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery.bootstrap" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/bootstrap.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="simpleUploader" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/plugins/SimpleAjaxUploader.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="form2js" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/form2json/form2js.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><script type="text/javascript" charset="utf-8" async="" data-requirecontext="_" data-requiremodule="jquery.toObject" src="https://apps.sicoobes.com.br/portal//assets/modules/../libraries/form2json/jquery.toObject.js?f709fd6c06056efa3722b9b25caf3e20w1485"></script><link rel="stylesheet" type="text/css" id="u0" href="https://apps.sicoobes.com.br/portal//assets/libraries/tinymce/skins/lightgray/skin.min.css"></head>
+    <body style="overflow: visible;">
+
+        <script async="" src="https://www.google-analytics.com/analytics.js"></script><script>(function (i, s, o, g, r, a, m) {
+                i['GoogleAnalyticsObject'] = r;
+                i[r] = i[r] || function () {
+                    (i[r].q = i[r].q || []).push(arguments)
+                }, i[r].l = 1 * new Date();
+                a = s.createElement(o), m = s.getElementsByTagName(o)[0];
+                a.async = 1;
+                a.src = g;
+                m.parentNode.insertBefore(a, m)
+            })(window, document, 'script', 'https://www.google-analytics.com/analytics.js', 'ga');
+            ga('create', 'UA-88604387-1', 'auto');
+            ga('send', 'pageview');</script>
+
+                <nav id="new-sidebar">
+            
+            <a class="avatar-usuario" title="Tecnico" href="erro.html">
+                <img style="width: 30px; border: 1px solid rgba(0, 162, 149, .5); border-radius: 50%; float:left; margin-top:-5px; margin-right:4px;" src="imagens/favicon.ico"> 
+                Tecnico 
+            </a>
+
+            <ul class="info-usuario unstyled">
+                <li><a target="_blank" rel="noopener noreferrer" href="erro.html"><span class="label label-info" data-original-title="" title=""><i class="icon-random icon-white"></i> Acesso Remoto</span></a></li>
+                <li><a href="erro.html">Meu Perfil</a></li>
+                <li><a href="erro.html">Alterar Senha</a></li>
+                <li class="divider"></li>
+                <li><a href="erro.html">Sair</a></li>
+            </ul>
+
+            <a href="#" class="toggle-sidebar">
+                <span style="float: left; margin-top: 3px;">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </span>
+                <span style="margin-left: 15px;">Sistemas</span>
+            </a>
+
+            <ul id="new-sidebar-itens" class="unstyled">
+                                    <li>
+                        <a target="_blank" rel="noopener noreferrer" class="active" href="erro.html">
+                            Requisições                        </a>
+                    </li>
+                                    <li>
+                        <a target="_blank" rel="noopener noreferrer" class="" href="erro.html">
+                            Meu Painel                        </a>
+                    </li>
+                            </ul>
+        </nav>
+            <div class="header">
+            <div class="container">
+                
+<div class="container nav-sistemas">
+    <ul class="nav nav-pills sub-menu-sistemas">
+        <li class="dropdown "><a href="#" class="dropdown-toggle" data-toggle="dropdown">Requisições <b class="caret"></b></a>
+   <ul class="dropdown-menu ">
+<li><a href="erro.html">Novo</a></li>
+<li><a href="erro.html">Listar</a></li>
+<li><a href="erro.html">Pesquisar</a></li>
+   </ul>
+</li>
+<li class="dropdown "><a href="#" class="dropdown-toggle" data-toggle="dropdown">Relatorios <b class="caret"></b></a>
+   <ul class="dropdown-menu ">
+<li><a href="erro.html">Equipamentos</a></li>
+<li><a href="erro.html">Salas/Laboratorios</a></li>
+   </ul>
+</li><li class="dropdown "><a href="#" class="dropdown-toggle" data-toggle="dropdown">Cadastro <b class="caret"></b></a>
+   <ul class="dropdown-menu ">
+<li><a href="erro.html">Equipamentos</a></li>
+<li><a href="erro.html">Salas/Laboratorios</a></li>
+<li><a href="erro.html">Usuários</a></li>
+   </ul>
+</li>
+
+<li><a href="erro.html">FAQ</a></li>
+
+        <a style="margin: 5px -30px 0 0;" class="pull-right" href="https://unisales.com.br"><img src="imagens/logo-top.png"></a>
+    </ul>
+</div>
+            </div>
+        </div>
+        
+        
+
+
+<input type="hidden" name="logado" value="1">
+<input type="hidden" name="perfilCompleto" value="1">
+<input type="hidden" name="sicoobNegocios" data-usuario="" data-cpf="">
+<div class="container segment-chamados" id="content">
+    <div class="row">
+    <div class="span12">
+                <h4 class="titulo">Nova Requisição</h4>
+    </div>
+    <div class="span12">
+        <form id="form-cadastro-chamado-central-singular" class="form-cadastro" enctype="multipart/form-data" action="" method="post" novalidate="novalidate">
+            <input type="hidden" name="FormExtraValido" value="0">
+            <input type="hidden" name="BolMigrado" value="0">
+            <input type="hidden" name="JsonFormExtra" value="0">
+            <input type="hidden" name="IdNivelAtendimento" value="0">
+            <input type="hidden" name="IdPaDestino" class="id-pa-destino" value="">
+            <input type="hidden" name="ChamadoTerceiro" value="1">
+            <div class="row">
+                <div class="span8">
+                    <div class="span12"> 
+                        <label for="exampleFormControlSelect1">Tipo<span class="text-error">*</span></label>
+                        <select class="form-control" id="exampleFormControlSelect1">
+                        <option value="" >Selecione</option>
+                                        <option>Sala</option>
+                                        <option>Equipamento</option>
+                        </select>
+                 </div>
+                    
+                        
+                </div>
+                <div class="span2">
+                    <label>Prioridade<span class="text-error">*</span></label>
+                    <select name="prioridade" class="span2">
+                        <option value="">Nenhuma</option>
+                                                    <option value="1">Urgente</option>
+                                                    <option value="2">Alta</option>
+                                                    <option value="3">Normal</option>
+                                            </select>
+                </div>
+                <div class="span2">
+                    <label>Categoria<span class="text-error">*</span></label>
+                    <select name="IdTipoCategoria" class="span2" >
+                        <option value="">Nenhuma</option>
+                                                    <option value="1">Notebook</option>
+                                                    <option value="2">Sala</option>
+                                                    <option value="2">Laboratorio</option>
+                                                    <option value="2">Tablet</option>
+                                                    <option value="2">Outros</option>
+                        </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span4">
+                    <label>Sala/Laboratorio<span class="text-error">*</span></label>
+                    <select name="idsala" class="span4" required="" aria-required="true">
+                        <option value="">Selecione uma Sala/Laboratorio</option>
+                                                    <option value="1">101</option>
+                                                    <option value="2">102</option>
+                                                    <option value="3">103</option>
+                                                    <option value="4">104</option>
+                                                    <option value="5">105</option>
+                                                    <option value="6">106</option>
+                                                    <option value="7">107</option>
+                                                    <option value="8">108</option>
+                                                    <option value="9">109</option>
+                                                    <option value="10">110</option>
+                                            </select>
+                </div>
+                <div class="span4">
+                    <label>Turma<span class="text-error">*</span></label>
+                    <select name="idturma" class="span4" required="" aria-required="true">
+                        <option value="">Informe a Turma</option>
+                                                    <option value="1">TADS</option>
+                                                    <option value="2">SI</option>
+                                                    <option value="3">ENG</option>
+                                                    <option value="4">FISIO</option>
+                    </select>
+                </div>
+                <div class="span4">
+                    <label>Solicitante<span class="text-error">*</span></label>
+                    <select name="" class="span4" required="" aria-required="true">
+                        <option value="">Informe o Professor</option>
+                                                    <option value="1">CAMILO</option>
+                                                    <option value="2">WESLEY</option>
+                                                    <option value="3">MARCELO</option>
+                                                    <option value="4">CASSIO</option>
+                    </select>
+                </div>
+            </div>
+            <div class="row">
+                <div class="span12">
+                    <label>Assunto<span class="text-error">*</span></label>
+                    <input type="text" class="span12" name="Assunto" maxlength="100">
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="span12">
+                    <label for="Descricao">Descrição<span class="text-error">*</span></label>
+                    <div id="descricao-servico"></div>
+                    <div class="form-group">
+                    <textarea class="form-control; span12" id="descricao" rows="10"></textarea>
+                      </div>
+                </div>
+            </div>
+            <div class="row box-arquivos">
+                <div id="content-arquivos" class="span12" style="display: none;">
+                    <hr>
+                    <table class="table-default table table-striped table-bordered table-hover">
+                        <thead>
+                            <tr>
+                                <th>Arquivo</th>
+                                <th style="width: 60px;" class="center">Ação</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="span12">
+                    <div class="pull-right">
+                        <br>
+                        <input type="submit" class="btn btn-success btn-salvar" name="Salvar" value="Salvar" data-loading-text="Aguarde...">
+                    </div>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+</div>
+<!--
+<script>
+    var base_url = 'erro.html';
+    var c_module = 'chamados';
+    var c_controller = 'chamado';
+    var c_method = 'cadastrar';
+</script> 
+-->
+<div id="tpl2-mask-load" style="width:100%;height:100%;position: absolute;left:0;top:0;background-color: rgba(96, 96, 96, 0.3);z-index: 9999999;" class="hide">
+    <div id="tpl2-box-load" style="top: 312.5px; left: 554px; margin-top: -25px; position: absolute; background: rgb(137, 191, 83); border: 1px solid rgb(110, 168, 65); text-align: center; font: 14px sans-serif; width: 180px; padding: 8px; border-radius: 4px;">
+            <img style="margin-right: 10px; margin-left: 20px; float: left; width: 31px;" src="imagens/loading.gif">
+            <div style="padding-top: 7px; margin-left: 25px; text-align: left; font-size: 16px; font-weight: bold;">Aguarde...</div>
+    </div>
+</div>
+<script>document.querySelector('body').style.overflow = 'hidden';</script>
+<script data-main="https://apps.sicoobes.com.br/portal/assets/main.js?f709fd6c06056efa3722b9b25caf3e20w1485" src="https://apps.sicoobes.com.br/portal/assets/libraries/require.js"></script>
+
+
+
+<style>
+    .buorg {
+        color: #222;
+        background-color: #ffeb3b;
+        border-color: #ff9800;
+        position: fixed;
+        min-height: 0;
+    }
+    
+    .burog-icon {
+        display: block!important;
+        width: 100%;
+    }
+    
+    .buorg-moremsg {
+        width: 100%;
+        display: block;
+        margin-bottom: 10px;
+    }
+
+</style>
+
+<script>
+    if (window.location.href.indexOf('atualizarNavegador') == -1) {
+        var $buoop = {
+            required: {e: -3, f: -3, o: -3, s: -3, c: -3},
+            insecure: true,
+            reminder: 0,
+            reminderClosed: 0,
+            url: 'https://apps.sicoobes.com.br/portal/portal/ferramenta/atualizarNavegador',
+            jsshowurl: 'https://apps.sicoobes.com.br/portal/assets/libraries/updateBrowser.show.min.js',
+        };
+
+        function $buo_f() {
+            var e = document.createElement("script");
+            e.src = 'https://apps.sicoobes.com.br/portal/assets/libraries/updateBrowser.min.js',
+                document.body.appendChild(e);
+        };
+        try {
+            document.addEventListener("DOMContentLoaded", $buo_f, false)
+        }
+        catch (e) {
+            window.attachEvent("onload", $buo_f)
+        }
+        document.querySelector('html').style.marginTop='0';
+    }
+</script>
+<script src="https://apps.sicoobes.com.br/portal/assets/libraries/updateBrowser.min.js"></script><span role="status" aria-live="polite" class="select2-hidden-accessible"></span><div style="display: block; position: absolute; overflow: hidden; margin: 0px; padding: 0px; opacity: 0; direction: ltr; height: 30px; z-index: 16777270;"><input type="file" name="uploadfile" multiple="" disabled="disabled" class="disabled" style="position: relative; right: 0px; margin: 0px; padding: 0px; font-family: sans-serif; cursor: pointer; width: 100%; height: 100%; z-index: 16777270;"></div><div id="mceu_26" class="mce-widget mce-tooltip mce-tooltip-n" role="presentation" style="left: 297.5px; top: 358px; z-index: 131070; display: none;"><div class="mce-tooltip-arrow"></div><div class="mce-tooltip-inner">Centralizar</div></div></body></html>
